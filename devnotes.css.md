@@ -2,7 +2,7 @@
 id: B07UdMhx2vwSI07fs2mpe
 title: CSS
 desc: ''
-updated: 1644000581829
+updated: 1644002721465
 created: 1643994767068
 ---
 ### Box Model
@@ -11,7 +11,7 @@ Margin collapses between elements.
 
 ### Standard Box Model
 
-![Standard Box Model](/assets/images/images/standard-box-model.png.png)
+![Standard Box Model](/assets/images/2022-02-04-09-19-24.png)
 
 Alternate Box Model
 
