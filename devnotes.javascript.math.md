@@ -2,7 +2,7 @@
 id: LbKc6oDDbleKQUq3KPSlS
 title: JavaScript Math
 desc: 'Info about JS and Math'
-updated: 1644467814465
+updated: 1644557849631
 created: 1644467027106
 ---
 ## General Math Info
@@ -14,3 +14,11 @@ created: 1644467027106
 *Unary* - an operator that has a single Operand (ex. ```-x```)
 
 $\sqrt{4}$  can be written as ``` 4 ** (1/2) ```
+
+Unary ```+``` converts strings into numbers.
+
+![Operators in C](/assets/images/Operators-in-C.png)
+
+Modify and Assign Operators such as ```+=, -=, /=``` exist for all arithmetic operators.
+
+Increment and Decrement Operators ```++ & --``` only work on variables not values.  
