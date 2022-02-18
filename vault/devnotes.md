@@ -1,9 +1,8 @@
 ---
-id: uSpzgyJf6XZBUhvQJltVn
+id: lcTujcWsxBfPEpzP49YbQ
 title: Devnotes
 desc: ''
-updated: 1645137343152
-created: 1645137343152
-stub: true
+updated: 1645065993567
+created: 1645065993567
 ---
 
