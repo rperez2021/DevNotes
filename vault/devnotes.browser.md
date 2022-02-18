@@ -1,8 +1,8 @@
 ---
 id: dMe8DCqCNWmEbcKFgLp70
 title: Browser
-desc: ''
-updated: 1643994751055
+desc: 'General Browser Notes'
+updated: 1645205718757
 created: 1643994739737
 ---
 

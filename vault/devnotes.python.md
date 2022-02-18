@@ -2,7 +2,7 @@
 id: THqFYHlDTguT4tBejc3TH
 title: Python
 desc: 'Python Notes'
-updated: 1645162410603
+updated: 1645163151928
 created: 1644000888615
 ---
 Documentation Site for Python
