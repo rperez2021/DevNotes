@@ -2,7 +2,7 @@
 id: eM4JZQZat4r1vRHaWLGrd
 title: A11y
 desc: ''
-updated: 1645206975236
+updated: 1645207264566
 created: 1643994663256
 ---
 ## General Notes
@@ -18,6 +18,8 @@ Synthetic Click Activator
 Screen reader users generally use headings to navigate a page quickly. Using heading in orders is super important.
 
 ### Modals
+
+The final boss battle of a11y! 😂
 
 With Modals make sure that when you close a modal focus is returned to where the modal was opened.
 
