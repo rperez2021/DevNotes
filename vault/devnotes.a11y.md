@@ -1,8 +1,8 @@
 ---
 id: eM4JZQZat4r1vRHaWLGrd
 title: A11y
-desc: ''
-updated: 1645207264566
+desc: 'Accessbility Notes'
+updated: 1645472431552
 created: 1643994663256
 ---
 ## General Notes
@@ -46,3 +46,13 @@ Enhanced for Large Text: 4:1
 3. [Lea Verous Contrast Ratio](https://goo.gl/0fqfVo)
 
 4. [Automated Testing with aXe](https://goo.gl/Nj31Jj)
+
+### Assistive Tech
+
+1. TalkBack: assistive reader for Mobile Devices.
+
+2. Switch Device: button switch device for low dexterity users.
+
+3. NVDA: Windows Screen Reader
+
+4. VoiceOver: IOS Screen Reader
