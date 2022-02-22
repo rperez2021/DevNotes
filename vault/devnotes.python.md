@@ -2,7 +2,7 @@
 id: THqFYHlDTguT4tBejc3TH
 title: Python
 desc: 'Python Notes'
-updated: 1645163151928
+updated: 1645477664350
 created: 1644000888615
 ---
 Documentation Site for Python
@@ -52,3 +52,19 @@ print("cat", "dog", "mouse", sep="ABC")
 ```
 
 > catABCdogABCmouse
+
+Mutable values are not stored in the variable just a **reference** to them which means that they can be cross modified ie:
+
+```python
+>>> spam = [1, 2, 3, 4]
+>>> cheese = spam
+>>> cheese[1] = "Hello"
+>>> cheese 
+[1, "Hello", 2, 3, 4]
+>>> spam 
+[1, "Hello", 2, 3, 4]
+```
+
+Immutable values such as strings or tuples cannot be modified unless they are replaced.
+
+You can also use `copy.deepcoopy(spam)` to create a new list with a new reference.

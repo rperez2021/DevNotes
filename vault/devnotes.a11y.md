@@ -2,7 +2,7 @@
 id: eM4JZQZat4r1vRHaWLGrd
 title: A11y
 desc: 'Accessbility Notes'
-updated: 1645472431552
+updated: 1645498094941
 created: 1643994663256
 ---
 ## General Notes
@@ -16,6 +16,10 @@ Adding an HTML Attribute ` tabindex="0" ` allows tab focus. These can also be nu
 Synthetic Click Activator
 
 Screen reader users generally use headings to navigate a page quickly. Using heading in orders is super important.
+
+### Cool Examples of All the Things
+
+[A Complete Guide to A11y Components](https://www.smashingmagazine.com/2021/03/complete-guide-accessible-front-end-components/)
 
 ### Modals
 
