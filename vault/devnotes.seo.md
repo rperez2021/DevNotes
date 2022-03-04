@@ -2,9 +2,13 @@
 id: hnhkNfZfZIYUBJEKr3pR5
 title: Seo
 desc: 'SEO Notes'
-updated: 1645659426759
+updated: 1645663555072
 created: 1645653789214
 ---
+## Github Project Masterlist
+
+[SEO⭐⭐⭐⭐⭐](https://github.com/seo/guide)
+
 ## Google Do's
 
 1. **Use the [URL Inspection tool](https://support.google.com/webmasters/answer/9012289)**. It will allow you to see exactly how Googlebot sees and renders your content, and it will help you identify and fix a number of indexing issues on your site.
