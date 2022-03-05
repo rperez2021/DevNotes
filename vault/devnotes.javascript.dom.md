@@ -2,10 +2,14 @@
 id: ifx9x9mx76ipl6ballgoxyz
 title: Dom
 desc: 'Notes About the DOM'
-updated: 1646260795644
+updated: 1646441485634
 created: 1646256849423
 ---
 ## General Info
+
+When nothing in particular has focus, document.body acts as the target node of key events.
+
+It’s important to note that when using querySelectorAll, the return value is not an array. It looks like an array, and it somewhat acts like an array, but it’s really a “nodelist”. The big distinction is that several array methods are missing from nodelists. One solution, if problems arise, is to convert the nodelist into an array. You can do this with Array.from() or the spread operator.
 
 ### Relational Selectors
 
@@ -16,5 +20,3 @@ Examples:
 previousElementSibling
 
 firstElementChild
-
-It’s important to note that when using querySelectorAll, the return value is not an array. It looks like an array, and it somewhat acts like an array, but it’s really a “nodelist”. The big distinction is that several array methods are missing from nodelists. One solution, if problems arise, is to convert the nodelist into an array. You can do this with Array.from() or the spread operator.
