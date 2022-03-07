@@ -2,7 +2,7 @@
 id: 1nwnk5e8e9yluffevhwlajo
 title: Bubbling
 desc: 'Understanding Bubbling'
-updated: 1646366413933
+updated: 1646460569925
 created: 1646365815256
 ---
 ## General Info
@@ -17,7 +17,7 @@ Event listeners will bubble up if they are listening to multiple levels of the D
 
 HTML
 
-```html 
+```html
   <div class="one">
     <div class="two">
       <div class="three">
