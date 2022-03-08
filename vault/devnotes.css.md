@@ -2,7 +2,7 @@
 id: B07UdMhx2vwSI07fs2mpe
 title: CSS
 desc: ''
-updated: 1646717671089
+updated: 1646761468007
 created: 1643994767068
 ---
 ### Box Model
@@ -64,3 +64,37 @@ Margin `auto` will center an element in the middle of the page.
 ### Margin Collapse
 
 Only happens in top or bottom margins, if two consecutive elements have top or bottom margins they are not additive but the greater of the two will be displayed.
+
+### Lists
+
+```css
+ul {
+  /* To replace list marker with image */
+  list-style-image: url('sqpurple.gif');
+  /* To place list marker outside the list item, outside is default */
+  list-style-position: inside;
+  
+}
+```
+
+### Tables
+
+Removing double borders on tables:
+
+```css
+table {
+  border-collapse: collapse;
+}
+```
+
+Responsive Table: place the table in an element with `overflow-x: auto`
+
+```css
+<div style="overflow-x:auto;">
+
+<table>
+... table content ...
+</table>
+
+</div>
+```

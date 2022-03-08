@@ -2,10 +2,12 @@
 id: viufua5jjzuuans4ncdrz9m
 title: Objects
 desc: 'Notes on JavaScript Objects'
-updated: 1646717678949
+updated: 1646761459795
 created: 1646692621428
 ---
 ## General Info
+
+Objects are sometimes called Associative Arrays
 
 functions in objects (methods) do not need to be separated by a colon they can be shorthand written just as the function name.
 
@@ -42,4 +44,27 @@ function isEmpty(obj) {
     }
     return true
 }
+```
+
+### Constructors
+
+- Start with a capital letter and are named for the type of object they create
+
+```javascript
+function Person(name) {
+  this.name = name;
+  this.introduceSelf = function() {
+    console.log(`Hi! I'm ${this.name}.`);
+  }
+}
+
+// to call a Person() as a constructor we use new
+
+const salva = new Person('Salva');
+salva.name;
+salva.introduceSelf();
+
+const frankie = new Person('Frankie');
+frankie.name;
+frankie.introduceSelf();
 ```
