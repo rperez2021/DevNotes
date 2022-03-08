@@ -2,7 +2,7 @@
 id: B07UdMhx2vwSI07fs2mpe
 title: CSS
 desc: ''
-updated: 1644002721465
+updated: 1646717671089
 created: 1643994767068
 ---
 ### Box Model
@@ -50,3 +50,17 @@ Centered on X and Y axis `justify-content: center` is the X axis `align-items: c
   <div></div>
 </div>
 ```
+
+### CSS Colors
+
+3 Digit Hex Code: The 3-digit hex code can only be used when both the values (RR, GG, and BB) are the same for each components. So, if we have #ff00cc, it can be written like this: #f0c.
+
+## Margins
+
+### Margin Auto
+
+Margin `auto` will center an element in the middle of the page.
+
+### Margin Collapse
+
+Only happens in top or bottom margins, if two consecutive elements have top or bottom margins they are not additive but the greater of the two will be displayed.
