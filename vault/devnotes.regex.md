@@ -2,7 +2,7 @@
 id: bym2AxoiHmKfMAdpOeBm9
 title: Regex
 desc: 'Regular Expressions Notes'
-updated: 1646674504264
+updated: 1646845274273
 created: 1644602665546
 ---
 ## General Info
@@ -50,3 +50,15 @@ The `|` pipe can match one of many possible groups.
 You can create your own character class like `d` for digit or `w` for word charcaters or `s` for whitespace. Uppercase shorthand chracters matches all that are NOT digits, words or spaces.
 
 You can use `[]` to make your own character clases `[^]` will make it a negative character class.
+
+`.findall()` is similar to `.search()` but does not return a match object, it returns tuples with your matches.
+
+`^` means the string must start with the pattern
+
+`$` means the string must end with the pattern
+
+`.` is a wildcard it matches anything except newlines
+
+`re.compile(r'.*', re.DOTALL)` will also include newlines
+
+`re.compile(r'[aeiou]', re.IGNORECASE)` will ignore case can also be shortened to `re.I`
