@@ -2,7 +2,7 @@
 id: B07UdMhx2vwSI07fs2mpe
 title: CSS
 desc: ''
-updated: 1646761468007
+updated: 1646958863116
 created: 1643994767068
 ---
 ### Box Model
@@ -98,3 +98,25 @@ Responsive Table: place the table in an element with `overflow-x: auto`
 
 </div>
 ```
+
+## Z-Index
+
+z-index only works on positioned elements (position: absolute, position: relative, position: fixed, or position: sticky) and flex items (elements that are direct children of display: flex elements).
+
+If two positioned elements overlap each other without a z-index specified, the element defined last in the HTML code will be shown on top.
+
+## Clear-Fix Hack
+
+If a floated element is taller than the containing element, it will "overflow" outside of its container.
+
+```css
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+```
+
+![Clearfix Problem](/assets/images/clearfix_prob.jpg)
+
+![Clearfix Solution](/assets/images/clearfix_solution.jpg)
