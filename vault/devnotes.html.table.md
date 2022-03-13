@@ -2,12 +2,20 @@
 id: 8cffv6nowx4916vljpcx5qd
 title: Table
 desc: 'Notes on Tables'
-updated: 1647122953930
+updated: 1647131807178
 created: 1647118132887
 ---
 ## UI/UX Best Practices from Pencil & Paper IO
 
 Part of this info comes from this guide: [pencilandpaper.io](https://pencilandpaper.io/articles/ux-pattern-analysis-enterprise-data-tables/)
+
+- Left Align Text Columns
+- Match Heading Alignment to Columns
+- Don't ever use center alignment
+- Avoid duplication of words between Headers and Content
+- Right align quantitative numberical values (money, quantities, measures, percentages)
+- Qualitative numbers can be left aligned (dates, postal codes, phone numbers)
+- Lots more check out that article
 
 ## Styling Tips and Helper Elements & Attributes
 
@@ -17,7 +25,7 @@ These can be used to style entire columns without having to style individual `<t
 
 Styling columns like this is limited to a few properties: border, background, width, and visibility. To set other properties you'll have to either style every `<td>` or `<th>` in the column, or use a complex selector such as `:nth-child`.
 
-The attribute `span` can also be used inside a `<col>` element to expand the styling size. 
+The attribute `span` can also be used inside a `<col>` element to expand the styling size.
 
 ### The `colspan` and `rowspan` attributed
 
@@ -61,7 +69,7 @@ These elements don't make the table any more accessible to screenreader users, a
 
 ### The `scope` Attribute
 
-The Scope attribute, which can be added to the `<th>` element to tell screenreaders exactly what cells the header is a header for can use the scope attribute with values like `colgroup`, `rowgroup`, `col` or `row` to help screenreders determine what these subheadings are for. 
+The Scope attribute, which can be added to the `<th>` element to tell screenreaders exactly what cells the header is a header for can use the scope attribute with values like `colgroup`, `rowgroup`, `col` or `row` to help screenreders determine what these subheadings are for.
 
 ### Using `id` and `header` Attributes
 
