@@ -2,7 +2,7 @@
 id: vpx4bmx8pfcw9514uqqb7sw
 title: Strings
 desc: 'Notes on String DataType'
-updated: 1647292760463
+updated: 1647293115642
 created: 1647291861826
 ---
 ## General Info
@@ -30,3 +30,13 @@ Console.WriteLine($"{name} is {age} year{(age == 1 ? "" : "s")} old.");
 // He asked, "Is your name Horace?", but didn't wait for a reply :-{
 // Horace is 34 years old.
 ```
+
+
+### Substring
+
+```csharp
+string firstName = "Robert";
+Console.WriteLine(firstName.Substring(2)); // will output bert
+```
+
+`.IsNullOrWhiteSpace()`.

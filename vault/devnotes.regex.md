@@ -2,7 +2,7 @@
 id: bym2AxoiHmKfMAdpOeBm9
 title: Regex
 desc: 'Regular Expressions Notes'
-updated: 1646845274273
+updated: 1647456255440
 created: 1644602665546
 ---
 ## General Info
@@ -62,3 +62,28 @@ You can use `[]` to make your own character clases `[^]` will make it a negative
 `re.compile(r'.*', re.DOTALL)` will also include newlines
 
 `re.compile(r'[aeiou]', re.IGNORECASE)` will ignore case can also be shortened to `re.I`
+
+`.sub()` acts as search and replace
+
+```python
+>>> namesRegex = re.compile(r'Agent (\w) \w*')
+>>> namesRegex.finall('Agent Alice gave the secret documents to Agent Bob.')
+['A', 'B']
+>>> namesRegex.sub(r'Agent \1****', 'Agent Alice gave the secret documents to Agent Bob.')
+'Agent A**** gave the secret documents to Agent B****.'
+>>>
+```
+
+### Verbose Regular Expression
+
+Allows you to make large regex more readable. For example:
+
+```python
+re.compile(r'''
+(\d\d\d-)|     #Area Code
+(\(\d\d\d) )   #-or- area code
+\d\d\d         # first 3 digits
+-              # second dash
+\d\d\d\d       # last 4 digits
+\sx\d{2,4}''', re.VERBOSE)
+```
