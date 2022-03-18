@@ -2,7 +2,7 @@
 id: B07UdMhx2vwSI07fs2mpe
 title: CSS
 desc: ''
-updated: 1647280905273
+updated: 1647574393927
 created: 1643994767068
 ---
 ## Cool Tools
@@ -464,3 +464,7 @@ Allows you to truncate a line of text. [CSS Tricks Page](https://css-tricks.com/
   text-overflow: ellipsis;
 }
 ```
+
+## Opacity
+
+If you dont want to apply opacity to child elements you can use RGBA colors instead of the `opacity` css property.
