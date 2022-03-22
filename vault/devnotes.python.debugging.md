@@ -2,7 +2,7 @@
 id: cd1cg9uf5is0w7vq6v5nkfx
 title: Debugging
 desc: 'Notes on Python Debugging'
-updated: 1647971463019
+updated: 1647986075776
 created: 1647902430948
 ---
 ## Using the Logging Module
@@ -19,4 +19,3 @@ logging.basicConfig(level=logging.DEBUG, format=' %(asctime)s - %(levelname)s- %
 - warning
 - error
 - critical(highest)
-
