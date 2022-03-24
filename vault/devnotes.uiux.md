@@ -32,7 +32,22 @@ created: 1647810432228
 4. Testing
 5. Launch
 
-## 5 Elements of UX Design
+## 5 UX Frameworks
+
+1. User Centered Design Process
+2. 5 Elements of UX Design
+3. Design Thkning Process
+4. Lean UX
+5. Double Diamond
+
+### User Centered Design Process
+
+1. Understand how the user experiences the product
+2. Specify the users needs
+3. Design Solutions
+4. Evaluate solutions against user needs
+
+### 5 Elements of UX Design
 
 1. Strategy
 2. Scope
@@ -42,7 +57,7 @@ created: 1647810432228
 
 ![5 Elements](assets/images/ux5elements.png){width: 500px}
 
-## Design Thinking
+### Design Thinking
 
 1. Empathize
 2. Define
@@ -51,3 +66,36 @@ created: 1647810432228
 5. Test
 
 ![Design Thinking](assets/images/design-thinking.png){width: 500px}
+
+### Lean UX
+
+1. Think
+2. Make
+3. Check
+
+![Lean UX](assets/images/leanux.png){width: 500px}
+
+#### Lean UX Six Principles
+
+1. Move Forward
+2. Stay Curious
+3. Test Ideas in the real world
+4. Externalize your ideas
+5. Reframe deliverables as outcomes
+6. Embrace radical transparency
+
+### Double Diamond
+
+1. Discover
+2. Define
+3. Develop
+4. Deliver
+
+![Double Diamond](assets/images/double-diamond.png){width: 500px}
+
+## Four C's for Designing on Multiple Platforms
+
+- Consistency
+- Continuity
+- Context
+- Complementary
