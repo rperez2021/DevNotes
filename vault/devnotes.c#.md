@@ -34,7 +34,7 @@ created: 1648058105832
 
 ## Unary Operators
 
-`num2 = -num3` negative operator 
+`num2 = -num3` negative operator
 
 `!` logical negation operator
 

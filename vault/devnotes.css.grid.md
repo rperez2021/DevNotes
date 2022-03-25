@@ -28,7 +28,7 @@ is the same as:
 
 If we add additional items from to those defined in the template they will be placed on the grid but they will not have explicit size values assigned to them unless you use `grid-auto-rows: 50px;` css property.
 
-##  Span
+## Span
 
 Grid defaults to spanning one track. You can use the span keyword when setting up grid columns or rows to extend the length based on the number of spans. For example:
 
