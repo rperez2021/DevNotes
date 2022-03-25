@@ -68,3 +68,48 @@ Mutable values are not stored in the variable just a **reference** to them which
 Immutable values such as strings or tuples cannot be modified unless they are replaced.
 
 You can also use `copy.deepcoopy(spam)` to create a new list with a new reference.
+
+## Excel in Python
+
+Module OpenPyXL handles .xlsx files, the command openpyxl.load_workbook(filepath) returns a Workbook object.
+
+`get_sheet_names()` and `get_sheet_by_name()` will get you a Worksheet object.
+
+`sheet[A1]` will get you Cell Objects
+
+`sheet[A1],value == "Purple"`
+
+## PDF in Python
+
+```python
+import PyPDF2 # is the module recommended
+pdfFile = open(filepath, 'rb')  # to open PDF
+reader = PyPDF2.PdfFileReader(pdfFile) # to read PDF in PyPDF2
+reader.numPages # returns number of pages in PDF
+reader.getPage(0) # gets a page
+reader.extractText()
+for pageNum in range(reader.numPages):
+    print(reader.getPage(pageNum).extractText())
+```
+
+`PdfFileWrite()` is the command to write a new PDF
+
+### Word in Python
+
+`python-docx`
+
+```python
+pip install python-docx
+import docx
+d = docx.Document(filepath)
+d.paragraphs # returns a list with all the objects in a docx
+d.paragraphs[0] #returns a paragraph object from the list
+d.paragraphs[0].text # returns the text within a single object in the list
+p.runs # returns a list of all the run objects
+p.runs[0].text # returns the text in the run object
+p.runs[0].bold # returns true if the run object is bold returns "NONE" (not false) if its not, this works for italic, bold and underline
+```
+
+Word documents contain paragraph and run objects for structure.
+
+A run is created every time there is a style change in the text of a document. So italics, bold, and underline.
