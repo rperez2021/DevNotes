@@ -1,7 +1,7 @@
 ---
 id: lhba46lu14mpydc48injol4
 title: Raspberrypi
-desc: 'Raspberry Pi Setup Notes'
+desc: Raspberry Pi Setup Notes
 updated: 1647067092517
 created: 1647065899204
 ---

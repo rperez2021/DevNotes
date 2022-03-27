@@ -1,7 +1,7 @@
 ---
 id: ph4ta0hoi7x0vch4uoz72hn
 title: Home Automation
-desc: 'Getting the stuff up and Runnin!'
+desc: Getting the stuff up and Runnin!
 updated: 1647628029774
 created: 1647623683555
 ---

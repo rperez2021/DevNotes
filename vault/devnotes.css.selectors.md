@@ -1,7 +1,7 @@
 ---
 id: ys3tkjryq0adflws6guy7sc
 title: Selectors
-desc: 'Notes on CSS Selectors'
+desc: Notes on CSS Selectors
 updated: 1647364972710
 created: 1647326082650
 ---

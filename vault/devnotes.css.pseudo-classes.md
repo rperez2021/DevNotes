@@ -1,7 +1,7 @@
 ---
 id: 9eoq8togzd89aibjh4q94hu
 title: Pseudo Classes
-desc: 'Pseudo Class List'
+desc: Pseudo Class List
 updated: 1647274009880
 created: 1647159353306
 ---

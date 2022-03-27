@@ -1,7 +1,7 @@
 ---
 id: LbKc6oDDbleKQUq3KPSlS
 title: JavaScript Math
-desc: 'Info about JS and Math'
+desc: Info about JS and Math
 updated: 1644557849631
 created: 1644467027106
 ---

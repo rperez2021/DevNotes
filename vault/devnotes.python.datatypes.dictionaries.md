@@ -1,7 +1,7 @@
 ---
 id: 4uw1hc4r42v4p8rARjsTX
 title: Dictionaries
-desc: 'Dictionary Data Type'
+desc: Dictionary Data Type
 updated: 1645479632732
 created: 1645477843577
 ---

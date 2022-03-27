@@ -1,7 +1,7 @@
 ---
 id: viufua5jjzuuans4ncdrz9m
 title: Objects
-desc: 'Notes on JavaScript Objects'
+desc: Notes on JavaScript Objects
 updated: 1646761459795
 created: 1646692621428
 ---

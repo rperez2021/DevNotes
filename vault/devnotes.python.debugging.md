@@ -1,7 +1,7 @@
 ---
 id: cd1cg9uf5is0w7vq6v5nkfx
 title: Debugging
-desc: 'Notes on Python Debugging'
+desc: Notes on Python Debugging
 updated: 1647986075776
 created: 1647902430948
 ---

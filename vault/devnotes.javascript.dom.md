@@ -1,7 +1,7 @@
 ---
 id: ifx9x9mx76ipl6ballgoxyz
 title: Dom
-desc: 'Notes About the DOM'
+desc: Notes About the DOM
 updated: 1646441485634
 created: 1646256849423
 ---

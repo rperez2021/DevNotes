@@ -1,7 +1,7 @@
 ---
 id: vpx4bmx8pfcw9514uqqb7sw
 title: Strings
-desc: 'Notes on String DataType'
+desc: Notes on String DataType
 updated: 1647293115642
 created: 1647291861826
 ---

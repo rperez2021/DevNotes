@@ -1,7 +1,7 @@
 ---
 id: 1nwnk5e8e9yluffevhwlajo
 title: Bubbling
-desc: 'Understanding Bubbling'
+desc: Understanding Bubbling
 updated: 1646460569925
 created: 1646365815256
 ---

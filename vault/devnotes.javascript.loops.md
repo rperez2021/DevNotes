@@ -1,7 +1,7 @@
 ---
 id: kNZlhVmdeoYdBl7qGdm3e
 title: Loops
-desc: 'Notes on JS Loops'
+desc: Notes on JS Loops
 updated: 1645764395329
 created: 1645764251427
 ---

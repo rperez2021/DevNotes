@@ -1,7 +1,7 @@
 ---
 id: THqFYHlDTguT4tBejc3TH
 title: Python
-desc: 'Python Notes'
+desc: Python Notes
 updated: 1645477664350
 created: 1644000888615
 ---

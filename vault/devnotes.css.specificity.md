@@ -1,7 +1,7 @@
 ---
 id: qf9443fygt5ex993crv5c0w
 title: CSS Specificity
-desc: 'CSS Specificty Notes'
+desc: CSS Specificty Notes
 updated: 1647319805546
 created: 1647312641814
 ---

@@ -1,7 +1,7 @@
 ---
 id: 0kUgAtckpQ0Nk0ClNqfcE
 title: Arrays
-desc: 'Notes on JS Arrays'
+desc: Notes on JS Arrays
 updated: 1645729706226
 created: 1645670170208
 ---

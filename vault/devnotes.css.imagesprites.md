@@ -1,7 +1,7 @@
 ---
 id: 64bcz5fld2n38w83wmee38x
 title: Image Sprites
-desc: 'Image Sprites Notes'
+desc: Image Sprites Notes
 updated: 1647573716457
 created: 1647572699543
 ---

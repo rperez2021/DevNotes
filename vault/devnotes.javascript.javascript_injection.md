@@ -1,7 +1,7 @@
 ---
 id: ejsuf0yamyfbhaz9psry4if
 title: Javascript_injection
-desc: 'Notes on JS Injection'
+desc: Notes on JS Injection
 updated: 1646260845678
 created: 1646260573772
 ---

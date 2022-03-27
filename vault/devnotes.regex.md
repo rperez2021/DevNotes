@@ -1,7 +1,7 @@
 ---
 id: bym2AxoiHmKfMAdpOeBm9
 title: Regex
-desc: 'Regular Expressions Notes'
+desc: Regular Expressions Notes
 updated: 1647456255440
 created: 1644602665546
 ---

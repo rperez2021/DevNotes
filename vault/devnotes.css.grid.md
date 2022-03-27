@@ -1,7 +1,7 @@
 ---
 id: gwtxdrn8mqjq8p2u9c5s8ja
 title: Grid
-desc: 'Notes on CSS Grid'
+desc: Notes on CSS Grid
 updated: 1647986737223
 created: 1647986737223
 ---

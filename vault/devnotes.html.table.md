@@ -1,7 +1,7 @@
 ---
 id: 8cffv6nowx4916vljpcx5qd
 title: Table
-desc: 'Notes on Tables'
+desc: Notes on Tables
 updated: 1647131807178
 created: 1647118132887
 ---

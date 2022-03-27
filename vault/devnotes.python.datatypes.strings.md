@@ -1,7 +1,7 @@
 ---
 id: wGXbodJIgcEVOuiVmXxEB
 title: Strings
-desc: 'Notes on Python Strings'
+desc: Notes on Python Strings
 updated: 1645640398112
 created: 1645635471771
 ---

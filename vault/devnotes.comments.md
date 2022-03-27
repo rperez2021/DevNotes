@@ -1,7 +1,7 @@
 ---
 id: 2YSOacVmijTOgqaMYRoAx
 title: Comments
-desc: 'On the Philosphy of Comments in Code'
+desc: On the Philosphy of Comments in Code
 updated: 1645644491877
 created: 1645643620234
 ---

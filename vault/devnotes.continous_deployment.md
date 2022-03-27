@@ -1,7 +1,7 @@
 ---
 id: ObJhAYio34q9IWcw9J9f1
 title: Continous_Deployment
-desc: 'Continous_Deployment Notes'
+desc: Continous_Deployment Notes
 updated: 1645205733454
 created: 1644000205922
 ---

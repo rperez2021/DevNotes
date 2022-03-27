@@ -1,7 +1,7 @@
 ---
 id: 4k8jx70ww4gqow8k56wlevp
 title: CSS Variables
-desc: 'Notes on CSS Variables'
+desc: Notes on CSS Variables
 updated: 1647829218145
 created: 1647828444135
 ---

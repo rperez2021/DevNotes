@@ -1,7 +1,7 @@
 ---
 id: Ozqht06F3ZvU22beuimPh
 title: Logical Operators
-desc: 'JavaScript Notes on Logical Operators'
+desc: JavaScript Notes on Logical Operators
 updated: 1644932690213
 created: 1644931662262
 ---

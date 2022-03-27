@@ -1,7 +1,7 @@
 ---
 id: 5f3d0t294g02nes2iyfnpo1
 title: CSS Only Scroll
-desc: 'Instructions on How to Create a CSS Only Scrollbar'
+desc: Instructions on How to Create a CSS Only Scrollbar
 updated: 1647274031803
 created: 1647273847817
 ---

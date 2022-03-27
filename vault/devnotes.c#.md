@@ -1,7 +1,7 @@
 ---
 id: 30me5ye70hp7yvxy5rbc2kt
 title: C#
-desc: 'General C# Notes'
+desc: General C# Notes
 updated: 1648058105831
 created: 1648058105832
 ---

@@ -1,7 +1,7 @@
 ---
 id: 2ngvq02pnz8bswezw7lgjxc
 title: Functions
-desc: 'Notes on CSS Functions'
+desc: Notes on CSS Functions
 updated: 1647559251870
 created: 1647557312527
 ---

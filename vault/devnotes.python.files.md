@@ -1,7 +1,7 @@
 ---
 id: d40r117bk5ij1tf5gamvchp
 title: Files
-desc: 'Python File Manipulation Notes'
+desc: Python File Manipulation Notes
 updated: 1647549345007
 created: 1647539055031
 ---

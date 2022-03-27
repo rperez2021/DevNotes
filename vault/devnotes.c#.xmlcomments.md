@@ -1,7 +1,7 @@
 ---
 id: owuuzurikuxv6vrevlih78w
 title: XML Comments
-desc: 'Notes About XML Comments in C#'
+desc: Notes About XML Comments in C#
 updated: 1647281895251
 created: 1647281825067
 ---

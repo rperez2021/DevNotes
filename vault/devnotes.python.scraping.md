@@ -1,7 +1,7 @@
 ---
 id: d5nvr7f85mdrbu24x9706r5
 title: Scraping
-desc: 'Notes on Python Web Scraping'
+desc: Notes on Python Web Scraping
 updated: 1647985423659
 created: 1647982605410
 ---

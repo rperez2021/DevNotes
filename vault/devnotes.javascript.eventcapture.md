@@ -1,7 +1,7 @@
 ---
 id: l1lhl7tfi70qrdit0vtsfpo
 title: Eventcapture
-desc: 'Notes on Event Capture in JavaScript'
+desc: Notes on Event Capture in JavaScript
 updated: 1646366757523
 created: 1646366005564
 ---

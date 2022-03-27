@@ -1,7 +1,7 @@
 ---
 id: hnhkNfZfZIYUBJEKr3pR5
 title: Seo
-desc: 'SEO Notes'
+desc: SEO Notes
 updated: 1645663555072
 created: 1645653789214
 ---

@@ -1,7 +1,7 @@
 ---
 id: kptjfnslj2jxgj99rxccvmk
 title: SVG
-desc: 'Notes on SVGs'
+desc: Notes on SVGs
 updated: 1646953679151
 created: 1646947752557
 ---

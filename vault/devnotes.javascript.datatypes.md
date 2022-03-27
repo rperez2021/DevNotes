@@ -1,7 +1,7 @@
 ---
 id: jMwhka851RbdJKAoiQWxK
 title: Data Types
-desc: 'Explanation of JavaScript Data Types'
+desc: Explanation of JavaScript Data Types
 updated: 1644558898703
 created: 1644557871912
 ---

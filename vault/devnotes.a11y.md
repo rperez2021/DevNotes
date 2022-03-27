@@ -1,7 +1,7 @@
 ---
 id: eM4JZQZat4r1vRHaWLGrd
 title: A11y
-desc: 'Accessbility Notes'
+desc: Accessbility Notes
 updated: 1645498094941
 created: 1643994663256
 ---

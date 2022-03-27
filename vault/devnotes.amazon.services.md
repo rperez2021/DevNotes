@@ -1,7 +1,7 @@
 ---
 id: zeibv8hfgm9yqa9celq61ec
 title: Amazon Web Services
-desc: 'Summaries of AWS Offerings'
+desc: Summaries of AWS Offerings
 updated: 1647630420838
 created: 1647629996126
 ---
