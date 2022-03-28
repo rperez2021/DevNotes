@@ -58,6 +58,10 @@ This prototype chain mechanism is essentially the same concept we have discussed
 7. `valueOf()`
 8. ECMAScript 5 also adds 4 accessor methods to Object.prototype.
 
+### Prototypal Inheretance
+
+[[devnotes.javascript.objects.method-delegation-inheretance]]
+
 ### Limitations on Prototypal Inheretance
 
 1. References cant go in circles. JavaScript will throw an error if we try to assign `__proto__` in a circle.

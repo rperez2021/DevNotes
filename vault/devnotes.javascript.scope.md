@@ -289,6 +289,25 @@ var Module = (function () {
 })();
 ```
 
+## Scope Example
+
+```javascript
+const FactoryFunction = string => {
+  const capitalizeString = () => string.toUpperCase();
+  const printString = () => console.log(`----${capitalizeString()}----`);
+  return { printString };
+};
+
+const taco = FactoryFunction('taco');
+
+printString(); // ERROR!!
+capitalizeString(); // ERROR!!
+taco.capitalizeString(); // ERROR!!
+taco.printString(); // this prints "----TACO----"
+```
+
+The only way to use either of those functions is to return them in the object (see line 4), which is why we can call taco.printString() but not taco.capitalizeString().
+
 ## Source
 
 I grabbed most of these notes from this guide:

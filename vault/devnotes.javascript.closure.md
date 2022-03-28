@@ -5,6 +5,12 @@ desc: 'Notes on JS Closure Concept'
 updated: 1648487756880
 created: 1648487756880
 ---
+## Definition
+
+The concept of closure is the idea that functions retain their scope even if they are passed around and called outside of that scope.
+
+Closures allow us to create private variables and functions. Private functions are functions that are used in the workings of our objects that are not intended to be used elsewhere in our program. In other words, even though our objects might only do one or two things, we are free to split our functions up as much as we want (allowing for cleaner, easier to read code) and only export the functions that the rest of the program is going to use.
+
 ## Example / Explanation
 
 Closures ties in very closely with Lexical Scope. A better example of how the closure side of things works, can be seen when returning a function reference - a more practical usage. Inside our scope, we can return things so that they’re available in the parent scope:
