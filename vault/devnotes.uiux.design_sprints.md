@@ -43,3 +43,29 @@ Sprints allow you to fast forward into the future to test your product and get c
 - Lower the risk of unsuccessful debut.
 
 - Versatile can be scheduled at any point during project.
+
+### Planning Design Sprints
+
+1. User Research - always the 1st step in a sprint planning process
+2. Call in the experts
+3. Find the right space
+4. Gather the supplies
+5. Establish the rules of the sprint
+6. Planning introductions
+7. Post sprint planning
+
+### Design Sprint Brief
+
+A document that you share with attendees to help them prepare for the sprint.
+
+Sprint Challenge
+Key Deliverables - a complete prototype of the feature update
+Logistics - who, where, sprint leader
+Approvers
+Resources
+
+### The Sprint Retrospective
+
+A collaborative critique of the teams design sprint. Goal is for everyone to get a chance to give feedback.
+
+What went well and what could be improved.
