@@ -41,3 +41,25 @@ created: 1648058105832
 ## Increment Operators
 
 `num++` or `++num`
+
+## TryParse
+
+```csharp
+string numberAsString = "128"
+int parsedValue
+bool success = int.TryParse(numberAsString, out parsedValue);
+if (success)
+    Console.WriteLine("Parsing Successful - number is " + parsedValue);
+else 
+    Console.WriteLine("Parsing Failed");
+```
+
+## .Equals()
+
+Determines whether two object instances are equal.
+
+## Ternary Operator If Statements
+
+```csharp
+stateOfMatter = temp > 100 ? "gas" : temp < 0 ? "solid" : "liquid";
+```
