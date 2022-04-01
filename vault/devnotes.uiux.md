@@ -99,3 +99,15 @@ created: 1647810432228
 - Continuity
 - Context
 - Complementary
+
+## UX Research
+
+- Foundational Research
+- Design Research (How was your experience, how difficult, challenges)
+- Post Launch Research (Did we succeed?)
+
+### UX Researcher Qualities
+
+- Empathy
+- Pragmatism
+- Collaboration

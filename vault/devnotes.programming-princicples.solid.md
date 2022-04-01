@@ -1,15 +1,11 @@
 ---
-id: reivdkdvnof22lcyn5creeb
-title: Programming Princicples
-desc: ''
-updated: 1648583993355
-created: 1648583993355
+id: v0z9fulz9ppks272rcydyni
+title: Solid
+desc: 'Notes on Solid'
+updated: 1648760320643
+created: 1648760320643
 ---
-## Composition Over Inheretance
-
-Is the principle that classes should achieve polymorphic behavior and code reuse by their composition (by containing instances of other classes that implement the desired functionality) rather than inheritance from a base or parent class. This is an often-stated principle of OOP, such as in the influential book Design Patterns (1994).
-
-## SOLID JavaScript
+## SOLID
 
 - Single Responsibility Principle
 - Open/Closed Principle
@@ -105,11 +101,3 @@ function awesomeSauceListener(listen) {
   });
 }
 ```
-
-## Publish / Subscribe Pattern
-
-In software architecture, publish–subscribe is a messaging pattern where senders of messages, called publishers, do not program the messages to be sent directly to specific receivers, called subscribers, but instead categorize published messages into classes without knowledge of which subscribers, if any, there may be. Similarly, subscribers express interest in one or more classes and only receive messages that are of interest, without knowledge of which publishers, if any, there are.
-
-Publish–subscribe is a sibling of the message queue paradigm, and is typically one part of a larger message-oriented middleware system. Most messaging systems support both the pub/sub and message queue models in their API; e.g., Java Message Service (JMS).
-
-This pattern provides greater network scalability and a more dynamic network topology, with a resulting decreased flexibility to modify the publisher and the structure of the published data.
