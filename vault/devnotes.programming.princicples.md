@@ -1,6 +1,6 @@
 ---
 id: reivdkdvnof22lcyn5creeb
-title: Programming Princicples
+title: Princicples
 desc: ''
 updated: 1648583993355
 created: 1648583993355
