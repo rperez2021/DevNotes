@@ -137,3 +137,7 @@ myModule._privateMethod(); // is TypeError protected by the module closure
 The benefit to the Revealing Module Pattern is that we can look at the bottom of our modules and quickly see what is publicly available for use.
 
 The Module Pattern is not a silver bullet for adding code re-usability to your JavaScript. Using the Module Pattern with Prototypal Inheritance or ES6 Classes can give you a wide range of design patterns with varying pros and cons.
+
+## require.resolve('some_module')
+
+The command `require.resolve('some_module')` will show you the path to the module that node finds as a result of the tree climbing process.
