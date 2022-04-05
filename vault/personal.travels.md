@@ -35,3 +35,17 @@ created: 1646796193271
 26. Austria
 27. Hungary
 28. Singapore
+29. UAE
+
+## Chronological Timeline
+
+1. USA
+2. Mexico
+3. China (Hong Kong)
+4. Singapore
+5. Australia
+6. Kuwait
+7. Iraq
+8. Egypt
+9. United Arab Emirates
+

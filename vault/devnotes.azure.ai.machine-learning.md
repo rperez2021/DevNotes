@@ -33,3 +33,11 @@ Machine Learning is the foundation for most artificial intelligence solutions, a
 **Relative Absolute Error (RAE)**: A relative metric between 0 and 1 based on the absolute differences between predicted and true values. The closer to 0 this metric is, the better the model is performing. Like RSE, this metric can be used to compare models where the labels are in different units.
 
 **Coefficient of Determination (R2)**:This metric is more commonly referred to as R-Squared, and summarizes how much of the variance between predicted and true values is explained by the model. The closer to 1 this value is, the better the model is performing.
+
+### Normalizing Values
+
+When training a machine learning model, it is sometimes possible for larger values to dominate the resulting predictive function, reducing the influence of features that on a smaller scale. Typically, data scientists mitigate this possible bias by normalizing the numeric columns so they're on the similar scales.
+
+## Cheat Sheet
+
+[Azure ML Cheat Sheet for Model Selection](https://docs.microsoft.com/en-us/azure/machine-learning/algorithm-cheat-sheet)

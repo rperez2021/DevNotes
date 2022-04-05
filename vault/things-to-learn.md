@@ -22,3 +22,4 @@ created: 1648606896474
 ### Programming Stuff
 
 - Review Treeshaking
+- Race condition

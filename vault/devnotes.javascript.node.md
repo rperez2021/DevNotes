@@ -47,3 +47,7 @@ eventEmitter.emit('connection');
 
 console.log("Program Ended.");
 ```
+
+### Error First Style Pattern
+
+Another common callback pattern is called "error-first style" (sometimes called "Node style," as it's also the convention used across nearly all Node.js APIs), where the first argument of a single callback is reserved for an error object (if any). If success, this argument will be empty/falsy (and any subsequent arguments will be the success data), but if an error result is being signaled, the first argument is set/truthy (and usually nothing else is passed):
