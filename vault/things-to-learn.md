@@ -23,3 +23,4 @@ created: 1648606896474
 
 - Review Treeshaking
 - Race condition
+- 4 Principles of OOP

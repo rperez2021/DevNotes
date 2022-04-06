@@ -7,6 +7,13 @@ created: 1649136450032
 ---
 ## Model Eval Metrics
 
+### For Clustering Models
+
+- **Average Distance to Other Center**: This indicates how close, on average, each point in the cluster is to the centroids of all other clusters.
+- **Average Distance to Cluster Center**: This indicates how close, on average, each point in the cluster is to the centroid of the cluster.
+- **Number of Points**: The number of points assigned to the cluster.
+- **Maximal Distance to Cluster Center**: The maximum of the distances between each point and the centroid of that point’s cluster. If this number is high, the cluster may be widely dispersed. This statistic in combination with the Average Distance to Cluster Center helps you determine the cluster’s spread.
+
 ### For Classification Models
 
 - **Accuracy**: The ratio of correct predictions (true positives + true negatives) to the total number of predictions. In other words, what proportion of diabetes predictions did the model get right?
