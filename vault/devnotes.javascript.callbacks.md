@@ -2,7 +2,7 @@
 id: 88axwcjbb82fjakboxgydsg
 title: Callback Functions
 desc: 'Notes on Callback Functions'
-updated: 1648944376567
+updated: 1649272239514
 created: 1648944376567
 ---
 ## General Info
@@ -137,3 +137,22 @@ To break down this example even more, here is a timeline of events that happen w
 2. When the last line of our program gets executed addOne is invoked with the logMyNumber function passed as its callback argument. Invoking addOne will first run the asynchronous fs.readFile function. This part of the program takes a while to finish.
 3. With nothing to do, node idles for a bit as it waits for readFile to finish. If there was anything else to do during this time, node would be available for work.
 4. As soon as readFile finishes it executes its callback, doneReading, which parses fileContents for an integer called myNumber, increments myNumber and then immediately invokes the function that addOne passed in (its callback), logMyNumber.
+
+## Function Definition not Function Call
+
+```javascript
+function fullName(firstName, lastName, callback){
+  console.log("My name is " + firstName + " " + lastName);
+  callback(lastName);
+}
+
+// NOT
+function fullName(firstName, lastName, callback()){
+  console.log("My name is " + firstName + " " + lastName);
+  callback(lastName);
+}
+```
+
+We are passing the function definition, not the function call. This prevents the callback from being executed immediately, which is not the idea behind the callbacks.
+
+The callback can be an existing function as shown in the preceding example, or it can be an anonymous function, which we create when we call the higher-order function, as shown in the following example:

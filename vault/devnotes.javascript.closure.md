@@ -2,10 +2,12 @@
 id: 45uczs3eirc00ozni000aiw
 title: Closure
 desc: 'Notes on JS Closure Concept'
-updated: 1648487756880
+updated: 1649267261968
 created: 1648487756880
 ---
 ## Definition
+
+In JavaScript, a closure is any function that keeps reference to variables from its parent’s scope even after the parent has returned.
 
 The concept of closure is the idea that functions retain their scope even if they are passed around and called outside of that scope.
 
