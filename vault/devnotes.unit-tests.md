@@ -2,7 +2,7 @@
 id: mh6z4ealz4jroa11xmrrjv8
 title: Unit Tests
 desc: 'Notes on Unit Testing'
-updated: 1649703097399
+updated: 1649727239970
 created: 1649702499850
 ---
 ## What are Unit tests?
@@ -27,3 +27,10 @@ Simple tests assertions provide:
 - Better readability.
 - Less code.
 - Less maintenance.
+
+## Unit Test Goals
+
+- Thorough
+- Stable
+- Fast
+- Few

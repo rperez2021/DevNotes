@@ -2,7 +2,7 @@
 id: g1he2uw6667t294j66dgt4k
 title: Computer Vision
 desc: 'Notes on Azure AI Computer Vision'
-updated: 1649262912852
+updated: 1649736726821
 created: 1648504410812
 ---
 ## Computer Vision Models and Capabilities
@@ -125,3 +125,23 @@ In addition to these capabilities, the Computer Vision service can:
 - **Detect image color schemes** - specifically, identifying the dominant foreground, background, and overall colors in an image.
 - **Generate thumbnails** - creating small versions of images.
 - **Moderate content** - detecting images that contain adult content or depict violent, gory scenes.
+
+## Classifying Images with CV
+
+Image classification is a machine learning technique in which the object being classified is an image, such as a photograph.
+
+To create an image classification model, you need data that consists of features and their labels. The existing data is a set of categorized images. Digital images are made up of an array of pixel values, and these are used as features to train the model based on the known image classes.
+
+You can use a machine learning classification technique to predict which category, or class, something belongs to. Classification machine learning models use a set of inputs, which we call features, to calculate a probability score for each possible class and predict a label that indicates the most likely class that an object belongs to.
+
+The model is trained to match the patterns in the pixel values to a set of class labels. After the model has been trained, you can use it with new sets of features to predict unknown label values.
+
+Most modern image classification solutions are based on deep learning techniques that make use of convolutional neural networks (CNNs) to uncover patterns in the pixels that correspond to particular classes. Training an effective CNN is a complex task that requires considerable expertise in data science and machine learning.
+
+### Model Evaluation
+
+Model training process is an iterative process in which the Custom Vision service repeatedly trains the model using some of the data, but holds some back to evaluate the model. At the end of the training process, the performance for the trained model is indicated by the following evaluation metrics:
+
+- **Precision**: What percentage of the class predictions made by the model were correct? For example, if the model predicted that 10 images are oranges, of which eight were actually oranges, then the precision is 0.8 (80%).
+- **Recall**: What percentage of class predictions did the model correctly identify? For example, if there are 10 images of apples, and the model found 7 of them, then the recall is 0.7 (70%).
+- **Average Precision (AP)**: An overall metric that takes into account both precision and recall).

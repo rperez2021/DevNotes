@@ -2,7 +2,7 @@
 id: v9lxey87473adidmtydpf2u
 title: TDD
 desc: 'Notes on Test Driven Development'
-updated: 1649715847155
+updated: 1649716206418
 created: 1649381265266
 ---
 ## General Info
@@ -257,8 +257,6 @@ async function uploadFiles({user, folder, files}) {
 
 **Remember**: Logic and I/O are separate concerns.
 Logic is thinking. Effects are actions. Think before you act!
-
-
 
 ## Sources
 
