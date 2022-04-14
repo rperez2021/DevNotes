@@ -2,7 +2,7 @@
 id: 3zntf55wlgqr8vxbh2cb1m6
 title: Natural Language Processing
 desc: 'Azure AI Natural Language Processing'
-updated: 1648505047347
+updated: 1649897288198
 created: 1648505047347
 ---
 ## General Info
@@ -63,3 +63,7 @@ Conversational AI in Microsoft Azure
 </tr>
 </tbody>
 </table>
+
+## Conversational AI
+
+While many organizations publish support information and answers to frequently asked questions (FAQs) that can be accessed through a web browser or dedicated app. The complexity of the systems and services they offer means that answers to specific questions are hard to find. Often, these organizations find their support personnel being overloaded with requests for help through phone calls, email, text messages, social media, and other channels.
