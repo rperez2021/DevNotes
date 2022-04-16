@@ -2,7 +2,7 @@
 id: 1a470f9gtopef29upfypm1n
 title: User Story
 desc: 'Notes on UX User Story'
-updated: 1649907263355
+updated: 1649907434572
 created: 1649897502981
 ---
 ## Definition
@@ -31,3 +31,9 @@ A user journey is the series of experiences a user has as they achieve a specifi
 
 A journey map is just what it sounds like, an illustration of what the user goes through to achieve their goals. Think of it like reading a book. If the persona is your character, the user story is your plot, and the journey map is your story outline.
 
+#### Benefits of User Journey Mapping
+
+- Helps UX Designer create obstacle free paths for users
+- Reduces impact of designer bias
+- Highlights new painpoints
+- Identifies improvment opportunities
