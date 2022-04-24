@@ -2,7 +2,7 @@
 id: 7w5ugn5hasj4g83pm3pok6u
 title: React
 desc: 'Notes on ReactJS'
-updated: 1650170001877
+updated: 1650591691289
 created: 1650074133094
 ---
 ## 3 Notes on Modern React Syntax

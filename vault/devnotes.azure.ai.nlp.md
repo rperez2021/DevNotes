@@ -2,7 +2,7 @@
 id: 3zntf55wlgqr8vxbh2cb1m6
 title: Natural Language Processing
 desc: 'Azure AI Natural Language Processing'
-updated: 1649969957242
+updated: 1650591725479
 created: 1648505047347
 ---
 ## General Info
@@ -67,6 +67,22 @@ Conversational AI in Microsoft Azure
 ## Conversational AI
 
 While many organizations publish support information and answers to frequently asked questions (FAQs) that can be accessed through a web browser or dedicated app. The complexity of the systems and services they offer means that answers to specific questions are hard to find. Often, these organizations find their support personnel being overloaded with requests for help through phone calls, email, text messages, social media, and other channels.
+
+A Language Understanding application defines a model consisting of intents and entities. Utterances are used to train the model to identify the most likely intent and the entities to which it should be applied based on a given input.
+
+### Utterances
+
+An utterance is an example of something a user might say, and which your application must interpret. *Ex: ("Switch the fan on." or "Turn on the light.")*
+
+### Entities
+
+An entity is an item to which an utterance refers. *Ex: ("Switch the **fan** on." or "Turn on the **light**."*)
+
+### Intents
+
+An intent represents the purpose, or goal, expressed in a user's utterance. For example, for both of the previously considered utterances, the intent is to turn a device on; so in your Conversational Language Understanding application, you might define a TurnOn intent that is related to these utterances.
+
+The intent should be a concise way of grouping the utterance tasks. Of special interest is the None intent. You should consider always using the None intent to help handle utterances that do not map any of the utterances you have entered. The None intent is considered a fallback, and is typically used to provide a generic response to users when their requests don't match any other intent.
 
 ## Text Analysis
 
