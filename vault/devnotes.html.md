@@ -1,10 +1,12 @@
 ---
 id: MN1UL4sEQihMMFAAsS2Cc
 title: HTML
-desc: ''
-updated: 1645664429917
+desc: 'General HTML Notes'
+updated: 1652378612417
 created: 1644000457258
 ---
+## General Info
+
 You can use a `start` attribute when using ordered (numbered) lists to start at a different interger. If you want to start your list at number 10 simply do `<ol start="10">`
 Ex:
 
@@ -57,12 +59,11 @@ DOCTYPE is not for DTD anymore, be simple.
 
 Bad:
 
-    <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
-      "http://www.w3.org/TR/html4/strict.dtd">
+`<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">`
 
 Good:
 
-    <!DOCTYPE html>
+`<!DOCTYPE html>`
 
 ### Don’t use XML Declaration
 
@@ -70,12 +71,11 @@ Are you sure you want to write XHTML?
 
 Bad:
 
-    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-    <!DOCTYPE html>
+`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><!DOCTYPE html>`
 
 Good:
 
-    <!DOCTYPE html>
+`<!DOCTYPE html>`
 
 ### Don’t use character references as much as possible
 
@@ -84,11 +84,11 @@ Emoji) can be written directly.
 
 Bad:
 
-    <p><small>Copyright &copy; 2014 W3C<sup>&reg;</sup></small></p>
+`<p><small>Copyright &copy; 2014 W3C<sup>&reg;</sup></small></p>`
 
 Good:
 
-    <p><small>Copyright © 2014 W3C<sup>®</sup></small></p>
+`<p><small>Copyright © 2014 W3C<sup>®</sup></small></p>`
 
 ### Escape `&`, `<`, `>`, `"`, and `'` with named character references
 
