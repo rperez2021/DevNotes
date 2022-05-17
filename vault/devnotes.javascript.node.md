@@ -1,17 +1,21 @@
 ---
 id: l2towz0eerl2i1jojwqm4jr
 title: Node
-desc: ''
-updated: 1648957659557
+desc: 'Notes on NodeJS'
+updated: 1652759611906
 created: 1648957659557
 ---
+## General Info
+
+As an asynchronous event driven JavaScript runtime, Node is designed to build scalable network applications.
+
 ## Event Loop
 
 The event loop is what allows Node.js to perform non-blocking I/O operations — despite the fact that JavaScript is single-threaded — by offloading operations to the system kernel whenever possible.
 
 Node.js is a single-threaded application, but it can support concurrency via the concept of event and callbacks. Every API of Node.js is asynchronous and being single-threaded, they use async function calls to maintain concurrency. Node uses observer pattern. Node thread keeps an event loop and whenever a task gets completed, it fires the corresponding event which signals the event-listener function to execute.
 
-Event-Driven Programming
+## Event-Driven Programming
 
 In an event-driven application, there is generally a main loop that listens for events, and then triggers a callback function when one of those events is detected.
 

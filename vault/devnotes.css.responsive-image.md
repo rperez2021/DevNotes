@@ -2,7 +2,7 @@
 id: xvbbugpzluf1p5xzpqax7fn
 title: Responsive Image
 desc: 'Notes on CSS Responsive Images'
-updated: 1652683954779
+updated: 1652725280244
 created: 1652678718553
 ---
 ## Basic Responsiveness
