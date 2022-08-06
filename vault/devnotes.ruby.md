@@ -1,8 +1,8 @@
 ---
 id: mvp4wbauhrmqc0q13ifnue7
-title: The Ruby Language
+title: Ruby Language
 desc: 'Notes on the Ruby Language'
-updated: 1652942356125
+updated: 1659664333842
 created: 1652942175187
 ---
 ## General Info
