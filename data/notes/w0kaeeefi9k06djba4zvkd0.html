@@ -1,0 +1,33 @@
+<h1 id="position"><a aria-hidden="true" class="anchor-heading" href="#position"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Position</h1>
+<h2 id="general-info"><a aria-hidden="true" class="anchor-heading" href="#general-info"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>General Info</h2>
+<p><img src="/DevNotes/assets/images/cssposition.png" alt="CSS Positioning Cheatsheet" style=""></p>
+<h2 id="static"><a aria-hidden="true" class="anchor-heading" href="#static"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Static</h2>
+<ul>
+<li>The element is positioned according to the normal flow of the document.</li>
+<li>The top, right, bottom, left, and z-index properties have no effect.</li>
+</ul>
+<h2 id="relative"><a aria-hidden="true" class="anchor-heading" href="#relative"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Relative</h2>
+<ul>
+<li>The element is positioned according to the normal flow of the document, and then offset relative to itself based on the values of top, right, bottom, and left.</li>
+<li>The offset does not affect the position of any other elements; thus, the space given for the element in the page layout is the same as if position were static.</li>
+<li>Child absolute elements how remain within the bounds of a relative element.</li>
+</ul>
+<h2 id="absolute"><a aria-hidden="true" class="anchor-heading" href="#absolute"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Absolute</h2>
+<ul>
+<li>Removes from document order flow</li>
+<li>Allows use of top, right, etc</li>
+<li>Absolute elements will remain within the bounds of any relative and absolute parent element or the root of the document.</li>
+</ul>
+<h2 id="fixed"><a aria-hidden="true" class="anchor-heading" href="#fixed"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Fixed</h2>
+<ul>
+<li>Removes from document order flow</li>
+<li>Fixed element to the viewport</li>
+<li>Allows use of top, right, etc</li>
+<li>Fixed position when you scroll</li>
+</ul>
+<h2 id="sticky"><a aria-hidden="true" class="anchor-heading" href="#sticky"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Sticky</h2>
+<ul>
+<li>Combination between relative and absolute</li>
+<li>It is part of the normal document flow until it is scrolled past</li>
+<li>Once scrolled it becomes fixed to based on its position</li>
+</ul>

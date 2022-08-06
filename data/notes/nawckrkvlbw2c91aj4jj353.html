@@ -1,0 +1,56 @@
+<h1 id="higher-order-components---hocs"><a aria-hidden="true" class="anchor-heading" href="#higher-order-components---hocs"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Higher Order Components - HOCS</h1>
+<h2 id="general-info"><a aria-hidden="true" class="anchor-heading" href="#general-info"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>General Info</h2>
+<p>A HOC is an advanced technique for reusing logic in React components. It is a pattern created out of React’s compositional nature.</p>
+<p>HOCs basically incorporate the don’t-repeat-yourself (DRY) principle of programming, which you’ve most likely come across at some point in your career as a software developer. It is one of the best-known principles of software development, and observing it is very important when building an application or writing code in general.</p>
+<p>Higher-order functions in JavaScript take some functions as arguments and return another function. They enable us to abstract over actions, not just values, They come in several forms, and they help us to write less code when operating on functions and even arrays.</p>
+<h3 id="hoc-rules"><a aria-hidden="true" class="anchor-heading" href="#hoc-rules"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>HOC Rules</h3>
+<ol>
+<li>We don’t modify or mutate components. We create new ones.</li>
+<li>A HOC is used to compose components for code reuse.</li>
+<li>A HOC is a pure function. It has no side effects, returning only a new component.</li>
+</ol>
+<h3 id="example-higher-order-function"><a aria-hidden="true" class="anchor-heading" href="#example-higher-order-function"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Example Higher Order Function</h3>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> <span class="token function-variable function">formatCurrency</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span> 
+    <span class="token parameter">currencySymbol<span class="token punctuation">,</span>
+    decimalSeparator</span>  <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword control-flow">return</span> <span class="token keyword">function</span><span class="token punctuation">(</span> <span class="token parameter">value</span> <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> wholePart <span class="token operator">=</span> <span class="token known-class-name class-name">Math</span><span class="token punctuation">.</span><span class="token method function property-access">trunc</span><span class="token punctuation">(</span> value <span class="token operator">/</span> <span class="token number">100</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">let</span> fractionalPart <span class="token operator">=</span> value <span class="token operator">%</span> <span class="token number">100</span><span class="token punctuation">;</span>
+        <span class="token keyword control-flow">if</span> <span class="token punctuation">(</span> fractionalPart <span class="token operator">&#x3C;</span> <span class="token number">10</span> <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            fractionalPart <span class="token operator">=</span> <span class="token string">'0'</span> <span class="token operator">+</span> fractionalPart<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword control-flow">return</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>currencySymbol<span class="token interpolation-punctuation punctuation">}</span></span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>wholePart<span class="token interpolation-punctuation punctuation">}</span></span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>decimalSeparator<span class="token interpolation-punctuation punctuation">}</span></span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>fractionalPart<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p><code>formatCurrency</code> returns a function with a fixed currency symbol and decimal separator.</p>
+<p>We then pass the formatter a value, and format this value with the function by extracting its whole part and the fractional part. The returned value of this function is constructed by a template literal, concatenating the currency symbol, the whole part, the decimal separator, and the fractional part.</p>
+<p>Let’s use this higher-order function by assigning a value to it and seeing the result.</p>
+<pre class="language-shell"><code class="language-shell"><span class="token operator">></span> getLabel <span class="token operator">=</span> formatCurrency<span class="token punctuation">(</span> <span class="token string">'$'</span>, <span class="token string">'.'</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+ 
+<span class="token operator">></span> getLabel<span class="token punctuation">(</span> <span class="token number">1999</span> <span class="token punctuation">)</span>
+<span class="token string">"<span class="token variable">$19</span>.99"</span> //formatted value
+ 
+<span class="token operator">></span> getLabel<span class="token punctuation">(</span> <span class="token number">2499</span> <span class="token punctuation">)</span>
+<span class="token string">"<span class="token variable">$24</span>.99"</span> //formatted value
+</code></pre>
+<h3 id="example-of-a-higher-order-component"><a aria-hidden="true" class="anchor-heading" href="#example-of-a-higher-order-component"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Example of a Higher Order Component</h3>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword module">import</span> <span class="token imports"><span class="token maybe-class-name">React</span></span> <span class="token keyword module">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+<span class="token comment">// Take in a component as argument WrappedComponent</span>
+<span class="token keyword">const</span> <span class="token function-variable function">higherOrderComponent</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token maybe-class-name">WrappedComponent</span></span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token punctuation">{</span>
+<span class="token comment">// And return another component</span>
+  <span class="token keyword">class</span> <span class="token class-name">HOC</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
+    <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword control-flow">return</span> <span class="token operator">&#x3C;</span><span class="token maybe-class-name">WrappedComponent</span> <span class="token operator">/</span><span class="token operator">></span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword control-flow">return</span> <span class="token constant">HOC</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="use-cases"><a aria-hidden="true" class="anchor-heading" href="#use-cases"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Use Cases</h3>
+<ul>
+<li>Show a loader while a component waits for data </li>
+<li>Conditionally Rendered Components (different view for authed users)</li>
+<li>Components with Specific Styling (also by logged in or preference)</li>
+<li>Provide a component with a specific prop</li>
+</ul>

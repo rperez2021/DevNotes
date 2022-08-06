@@ -1,0 +1,130 @@
+<h1 id="callback-functions"><a aria-hidden="true" class="anchor-heading" href="#callback-functions"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Callback Functions</h1>
+<h2 id="general-info"><a aria-hidden="true" class="anchor-heading" href="#general-info"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>General Info</h2>
+<p>A simple callback function in an event handler:</p>
+<pre class="language-javascript"><code class="language-javascript">myDiv<span class="token punctuation">.</span><span class="token method function property-access">addEventListener</span><span class="token punctuation">(</span><span class="token string">"click"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token comment">// do something!</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre>
+<h2 id="callback-hell"><a aria-hidden="true" class="anchor-heading" href="#callback-hell"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Callback Hell</h2>
+<pre class="language-javascript"><code class="language-javascript">fs<span class="token punctuation">.</span><span class="token method function property-access">readdir</span><span class="token punctuation">(</span>source<span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">err<span class="token punctuation">,</span> files</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword control-flow">if</span> <span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token string">'Error finding files: '</span> <span class="token operator">+</span> err<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span> <span class="token keyword control-flow">else</span> <span class="token punctuation">{</span>
+    files<span class="token punctuation">.</span><span class="token method function property-access">forEach</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">filename<span class="token punctuation">,</span> fileIndex</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span>filename<span class="token punctuation">)</span>
+      <span class="token function">gm</span><span class="token punctuation">(</span>source <span class="token operator">+</span> filename<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token method function property-access">size</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">err<span class="token punctuation">,</span> values</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword control-flow">if</span> <span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token string">'Error identifying file size: '</span> <span class="token operator">+</span> err<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span> <span class="token keyword control-flow">else</span> <span class="token punctuation">{</span>
+          <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span>filename <span class="token operator">+</span> <span class="token string">' : '</span> <span class="token operator">+</span> values<span class="token punctuation">)</span>
+          aspect <span class="token operator">=</span> <span class="token punctuation">(</span>values<span class="token punctuation">.</span><span class="token property-access">width</span> <span class="token operator">/</span> values<span class="token punctuation">.</span><span class="token property-access">height</span><span class="token punctuation">)</span>
+          widths<span class="token punctuation">.</span><span class="token method function property-access">forEach</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">width<span class="token punctuation">,</span> widthIndex</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            height <span class="token operator">=</span> <span class="token known-class-name class-name">Math</span><span class="token punctuation">.</span><span class="token method function property-access">round</span><span class="token punctuation">(</span>width <span class="token operator">/</span> aspect<span class="token punctuation">)</span>
+            <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token string">'resizing '</span> <span class="token operator">+</span> filename <span class="token operator">+</span> <span class="token string">'to '</span> <span class="token operator">+</span> height <span class="token operator">+</span> <span class="token string">'x'</span> <span class="token operator">+</span> height<span class="token punctuation">)</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token method function property-access">resize</span><span class="token punctuation">(</span>width<span class="token punctuation">,</span> height<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token method function property-access">write</span><span class="token punctuation">(</span>dest <span class="token operator">+</span> <span class="token string">'w'</span> <span class="token operator">+</span> width <span class="token operator">+</span> <span class="token string">'_'</span> <span class="token operator">+</span> filename<span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">err</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+              <span class="token keyword control-flow">if</span> <span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token string">'Error writing file: '</span> <span class="token operator">+</span> err<span class="token punctuation">)</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span>
+          <span class="token punctuation">}</span><span class="token punctuation">.</span><span class="token method function property-access">bind</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre>
+<h3 id="tips-to-fix-callback-hell"><a aria-hidden="true" class="anchor-heading" href="#tips-to-fix-callback-hell"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Tips to Fix Callback Hell</h3>
+<ol>
+<li>
+<p>Keep your code shallow</p>
+<p>Instead of this:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">var</span> form <span class="token operator">=</span> <span class="token dom variable">document</span><span class="token punctuation">.</span><span class="token method function property-access">querySelector</span><span class="token punctuation">(</span><span class="token string">'form'</span><span class="token punctuation">)</span>
+form<span class="token punctuation">.</span><span class="token method-variable function-variable method function property-access">onsubmit</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">submitEvent</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">var</span> name <span class="token operator">=</span> <span class="token dom variable">document</span><span class="token punctuation">.</span><span class="token method function property-access">querySelector</span><span class="token punctuation">(</span><span class="token string">'input'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token property-access">value</span>
+<span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token literal-property property">uri</span><span class="token operator">:</span> <span class="token string">"http://example.com/upload"</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">body</span><span class="token operator">:</span> name<span class="token punctuation">,</span>
+    <span class="token literal-property property">method</span><span class="token operator">:</span> <span class="token string">"POST"</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">err<span class="token punctuation">,</span> response<span class="token punctuation">,</span> body</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> statusMessage <span class="token operator">=</span> <span class="token dom variable">document</span><span class="token punctuation">.</span><span class="token method function property-access">querySelector</span><span class="token punctuation">(</span><span class="token string">'.status'</span><span class="token punctuation">)</span>
+    <span class="token keyword control-flow">if</span> <span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token keyword control-flow">return</span> statusMessage<span class="token punctuation">.</span><span class="token property-access">value</span> <span class="token operator">=</span> err
+    statusMessage<span class="token punctuation">.</span><span class="token property-access">value</span> <span class="token operator">=</span> body
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>do this:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token dom variable">document</span><span class="token punctuation">.</span><span class="token method function property-access">querySelector</span><span class="token punctuation">(</span><span class="token string">'form'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token property-access">onsubmit</span> <span class="token operator">=</span> formSubmit
+
+<span class="token keyword">function</span> <span class="token function">formSubmit</span> <span class="token punctuation">(</span><span class="token parameter">submitEvent</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">var</span> name <span class="token operator">=</span> <span class="token dom variable">document</span><span class="token punctuation">.</span><span class="token method function property-access">querySelector</span><span class="token punctuation">(</span><span class="token string">'input'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token property-access">value</span>
+<span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token literal-property property">uri</span><span class="token operator">:</span> <span class="token string">"http://example.com/upload"</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">body</span><span class="token operator">:</span> name<span class="token punctuation">,</span>
+    <span class="token literal-property property">method</span><span class="token operator">:</span> <span class="token string">"POST"</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> postResponse<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">postResponse</span> <span class="token punctuation">(</span><span class="token parameter">err<span class="token punctuation">,</span> response<span class="token punctuation">,</span> body</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">var</span> statusMessage <span class="token operator">=</span> <span class="token dom variable">document</span><span class="token punctuation">.</span><span class="token method function property-access">querySelector</span><span class="token punctuation">(</span><span class="token string">'.status'</span><span class="token punctuation">)</span>
+<span class="token keyword control-flow">if</span> <span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token keyword control-flow">return</span> statusMessage<span class="token punctuation">.</span><span class="token property-access">value</span> <span class="token operator">=</span> err
+statusMessage<span class="token punctuation">.</span><span class="token property-access">value</span> <span class="token operator">=</span> body
+<span class="token punctuation">}</span>
+</code></pre>
+</li>
+<li>
+<p>Modularize</p>
+<p>Write small modules that each do one thing, and assemble them into other modules that do a bigger thing. You can't get into callback hell if you don't go there.</p>
+</li>
+<li>
+<p>Handle Every Single Error</p>
+<p>There are different types of errors: syntax errors caused by the programmer (usually caught when you try to first run the program), runtime errors caused by the programmer (the code ran but had a bug that caused something to mess up), platform errors caused by things like invalid file permissions, hard drive failure, no network connection etc. This section is only meant to address this last class of errors.</p>
+<p>The first two rules are primarily about making your code readable, but this one is about making your code stable. When dealing with callbacks you are by definition dealing with tasks that get dispatched, go off and do something in the background, and then complete successfully or abort due to failure. Any experienced developer will tell you that you can never know when these errors happen, so you have to plan on them always happening.</p>
+<p>With callbacks the most popular way to handle errors is the Node.js style where the first argument to the callback is always reserved for an error.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">var</span> fs <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'fs'</span><span class="token punctuation">)</span>
+
+fs<span class="token punctuation">.</span><span class="token method function property-access">readFile</span><span class="token punctuation">(</span><span class="token string">'/Does/not/exist'</span><span class="token punctuation">,</span> handleFile<span class="token punctuation">)</span>
+
+<span class="token keyword">function</span> <span class="token function">handleFile</span> <span class="token punctuation">(</span><span class="token parameter">error<span class="token punctuation">,</span> file</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword control-flow">if</span> <span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token keyword control-flow">return</span> <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">error</span><span class="token punctuation">(</span><span class="token string">'Uhoh, there was an error'</span><span class="token punctuation">,</span> error<span class="token punctuation">)</span>
+<span class="token comment">// otherwise, continue on and use `file` in your code</span>
+<span class="token punctuation">}</span>
+</code></pre>
+</li>
+</ol>
+<h3 id="example-of-nodejs-callback-with-fs"><a aria-hidden="true" class="anchor-heading" href="#example-of-nodejs-callback-with-fs"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Example of NodeJS CallBack With FS</h3>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">var</span> fs <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'fs'</span><span class="token punctuation">)</span>
+<span class="token keyword">var</span> myNumber <span class="token operator">=</span> <span class="token keyword nil">undefined</span>
+
+<span class="token keyword">function</span> <span class="token function">addOne</span><span class="token punctuation">(</span><span class="token parameter">callback</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  fs<span class="token punctuation">.</span><span class="token method function property-access">readFile</span><span class="token punctuation">(</span><span class="token string">'number.txt'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token function">doneReading</span><span class="token punctuation">(</span><span class="token parameter">err<span class="token punctuation">,</span> fileContents</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    myNumber <span class="token operator">=</span> <span class="token function">parseInt</span><span class="token punctuation">(</span>fileContents<span class="token punctuation">)</span>
+    myNumber<span class="token operator">++</span>
+    <span class="token function">callback</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">logMyNumber</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span>myNumber<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">addOne</span><span class="token punctuation">(</span>logMyNumber<span class="token punctuation">)</span>
+</code></pre>
+<p>To break down this example even more, here is a timeline of events that happen when we run this program:</p>
+<ol>
+<li>The code is parsed, which means if there are any syntax errors they would make the program break. During this initial phase, fs and myNumber are declared as variables while addOne and logMyNumber are declared as functions. Note that these are just declarations. Neither function has been called nor invoked yet.</li>
+<li>When the last line of our program gets executed addOne is invoked with the logMyNumber function passed as its callback argument. Invoking addOne will first run the asynchronous fs.readFile function. This part of the program takes a while to finish.</li>
+<li>With nothing to do, node idles for a bit as it waits for readFile to finish. If there was anything else to do during this time, node would be available for work.</li>
+<li>As soon as readFile finishes it executes its callback, doneReading, which parses fileContents for an integer called myNumber, increments myNumber and then immediately invokes the function that addOne passed in (its callback), logMyNumber.</li>
+</ol>
+<h2 id="function-definition-not-function-call"><a aria-hidden="true" class="anchor-heading" href="#function-definition-not-function-call"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Function Definition not Function Call</h2>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">fullName</span><span class="token punctuation">(</span><span class="token parameter">firstName<span class="token punctuation">,</span> lastName<span class="token punctuation">,</span> callback</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token string">"My name is "</span> <span class="token operator">+</span> firstName <span class="token operator">+</span> <span class="token string">" "</span> <span class="token operator">+</span> lastName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">callback</span><span class="token punctuation">(</span>lastName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// NOT</span>
+<span class="token keyword">function</span> <span class="token function">fullName</span><span class="token punctuation">(</span><span class="token parameter">firstName<span class="token punctuation">,</span> lastName<span class="token punctuation">,</span> <span class="token function">callback</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token string">"My name is "</span> <span class="token operator">+</span> firstName <span class="token operator">+</span> <span class="token string">" "</span> <span class="token operator">+</span> lastName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">callback</span><span class="token punctuation">(</span>lastName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>We are passing the function definition, not the function call. This prevents the callback from being executed immediately, which is not the idea behind the callbacks.</p>
+<p>The callback can be an existing function as shown in the preceding example, or it can be an anonymous function, which we create when we call the higher-order function, as shown in the following example:</p>

@@ -1,0 +1,63 @@
+<h1 id="webpack"><a aria-hidden="true" class="anchor-heading" href="#webpack"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Webpack</h1>
+<h2 id="general-info"><a aria-hidden="true" class="anchor-heading" href="#general-info"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>General Info</h2>
+<p>At its core, <strong>webpack</strong> is a static module bundler for modern JavaScript applications. When webpack processes your application, it internally builds a dependency graph from one or more entry points and then combines every module your project needs into one or more bundles, which are static assets to serve your content from.</p>
+<h2 id="tips"><a aria-hidden="true" class="anchor-heading" href="#tips"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Tips</h2>
+<ul>
+<li>If a <code>webpack.config.js</code> is present, the webpack command picks it up by default. We use the --config option only to show that you can pass a configuration of any name. This will be useful for more complex configurations that need to be split into multiple files.</li>
+<li>Custom parameters can be passed to webpack by adding two dashes between the <code>npm run build</code> command and your parameters, e.g. <code>npm run build -- --color</code>.</li>
+<li>It is important to remember that when defining rules in your webpack config, you are defining them under <code>module.rules</code> and not <code>rules</code>. For your benefit, webpack will warn you if this is done incorrectly.</li>
+<li>Keep in mind that when using regex to match files, you may not quote it. i.e <code>/\.txt$/</code> is not the same as <code>'/\.txt$/'</code> or <code>"/\.txt$/"</code>. The former instructs webpack to match any file that ends with .txt and the latter instructs webpack to match a single file with an absolute path <code>'.txt'</code>; this is likely not your intention.</li>
+<li>Webpack uses a regular expression to determine which files it should look for and serve to a specific loader. In this case, any file that ends with .css will be served to the style-loader and the css-loader.</li>
+</ul>
+<h2 id="module-loading"><a aria-hidden="true" class="anchor-heading" href="#module-loading"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Module Loading</h2>
+<p>Module loaders can be chained. Each loader in the chain applies transformations to the processed resource. A chain is executed in reverse order. The first loader passes its result (resource with applied transformations) to the next one, and so forth. Finally, webpack expects JavaScript to be returned by the last loader in the chain.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token literal-property property">module</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">rules</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        <span class="token literal-property property">test</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.css$</span><span class="token regex-delimiter">/</span><span class="token regex-flags">i</span></span><span class="token punctuation">,</span>
+        <span class="token literal-property property">use</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'style-loader'</span><span class="token punctuation">,</span> <span class="token string">'css-loader'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+</code></pre>
+<h2 id="output-management"><a aria-hidden="true" class="anchor-heading" href="#output-management"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Output Management</h2>
+<p>As your application grows and once you start using hashes in filenames and outputting multiple bundles, it will be difficult to keep managing your index.html file manually. However, a few plugins exist that will make this process much easier to manage.</p>
+<p><a href="https://github.com/jantimon/html-webpack-plugin">HtmlWebpackPlugin</a></p>
+<h3 id="the-manifest"><a aria-hidden="true" class="anchor-heading" href="#the-manifest"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>The Manifest</h3>
+<p>You might be wondering how webpack and its plugins seem to "know" what files are being generated. The answer is in the manifest that webpack keeps to track how all the modules map to the output bundles. If you're interested in managing webpack's output in other ways, the manifest would be a good place to start.</p>
+<p>The manifest data can be extracted into a json file for consumption using the <a href="https://github.com/shellscape/webpack-manifest-plugin">WebpackManifestPlugin</a>.</p>
+<h2 id="development-environement"><a aria-hidden="true" class="anchor-heading" href="#development-environement"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Development Environement</h2>
+<h3 id="source-maps"><a aria-hidden="true" class="anchor-heading" href="#source-maps"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Source Maps</h3>
+<p>When webpack bundles your source code, it can become difficult to track down errors and warnings to their original location. For example, if you bundle three source files (a.js, b.js, and c.js) into one bundle (bundle.js) and one of the source files contains an error, the stack trace will point to bundle.js. This isn't always helpful as you probably want to know exactly which source file the error came from.</p>
+<p>In order to make it easier to track down errors and warnings, JavaScript offers source maps, which map your compiled code back to your original source code. If an error originates from b.js, the source map will tell you exactly that.</p>
+<p>As the name suggests, a source map consists of a whole bunch of information that can be used to map the code within a compressed file back to it’s original source. You can specify a different source map for each of your compressed files.</p>
+<p>You indicate to the browser that a source map is available by adding a special comment to the bottom of your optimised file.</p>
+<p><code>//# sourceMappingURL=/path/to/script.js.map</code></p>
+<p>This comment will usually be added by the program that was used to generate the source map. The developer tools will only load this file if support for source maps is enabled and the developer tools are open.</p>
+<p>You can also specify a source map is available by sending the <code>X-SourceMap</code> HTTP header in the response for the compressed JavaScript file.</p>
+<p><code>X-SourceMap: /path/to/script.js.map</code></p>
+<p>The source map file contains a JSON object with information about the map itself and the original JavaScript files. Here is a simple example:</p>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+    version<span class="token operator">:</span> <span class="token number">3</span><span class="token punctuation">,</span>
+    file<span class="token operator">:</span> <span class="token string">"script.js.map"</span><span class="token punctuation">,</span>
+    sources<span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token string">"app.js"</span><span class="token punctuation">,</span>
+        <span class="token string">"content.js"</span><span class="token punctuation">,</span>
+        <span class="token string">"widget.js"</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    sourceRoot<span class="token operator">:</span> <span class="token string">"/"</span><span class="token punctuation">,</span>
+    names<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"slideUp"</span><span class="token punctuation">,</span> <span class="token string">"slideDown"</span><span class="token punctuation">,</span> <span class="token string">"save"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    mappings<span class="token operator">:</span> <span class="token string">"AAA0B,kBAAhBA,QAAOC,SACjBD,OAAOC,OAAO..."</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<ul>
+<li><code>version</code> – This property indicates which version of the source map spec the file adheres to.</li>
+<li><code>file</code> – The name of the source map file.</li>
+<li><code>sources</code> – An array of URLs for the original source files.</li>
+<li><code>sourceRoot</code> – (optional) The URL which all of the files in the sources array will be resolved from.</li>
+<li><code>names</code> – An array containing all of the variable and function names from your source files.</li>
+<li><code>mappings</code> – A string of Base64 VLQs containing the actual code mappings. (This is where the magic happens.)</li>
+</ul>
+<p>Using source maps allows developers to maintain a straight-forward debugging environment while at the same time optimizing their sites for performance.</p>
+<h2 id="hot-module-replacement"><a aria-hidden="true" class="anchor-heading" href="#hot-module-replacement"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Hot Module Replacement</h2>
+<p>Hot Module Replacement (or HMR) is one of the most useful features offered by webpack. It allows all kinds of modules to be updated at runtime without the need for a full refresh. This page focuses on implementation while the concepts page gives more details on how it works and why it's useful.</p>

@@ -1,0 +1,43 @@
+<h1 id="file-structure"><a aria-hidden="true" class="anchor-heading" href="#file-structure"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>File Structure</h1>
+<h2 id="bin-binary-and-sbin-system-binary"><a aria-hidden="true" class="anchor-heading" href="#bin-binary-and-sbin-system-binary"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>/bin (Binary) and /sbin (System Binary)</h2>
+<p>Binary folders stuff like <code>ls</code> <code>cat</code></p>
+<p><code>/sbin</code> is for system binaries</p>
+<h2 id="boot-boot-folder"><a aria-hidden="true" class="anchor-heading" href="#boot-boot-folder"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>/boot (Boot Folder)</h2>
+<p>Boot files go here (ex Grub)</p>
+<h2 id="cdrom-cdrom-folder"><a aria-hidden="true" class="anchor-heading" href="#cdrom-cdrom-folder"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>/cdrom (CDROM Folder)</h2>
+<p>A legacy mounting folder for cdrom not used very often.</p>
+<h2 id="dev-devices-folder"><a aria-hidden="true" class="anchor-heading" href="#dev-devices-folder"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>/dev (Devices Folder)</h2>
+<p>Remember that in Unix everything is a file. This includes stuff like your hard drives (and their partitions), mouse, keyboard, etc.</p>
+<h2 id="etc-etcetera-folder"><a aria-hidden="true" class="anchor-heading" href="#etc-etcetera-folder"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>/etc (Etcetera Folder)</h2>
+<p>Some people call it the edit to configure folder.</p>
+<p>This is where all the configs are stored for system wide applications (like <code>apt</code>)</p>
+<h2 id="lib-lib32-lib64-library-folders"><a aria-hidden="true" class="anchor-heading" href="#lib-lib32-lib64-library-folders"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>/lib /lib32 /lib64 (Library Folders)</h2>
+<p>Files that give added functionality and can be shared by programs.</p>
+<h2 id="mnt-mount-folder-media-external-media"><a aria-hidden="true" class="anchor-heading" href="#mnt-mount-folder-media-external-media"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>/mnt (Mount Folder) /media (External Media)</h2>
+<p>This is where you would find other mounted drives, external drives, usb sticks, sdcards.</p>
+<p>Most external store will be automatically installed to media.</p>
+<p>If you need to install something manually mount it in the <code>/mnt</code> folder</p>
+<h2 id="opt-optional-folder"><a aria-hidden="true" class="anchor-heading" href="#opt-optional-folder"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>/opt (Optional Folder)</h2>
+<p>User installed software. A good place to also place user developed software.</p>
+<h2 id="proc-process-folder"><a aria-hidden="true" class="anchor-heading" href="#proc-process-folder"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>/proc (Process Folder)</h2>
+<p>Folder containing all the processes that the system is running and is sorted by their <code>pid</code></p>
+<h2 id="root-root-user-folder"><a aria-hidden="true" class="anchor-heading" href="#root-root-user-folder"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>/root (Root User Folder)</h2>
+<p>Pretty self explanatory</p>
+<h2 id="run"><a aria-hidden="true" class="anchor-heading" href="#run"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>/run</h2>
+<p>Newer folder not in all distros, files here are generally stored in ram and gets wiped on reboot.</p>
+<h2 id="snap-snap-package-folder"><a aria-hidden="true" class="anchor-heading" href="#snap-snap-package-folder"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>/snap (Snap Package Folder)</h2>
+<p>Snaps are self-contained packages that work across a range of Linux distributions. This is unlike traditional Linux package management approaches, which require specifically adapted packages for each Linux distribution.</p>
+<h2 id="srv-service-folder"><a aria-hidden="true" class="anchor-heading" href="#srv-service-folder"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>/srv (Service Folder)</h2>
+<p>If you run a webserver, accessed files will be found here.</p>
+<h2 id="sys-system-folder"><a aria-hidden="true" class="anchor-heading" href="#sys-system-folder"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>/sys (System Folder)</h2>
+<p>A way to interact with the kernel, this directory is similar to the run directory and is created every time if boots up.</p>
+<h2 id="tmp-temporary-folder"><a aria-hidden="true" class="anchor-heading" href="#tmp-temporary-folder"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>/tmp (Temporary Folder)</h2>
+<p>Temporary files, usually emptied during reboot</p>
+<h2 id="usr"><a aria-hidden="true" class="anchor-heading" href="#usr"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>/usr</h2>
+<p>User Application Space, stuff that is installed that is only used by users.</p>
+<p>Also known as Unix System Resource which means non essential applications</p>
+<p>Also has child <code>/bin /sbin /etc /src /lib</code> subfolders</p>
+<h2 id="var"><a aria-hidden="true" class="anchor-heading" href="#var"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>/var</h2>
+<p>Variable directory, contains files and directories that are expected to grow in size.</p>
+<h2 id="home"><a aria-hidden="true" class="anchor-heading" href="#home"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>/home</h2>
+<p>Personal files and documents sorted by users. Also contained theme config files.</p>

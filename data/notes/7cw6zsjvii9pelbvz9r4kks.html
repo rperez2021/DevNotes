@@ -1,0 +1,69 @@
+<h1 id="react-testing-library"><a aria-hidden="true" class="anchor-heading" href="#react-testing-library"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>React Testing Library</h1>
+<h2 id="general-info"><a aria-hidden="true" class="anchor-heading" href="#general-info"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>General Info</h2>
+<p>It’s also important to note that after every test, React Testing Library unmounts the rendered components. That’s why we render for each test. For a lot of tests for a component, the beforeEach jest function could prove handy.</p>
+<h2 id="snapshots"><a aria-hidden="true" class="anchor-heading" href="#snapshots"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Snapshots</h2>
+<p>Snapshot testing is just comparing our rendered component with an associated snapshot file. Snapshot tests are fast and easy to write. One assertion saves us from writing multiple lines of code. For example, with a toMatchSnapshot, we’re spared of asserting the existence of the button and the heading. They also don’t let unexpected changes creep into our code.</p>
+<p>Snapshots might seem the best thing that has happened to us while testing thus far. But we are forced to wonder, what exactly are we testing? What’s being validated? If a snapshot passes, what does it convey about the correctness of the component?</p>
+<p>Snapshot tests may cause false positives. Since we cannot ascertain the validity of the component from a snapshot test, a bug might go undetected. Over-reliance on snapshots can make developers more confident about their code than they should be.</p>
+<p>The other issue with snapshots is false negatives. Even the most insignificant of changes compel the test to fail. Fixing punctuation? Snapshot will fail. Replacing an HTML tag to a more semantic one? Snapshot will fail. This might cause us to lose our confidence in the test suite altogether. Snapshots aren’t inherently bad; they do serve a purpose. But it’s beneficial to understand when to snapshot, and when not to snapshot.</p>
+<h3 id="updating-snapshots"><a aria-hidden="true" class="anchor-heading" href="#updating-snapshots"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Updating Snapshots</h3>
+<p>You can run Jest with a flag that will tell it to re-generate snapshots:</p>
+<pre class="language-javascript"><code class="language-javascript">jest <span class="token operator">--</span>updateSnapshot
+</code></pre>
+<p>If you'd like to limit which snapshot test cases get re-generated, you can pass an additional <code>--testNamePattern</code> flag to re-record snapshots only for those tests that match the pattern.</p>
+<h3 id="interactive-snapshot-mode"><a aria-hidden="true" class="anchor-heading" href="#interactive-snapshot-mode"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Interactive Snapshot Mode</h3>
+<p>Failed snapshots can also be updated interactively in watch mode:</p>
+<p><img src="/DevNotes/assets/interactive-snapshot.png" alt="Interactive Snapshot Mode"></p>
+<p>Once you enter Interactive Snapshot Mode, Jest will step you through the failed snapshots one test at a time and give you the opportunity to review the failed output.</p>
+<p><img src="/DevNotes/assets/images/interactivesnapshotupdate.gif" alt="Interactive Snapshot Mode"></p>
+<h3 id="inline-snapshots"><a aria-hidden="true" class="anchor-heading" href="#inline-snapshots"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Inline Snapshots</h3>
+<p>Inline snapshots behave identically to external snapshots (<code>.snap</code> files), except the snapshot values are written automatically back into the source code. This means you can get the benefits of automatically generated snapshots without having to switch to an external file to make sure the correct value was written.</p>
+<p>The next time you run Jest, tree will be evaluated, and a snapshot will be written as an argument to toMatchInlineSnapshot:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token function">it</span><span class="token punctuation">(</span><span class="token string">'renders correctly'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> tree <span class="token operator">=</span> renderer
+    <span class="token punctuation">.</span><span class="token method function property-access">create</span><span class="token punctuation">(</span><span class="token operator">&#x3C;</span><span class="token maybe-class-name">Link</span> page<span class="token operator">=</span><span class="token string">"https://example.com"</span><span class="token operator">></span><span class="token maybe-class-name">Example</span> <span class="token maybe-class-name">Site</span><span class="token operator">&#x3C;</span><span class="token operator">/</span><span class="token maybe-class-name">Link</span><span class="token operator">></span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token method function property-access">toJSON</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">expect</span><span class="token punctuation">(</span>tree<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token method function property-access">toMatchInlineSnapshot</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+&#x3C;a
+  className="normal"
+  href="https://example.com"
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+>
+  Example Site
+&#x3C;/a>
+</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="snapshot-best-practices"><a aria-hidden="true" class="anchor-heading" href="#snapshot-best-practices"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Snapshot Best Practices</h3>
+<ol>
+<li>Treat snapshots as code
+<ul>
+<li>Commit snapshots and review them as part of your regular code review process. This means treating snapshots as you would any other type of test or code in your project.</li>
+<li>Ensure that your snapshots are readable by keeping them focused, short, and by using tools that enforce these stylistic conventions.</li>
+<li>The goal is to make it easy to review snapshots in pull requests, and fight against the habit of regenerating snapshots when test suites fail instead of examining the root causes of their failure.</li>
+</ul>
+</li>
+<li>Tests should be deterministic
+<ul>
+<li>Your tests should be deterministic. Running the same tests multiple times on a component that has not changed should produce the same results every time. You're responsible for making sure your generated snapshots do not include platform specific or other non-deterministic data.</li>
+</ul>
+</li>
+<li>Use descriptive snapshot names
+<ul>
+<li>Always strive to use descriptive test and/or snapshot names for snapshots. The best names describe the expected snapshot content. This makes it easier for reviewers to verify the snapshots during review, and for anyone to know whether or not an outdated snapshot is the correct behavior before updating.</li>
+</ul>
+</li>
+</ol>
+<h2 id="user-event-library"><a aria-hidden="true" class="anchor-heading" href="#user-event-library"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>User Event Library</h2>
+<p><code>user-event</code>is a companion library for Testing Library that simulates user interactions by dispatching the events that would happen if the interaction took place in a browser.</p>
+<h3 id="pointer-api"><a aria-hidden="true" class="anchor-heading" href="#pointer-api"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Pointer API</h3>
+<p>The pointer API allows to simulate interactions with pointer devices. It accepts a single pointer action or an array of them. Our primary target audience tests per jest in a jsdom environment and there is no layout in jsdom. This means that different from your browser the elements don't exist in a specific position, layer and size.</p>
+<p>We don't try to determine if the pointer action you describe is possible at that position in your layout.</p>
+<h3 id="keyboard-api"><a aria-hidden="true" class="anchor-heading" href="#keyboard-api"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Keyboard API</h3>
+<p>The keyboard API allows to simulate interactions with a keyboard. It accepts a string describing the key actions.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token function">keyboard</span><span class="token punctuation">(</span><span class="token string">'{Shift}{f}{o}{o}'</span><span class="token punctuation">)</span> <span class="token comment">// translates to: Shift, f, o, o</span>
+</code></pre>
+<h3 id="clipboard-api"><a aria-hidden="true" class="anchor-heading" href="#clipboard-api"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Clipboard API</h3>
+<p>Note that the Clipboard API is usually not available outside of secure context.
+To enable testing of workflows involving the clipboard, <code>userEvent.setup()</code> replaces <code>window.navigator.clipboard</code> with a stub.</p>

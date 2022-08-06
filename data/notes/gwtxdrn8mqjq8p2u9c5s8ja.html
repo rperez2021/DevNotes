@@ -1,0 +1,47 @@
+<h1 id="grid"><a aria-hidden="true" class="anchor-heading" href="#grid"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Grid</h1>
+<h2 id="grid-template-shorthand"><a aria-hidden="true" class="anchor-heading" href="#grid-template-shorthand"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Grid Template Shorthand</h2>
+<pre class="language-css"><code class="language-css"><span class="token selector"><span class="token class">.container</span></span> <span class="token punctuation">{</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> grid<span class="token punctuation">;</span>
+  <span class="token property">grid-template</span><span class="token punctuation">:</span> <span class="token number">50</span><span class="token unit">px</span> <span class="token number">50</span><span class="token unit">px</span> <span class="token operator">/</span> <span class="token number">50</span><span class="token unit">px</span> <span class="token number">50</span><span class="token unit">px</span> <span class="token number">50</span><span class="token unit">px</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>is the same as:</p>
+<pre class="language-css"><code class="language-css"><span class="token selector"><span class="token class">.container</span></span> <span class="token punctuation">{</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> grid<span class="token punctuation">;</span>
+  <span class="token property">grid-template-columns</span><span class="token punctuation">:</span> <span class="token number">50</span><span class="token unit">px</span> <span class="token number">50</span><span class="token unit">px</span> <span class="token number">50</span><span class="token unit">px</span><span class="token punctuation">;</span>
+  <span class="token property">grid-template-rows</span><span class="token punctuation">:</span> <span class="token number">50</span><span class="token unit">px</span> <span class="token number">50</span><span class="token unit">px</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="implicit-grid"><a aria-hidden="true" class="anchor-heading" href="#implicit-grid"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Implicit Grid</h2>
+<p>If we add additional items from to those defined in the template they will be placed on the grid but they will not have explicit size values assigned to them unless you use <code>grid-auto-rows: 50px;</code> css property.</p>
+<h2 id="span"><a aria-hidden="true" class="anchor-heading" href="#span"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Span</h2>
+<p>Grid defaults to spanning one track. You can use the span keyword when setting up grid columns or rows to extend the length based on the number of spans. For example:</p>
+<pre class="language-css"><code class="language-css"><span class="token selector"><span class="token class">.box1</span></span> <span class="token punctuation">{</span>
+    <span class="token property">grid-column</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token property">grid-row</span><span class="token punctuation">:</span> <span class="token number">1</span> <span class="token operator">/</span> span <span class="token number">3</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="grid-area-property"><a aria-hidden="true" class="anchor-heading" href="#grid-area-property"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Grid Area Property</h2>
+<p>Shorthand for:</p>
+<ul>
+<li>grid-row-start</li>
+<li>grid-column-start</li>
+<li>grid-row-end</li>
+<li>grid-column-end</li>
+</ul>
+<pre class="language-css"><code class="language-css"><span class="token selector"><span class="token class">.box1</span></span> <span class="token punctuation">{</span>
+   <span class="token property">grid-area</span><span class="token punctuation">:</span> <span class="token number">1</span> <span class="token operator">/</span> <span class="token number">1</span> <span class="token operator">/</span> <span class="token number">4</span> <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="the-repeat-css-function"><a aria-hidden="true" class="anchor-heading" href="#the-repeat-css-function"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>The Repeat CSS Function</h2>
+<pre class="language-css"><code class="language-css"><span class="token selector"><span class="token class">.grid-container</span></span> <span class="token punctuation">{</span>
+  <span class="token property">grid-template-rows</span><span class="token punctuation">:</span> <span class="token number">150</span><span class="token unit">px</span> <span class="token number">150</span><span class="token unit">px</span><span class="token punctuation">;</span>
+  <span class="token property">grid-template-columns</span><span class="token punctuation">:</span> <span class="token number">150</span><span class="token unit">px</span> <span class="token number">150</span><span class="token unit">px</span> <span class="token number">150</span><span class="token unit">px</span> <span class="token number">150</span><span class="token unit">px</span> <span class="token number">150</span><span class="token unit">px</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>can be written as</p>
+<pre class="language-css"><code class="language-css"><span class="token selector"><span class="token class">.grid-container</span></span> <span class="token punctuation">{</span>
+  <span class="token property">grid-template-rows</span><span class="token punctuation">:</span> <span class="token function">repeat</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">150</span><span class="token unit">px</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token property">grid-template-columns</span><span class="token punctuation">:</span> <span class="token function">repeat</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">150</span><span class="token unit">px</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>

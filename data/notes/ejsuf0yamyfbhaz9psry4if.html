@@ -1,0 +1,6 @@
+<h1 id="javascript_injection"><a aria-hidden="true" class="anchor-heading" href="#javascript_injection"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Javascript_injection</h1>
+<h2 id="general-info"><a aria-hidden="true" class="anchor-heading" href="#general-info"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>General Info</h2>
+<p>If <code>element.innerHTML</code> is being used you can inject javascript through an input field with a img tag like this:</p>
+<p><code>&#x3C;img src onerror="alert('hacked')"></code></p>
+<p>If that input field manipulates a url you can do all sorts of bad stuff.</p>
+<p>You can fix this by using innerText or TextContent</p>

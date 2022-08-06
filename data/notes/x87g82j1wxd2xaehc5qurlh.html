@@ -1,0 +1,117 @@
+<h1 id="mutability"><a aria-hidden="true" class="anchor-heading" href="#mutability"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Mutability</h1>
+<h2 id="general-info"><a aria-hidden="true" class="anchor-heading" href="#general-info"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>General Info</h2>
+<p>JavaScript offers several ways to add, remove, and replace items in an array – but some of these ways mutate the array, and others are non-mutating; they produce a new array.</p>
+<ul>
+<li><code>array.splice()</code> mutates the original array</li>
+<li><code>array.slice()</code> does not mutate the original array</li>
+</ul>
+<h3 id="addition-with-mutation"><a aria-hidden="true" class="anchor-heading" href="#addition-with-mutation"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Addition with Mutation</h3>
+<p>The mutating methods for adding to an array are <code>array.push()</code> which adds an item to the end of the array and <code>array.ushift()</code> which adds an item to the beginning of the array..</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token comment">// since the array will be mutated, </span>
+<span class="token comment">// use 'let' rather than 'const'</span>
+<span class="token keyword">let</span> mutatingAdd <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">,</span> <span class="token string">'c'</span><span class="token punctuation">,</span> <span class="token string">'d'</span><span class="token punctuation">,</span> <span class="token string">'e'</span><span class="token punctuation">]</span><span class="token punctuation">;</span> 
+
+mutatingAdd<span class="token punctuation">.</span><span class="token method function property-access">push</span><span class="token punctuation">(</span><span class="token string">'f'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// ['a', 'b', 'c', 'd', 'e', 'f']</span>
+mutatingAdd<span class="token punctuation">.</span><span class="token method function property-access">unshift</span><span class="token punctuation">(</span><span class="token string">'z'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// ['z', 'a', 'b', 'c', 'd', 'e' 'f']</span>
+</code></pre>
+<h3 id="addition-without-mutation"><a aria-hidden="true" class="anchor-heading" href="#addition-without-mutation"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Addition without Mutation</h3>
+<p>The non-mutating method <code>array.concat()</code> is one way</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token comment">// since we will not be mutating, </span>
+<span class="token comment">// use const</span>
+<span class="token keyword">const</span> arr1 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">,</span> <span class="token string">'c'</span><span class="token punctuation">,</span> <span class="token string">'d'</span><span class="token punctuation">,</span> <span class="token string">'e'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> arr2 <span class="token operator">=</span> arr1<span class="token punctuation">.</span><span class="token method function property-access">concat</span><span class="token punctuation">(</span><span class="token string">'f'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// ['a', 'b', 'c', 'd', 'e'. 'f']</span>
+<span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span>arr1<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// ['a', 'b', 'c', 'd', 'e']</span>
+</code></pre>
+<p>Using the <code>...spread</code> operator is another:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token comment">// since we will not be mutating, </span>
+<span class="token comment">// use const</span>
+<span class="token keyword">const</span> arr1 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">,</span> <span class="token string">'c'</span><span class="token punctuation">,</span> <span class="token string">'d'</span><span class="token punctuation">,</span> <span class="token string">'e'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> arr2 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token spread operator">...</span>arr1<span class="token punctuation">,</span> <span class="token string">'f'</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// ['a', 'b', 'c', 'd', 'e', 'f']</span>
+<span class="token keyword">const</span> arr3 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'z'</span><span class="token punctuation">,</span> <span class="token spread operator">...</span>arr1<span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// ['z', 'a', 'b', 'c', 'd', 'e']</span>
+</code></pre>
+<h3 id="removal-with-mutation"><a aria-hidden="true" class="anchor-heading" href="#removal-with-mutation"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Removal with Mutation</h3>
+<p>The mutating methods for removing from an array are <code>array.pop()</code> which removes an item at the end of the array, <code>array.shift()</code> which removes an item at the beginning of the array and <code>array.splice()</code> which can accept several parameters.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token comment">// since the array will be mutated, </span>
+<span class="token comment">// use 'let' rather than 'const'</span>
+<span class="token keyword">let</span> mutatingRemove <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">,</span> <span class="token string">'c'</span><span class="token punctuation">,</span> <span class="token string">'d'</span><span class="token punctuation">,</span> <span class="token string">'e'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+mutatingRemove<span class="token punctuation">.</span><span class="token method function property-access">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// ['a', 'b', 'c', 'd']</span>
+mutatingRemove<span class="token punctuation">.</span><span class="token method function property-access">shift</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// ['b', 'c', 'd']</span>
+</code></pre>
+<p><code>array.pop()</code> and <code>array.shift()</code> return the item that is removed. This means you can 'catch' the deleted item in a variable.</p>
+<ol>
+<li>The first parameter is the starting point of the splice.</li>
+<li>The second parameter is the number of items to remove from the array.</li>
+<li>The third parameter can be used to add items in the place of the removes items.</li>
+</ol>
+<p>Like array.pop() and array.shift(), array.splice() returns the items it removes.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">let</span> mutatingRemove <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">,</span> <span class="token string">'c'</span><span class="token punctuation">,</span> <span class="token string">'d'</span><span class="token punctuation">,</span> <span class="token string">'e'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> returnedItems <span class="token operator">=</span> mutatingRemove<span class="token punctuation">.</span><span class="token method function property-access">splice</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span>mutatingRemove<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// ['c', 'd', 'e']</span>
+<span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span>returnedItems<span class="token punctuation">)</span> <span class="token comment">// ['a', 'b'] </span>
+</code></pre>
+<h3 id="removal-without-mutating"><a aria-hidden="true" class="anchor-heading" href="#removal-without-mutating"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Removal without Mutating</h3>
+<p>JavaScript's <code>array.filter()</code> method creates a new array from an original array, but the new array only contains items that match the specified criteria. Another way is with <code>array.slice()</code> <strong>Dont Confuse with <code>array.splice()</code></strong></p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token comment">// since we will not be mutating, </span>
+<span class="token comment">// use const</span>
+<span class="token keyword">const</span> arr1 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">,</span> <span class="token string">'c'</span><span class="token punctuation">,</span> <span class="token string">'d'</span><span class="token punctuation">,</span> <span class="token string">'e'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> arr2 <span class="token operator">=</span> arr1<span class="token punctuation">.</span><span class="token method function property-access">filter</span><span class="token punctuation">(</span><span class="token parameter">a</span> <span class="token arrow operator">=></span> a <span class="token operator">!==</span> <span class="token string">'e'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// ['a', 'b', 'c', 'd']</span>
+<span class="token comment">// OR</span>
+<span class="token keyword">const</span> arr2 <span class="token operator">=</span> arr1<span class="token punctuation">.</span><span class="token method function property-access">filter</span><span class="token punctuation">(</span><span class="token parameter">a</span> <span class="token arrow operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword control-flow">return</span> a <span class="token operator">!==</span> <span class="token string">'e'</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// ['a', 'b', 'c', 'd']</span>
+</code></pre>
+<p><code>array.slice()</code> takes two parameters.</p>
+<ol>
+<li>The first parameter is the index where the copy should begin.</li>
+<li>The second parameter is the index where the copy should end. This end index is non-inclusive.</li>
+</ol>
+<pre class="language-javascript"><code class="language-javascript"><span class="token comment">// since we will not be mutating, </span>
+<span class="token comment">// use const</span>
+<span class="token keyword">const</span> arr1 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">,</span> <span class="token string">'c'</span><span class="token punctuation">,</span> <span class="token string">'d'</span><span class="token punctuation">,</span> <span class="token string">'e'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> arr2 <span class="token operator">=</span> arr1<span class="token punctuation">.</span><span class="token method function property-access">slice</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span> <span class="token comment">// ['b', 'c', 'd', 'e']</span>
+<span class="token keyword">const</span> arr3 <span class="token operator">=</span> arr1<span class="token punctuation">.</span><span class="token method function property-access">slice</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token comment">// ['c', 'd', 'e']</span>
+</code></pre>
+<p>Line 5 <code>(const arr3 = arr1.slice(2))</code> shows a handy trick. If the second parameter of array.slice() is not provided, the method makes a copy from the beginning index to the end of the array.</p>
+<h3 id="replacing-with-mutation"><a aria-hidden="true" class="anchor-heading" href="#replacing-with-mutation"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Replacing with Mutation</h3>
+<p>If you know the index of the item you want to replace, you can use <code>array.splice()</code> to replace it with something else.</p>
+<p>In order to do this, we need to use at least three parameters:</p>
+<ol>
+<li>The first parameter is the index to start replacing.</li>
+<li>The second parameter is the number of items to remove.</li>
+<li>The third and all other parameters are what will be inserted into the array.</li>
+</ol>
+<pre class="language-javascript"><code class="language-javascript"><span class="token comment">// since the array will be mutated, </span>
+<span class="token comment">// use 'let' rather than 'const'</span>
+<span class="token keyword">let</span> mutatingReplace <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">,</span> <span class="token string">'c'</span><span class="token punctuation">,</span> <span class="token string">'d'</span><span class="token punctuation">,</span> <span class="token string">'e'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+mutatingReplace<span class="token punctuation">.</span><span class="token method function property-access">splice</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// ['a', 'b', 30, 'd', 'e']</span>
+<span class="token comment">// OR</span>
+mutatingReplace<span class="token punctuation">.</span><span class="token method function property-access">splice</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">,</span> <span class="token number">31</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// ['a', 'b', 30, 31, 'd', 'e']</span>
+</code></pre>
+<h3 id="replace-without-mutating"><a aria-hidden="true" class="anchor-heading" href="#replace-without-mutating"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Replace without Mutating</h3>
+<p>We can use <code>array.map()</code> to create a new array, but we can also check each item and replace items that match a specified criterion.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token comment">// since we will not be mutating, </span>
+<span class="token comment">// use const</span>
+<span class="token keyword">const</span> arr1 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">,</span> <span class="token string">'c'</span><span class="token punctuation">,</span> <span class="token string">'d'</span><span class="token punctuation">,</span> <span class="token string">'e'</span><span class="token punctuation">]</span>
+<span class="token keyword">const</span> arr2 <span class="token operator">=</span> arr1<span class="token punctuation">.</span><span class="token method function property-access">map</span><span class="token punctuation">(</span><span class="token parameter">item</span> <span class="token arrow operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword control-flow">if</span><span class="token punctuation">(</span>item <span class="token operator">===</span> <span class="token string">'c'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    item <span class="token operator">=</span> <span class="token string">'CAT'</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword control-flow">return</span> item<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// ['a', 'b', 'CAT', 'd', 'e']</span>
+</code></pre>
+<p>The code above creates a new array based on arr1, but replaces all 'c's with CATs.</p>
+<h3 id="transforming-data-with-arraymap"><a aria-hidden="true" class="anchor-heading" href="#transforming-data-with-arraymap"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Transforming Data with <code>array.map()</code></h3>
+<p><code>array.map()</code> is a powerful method, and can be used to transform data without compromising the integrity of the original data set.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token comment">// since we will not be mutating, </span>
+<span class="token comment">// use const</span>
+<span class="token keyword">const</span> origArr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">,</span> <span class="token string">'c'</span><span class="token punctuation">,</span> <span class="token string">'d'</span><span class="token punctuation">,</span> <span class="token string">'e'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> transformedArr <span class="token operator">=</span> origArr<span class="token punctuation">.</span><span class="token method function property-access">map</span><span class="token punctuation">(</span><span class="token parameter">n</span> <span class="token arrow operator">=></span> n <span class="token operator">+</span> <span class="token string">'Hi!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// ['aHi!', 'bHi!', 'cHi!', 'dHi!', 'eHi!']</span>
+<span class="token comment">// OR</span>
+<span class="token keyword">const</span> transformedArr <span class="token operator">=</span> origArr<span class="token punctuation">.</span><span class="token method function property-access">map</span><span class="token punctuation">(</span><span class="token parameter">n</span> <span class="token arrow operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword control-flow">return</span> n <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token comment">// ['aHi!', 'bHi!', 'cHi!', 'dHi!', 'eHi!']</span>
+<span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span>origArr<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// ['a', 'b', 'c', 'd', 'e']; // orignal array is intact</span>
+</code></pre>

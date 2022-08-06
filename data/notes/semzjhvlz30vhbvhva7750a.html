@@ -1,0 +1,21 @@
+<h1 id="asi"><a aria-hidden="true" class="anchor-heading" href="#asi"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>ASI</h1>
+<ul>
+<li>empty statement</li>
+<li><code>var</code> statement</li>
+<li>expression statement</li>
+<li><code>do-while</code> statement</li>
+<li><code>continue</code> statement</li>
+<li><code>break</code> statement</li>
+<li><code>return</code> statement</li>
+<li><code>throw</code> statement</li>
+</ul>
+<ol>
+<li>When an offending token is encountered that is not allowed by the grammar, a semicolon is inserted before it if:
+<ul>
+<li>The token is separated from the previous token by at least one LineTerminator.</li>
+<li>The token is <code>}</code></li>
+</ul>
+</li>
+<li>When the end of the input stream of tokens is encountered and the parser is unable to parse the input token stream as a single complete Program, then a semicolon is automatically inserted at the end of the input stream.</li>
+<li>This case occurs when a token is allowed by some production of the grammar, but the production is a restricted production, a semicolon is automatically inserted before the restricted token.</li>
+</ol>

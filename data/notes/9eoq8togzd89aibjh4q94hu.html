@@ -1,0 +1,169 @@
+<h1 id="pseudo-classes"><a aria-hidden="true" class="anchor-heading" href="#pseudo-classes"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Pseudo Classes</h1>
+<h2 id="general-info"><a aria-hidden="true" class="anchor-heading" href="#general-info"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>General Info</h2>
+<p>A pseudo-class is used to define a special state of an element.</p>
+<p><strong>Note:</strong> <code>a:hover</code> MUST come after <code>a:link</code> and <code>a:visited</code> in the CSS definition in order to be effective! <code>a:active</code> MUST come after <code>a:hover</code> in the CSS definition in order to be effective!</p>
+<p>Pseudo-class names are not case-sensitive.</p>
+<p><code>:first-child</code></p>
+<p><code>:lang(es)</code> usage <code>&#x3C;q lang="es"></code></p>
+<table class="ws-table-all notranslate">
+  <tbody><tr>
+    <th style="width:20%">Selector</th>
+    <th style="width:20%">Example</th>
+    <th>Example description</th>
+  </tr>
+  <tr>
+    <td>:active</td>
+    <td>a:active</td>
+    <td>Selects the active link</td>
+  </tr>
+  <tr>
+    <td>:checked</td>
+    <td>input:checked</td>
+    <td>Selects every checked &#x3C;input> element</td>
+  </tr>
+  <tr>
+    <td>:disabled</td>
+    <td>input:disabled</td>
+    <td>Selects every disabled &#x3C;input> element</td>
+  </tr>
+  <tr>
+    <td>:empty</td>
+    <td>p:empty</td>
+    <td>Selects every &#x3C;p> element that has no children</td>
+  </tr>
+  <tr>
+    <td>:enabled</td>
+    <td>input:enabled</td>
+    <td>Selects every enabled &#x3C;input> element</td>
+  </tr>
+  <tr>
+    <td>:first-child</td>
+    <td>p:first-child</td>
+    <td>Selects every &#x3C;p> elements that is the first child of its parent</td>
+  </tr>
+  <tr>
+    <td>:first-of-type</td>
+    <td>p:first-of-type</td>
+    <td>Selects every &#x3C;p> element that is the first &#x3C;p> element of its parent</td>
+  </tr>
+  <tr>
+    <td>:focus</td>
+    <td>input:focus</td>
+    <td>Selects the &#x3C;input> element that has focus</td>
+  </tr>
+  <tr>
+    <td>:hover</td>
+    <td>a:hover</td>
+    <td>Selects links on mouse over</td>
+  </tr>
+  <tr>
+    <td>:in-range</td>
+    <td>input:in-range</td>
+    <td>Selects &#x3C;input> elements with a value within a specified range</td>
+  </tr>
+  <tr>
+    <td>:invalid</td>
+    <td>input:invalid</td>
+    <td>Selects all &#x3C;input> elements with an invalid value</td>
+  </tr>
+  <tr>
+    <td>:lang(<i>language</i>)</td>
+    <td>p:lang(it)</td>
+    <td>Selects every &#x3C;p> element with a lang attribute value starting with "it"</td>
+  </tr>
+  <tr>
+    <td>:last-child</td>
+    <td>p:last-child</td>
+    <td>Selects every &#x3C;p> elements that is the last child of its parent</td>
+  </tr>
+  <tr>
+    <td>:last-of-type</td>
+    <td>p:last-of-type</td>
+    <td>Selects every &#x3C;p> element that is the last &#x3C;p> element of its parent</td>
+  </tr>
+  <tr>
+    <td>:link</td>
+    <td>a:link</td>
+    <td>Selects all unvisited links</td>
+  </tr>
+  <tr>
+    <td>:not(selector)</td>
+    <td>:not(p)</td>
+    <td>Selects every element that is not a &#x3C;p> element</td>
+  </tr>
+  <tr>
+    <td>:nth-child(n)</td>
+    <td>p:nth-child(2)</td>
+    <td>Selects every &#x3C;p> element that is the second child of its parent</td>
+  </tr>
+  <tr>
+    <td>:nth-last-child(n)</td>
+    <td>p:nth-last-child(2)</td>
+    <td>Selects every &#x3C;p> element that is the second child of its parent, counting from the last child</td>
+  </tr>
+  <tr>
+    <td>:nth-last-of-type(n)</td>
+    <td>p:nth-last-of-type(2)</td>
+    <td>Selects every &#x3C;p> element that is the second &#x3C;p> element of its parent, counting from the last child</td>
+  </tr>
+  <tr>
+    <td>:nth-of-type(n)</td>
+    <td>p:nth-of-type(2)</td>
+    <td>Selects every &#x3C;p> element that is the second &#x3C;p> element of its parent</td>
+  </tr>
+  <tr>
+    <td>:only-of-type</td>
+    <td>p:only-of-type</td>
+    <td>Selects every &#x3C;p> element that is the only &#x3C;p> element of its parent</td>
+  </tr>
+  <tr>
+    <td>:only-child</td>
+    <td>p:only-child</td>
+    <td>Selects every &#x3C;p> element that is the only child of its parent</td>
+  </tr>
+  <tr>
+    <td>:optional</td>
+    <td>input:optional</td>
+    <td>Selects &#x3C;input> elements with no "required" attribute</td>
+  </tr>
+  <tr>
+    <td>:out-of-range</td>
+    <td>input:out-of-range</td>
+    <td>Selects &#x3C;input> elements with a value outside a specified range</td>
+  </tr>
+  <tr>
+    <td>:read-only</td>
+    <td>input:read-only</td>
+    <td>Selects &#x3C;input> elements with a "readonly" attribute specified</td>
+  </tr>
+  <tr>
+    <td>:read-write</td>
+    <td>input:read-write</td>
+    <td>Selects &#x3C;input> elements with no "readonly" attribute</td>
+  </tr>
+  <tr>
+    <td>:required</td>
+    <td>input:required</td>
+    <td>Selects &#x3C;input> elements with a "required" attribute specified</td>
+  </tr>
+  <tr>
+    <td>:root</td>
+    <td>root</td>
+    <td>Selects the document's root element</td>
+  </tr>
+  <tr>
+    <td>:target</td>
+    <td>#news:target</td>
+    <td>Selects the current active #news element (clicked on a URL containing that anchor name)</td>
+  </tr>
+  <tr>
+    <td>:valid</td>
+    <td>input:valid</td>
+    <td>Selects all &#x3C;input> elements with a valid value</td>
+  </tr>
+  <tr>
+    <td>:visited</td>
+    <td>a:visited</td>
+    <td>Selects all visited links</td>
+  </tr>
+</tbody></table>

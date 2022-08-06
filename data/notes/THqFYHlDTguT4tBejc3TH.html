@@ -1,0 +1,85 @@
+<h1 id="python"><a aria-hidden="true" class="anchor-heading" href="#python"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Python</h1>
+<p>Documentation Site for Python</p>
+<p>Numpy, scipy, sympy PyYAML Pandas jmespath python-dateutil pytest</p>
+<p>underscore _ gets you the previous result</p>
+<p>formatted string literals - f-strings</p>
+<p>print() has some unique arguments to change its default behavior: <code>sep</code> and <code>end</code></p>
+<pre class="language-python"><code class="language-Python"><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Hello"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"World"</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Will append a <code>/n</code> newline at the end resulting in:</p>
+<blockquote>
+<p>Hello</p>
+<p>World</p>
+</blockquote>
+<p>you can change this to on line by:</p>
+<pre class="language-python"><code class="language-Python"><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Hello"</span><span class="token punctuation">,</span> end<span class="token operator">=</span><span class="token string">""</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"World"</span><span class="token punctuation">)</span>
+</code></pre>
+<blockquote>
+<p>HelloWorld</p>
+</blockquote>
+<p>for an example of <code>sep</code>:</p>
+<pre class="language-python"><code class="language-python"><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"cat"</span><span class="token punctuation">,</span> <span class="token string">"dog"</span><span class="token punctuation">,</span> <span class="token string">"mouse"</span><span class="token punctuation">)</span>
+</code></pre>
+<p>standard behavior is to add a space as a separator between array items:</p>
+<blockquote>
+<p>cat dog mouse</p>
+</blockquote>
+<p>you can use <code>sep</code> to change this behavior</p>
+<pre class="language-python"><code class="language-python"><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"cat"</span><span class="token punctuation">,</span> <span class="token string">"dog"</span><span class="token punctuation">,</span> <span class="token string">"mouse"</span><span class="token punctuation">,</span> sep<span class="token operator">=</span><span class="token string">"ABC"</span><span class="token punctuation">)</span>
+</code></pre>
+<blockquote>
+<p>catABCdogABCmouse</p>
+</blockquote>
+<p>Mutable values are not stored in the variable just a <strong>reference</strong> to them which means that they can be cross modified ie:</p>
+<pre class="language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> spam <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span>
+<span class="token operator">>></span><span class="token operator">></span> cheese <span class="token operator">=</span> spam
+<span class="token operator">>></span><span class="token operator">></span> cheese<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"Hello"</span>
+<span class="token operator">>></span><span class="token operator">></span> cheese 
+<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"Hello"</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span>
+<span class="token operator">>></span><span class="token operator">></span> spam 
+<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"Hello"</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span>
+</code></pre>
+<p>Immutable values such as strings or tuples cannot be modified unless they are replaced.</p>
+<p>You can also use <code>copy.deepcoopy(spam)</code> to create a new list with a new reference.</p>
+<h2 id="excel-in-python"><a aria-hidden="true" class="anchor-heading" href="#excel-in-python"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Excel in Python</h2>
+<p>Module OpenPyXL handles .xlsx files, the command openpyxl.load_workbook(filepath) returns a Workbook object.</p>
+<p><code>get_sheet_names()</code> and <code>get_sheet_by_name()</code> will get you a Worksheet object.</p>
+<p><code>sheet[A1]</code> will get you Cell Objects</p>
+<p><code>sheet[A1],value == "Purple"</code></p>
+<h2 id="pdf-in-python"><a aria-hidden="true" class="anchor-heading" href="#pdf-in-python"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>PDF in Python</h2>
+<pre class="language-python"><code class="language-python"><span class="token keyword">import</span> PyPDF2 <span class="token comment"># is the module recommended</span>
+pdfFile <span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span>filepath<span class="token punctuation">,</span> <span class="token string">'rb'</span><span class="token punctuation">)</span>  <span class="token comment"># to open PDF</span>
+reader <span class="token operator">=</span> PyPDF2<span class="token punctuation">.</span>PdfFileReader<span class="token punctuation">(</span>pdfFile<span class="token punctuation">)</span> <span class="token comment"># to read PDF in PyPDF2</span>
+reader<span class="token punctuation">.</span>numPages <span class="token comment"># returns number of pages in PDF</span>
+reader<span class="token punctuation">.</span>getPage<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token comment"># gets a page</span>
+reader<span class="token punctuation">.</span>extractText<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">for</span> pageNum <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>reader<span class="token punctuation">.</span>numPages<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>reader<span class="token punctuation">.</span>getPage<span class="token punctuation">(</span>pageNum<span class="token punctuation">)</span><span class="token punctuation">.</span>extractText<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre>
+<p><code>PdfFileWrite()</code> is the command to write a new PDF</p>
+<h3 id="word-in-python"><a aria-hidden="true" class="anchor-heading" href="#word-in-python"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Word in Python</h3>
+<p><code>python-docx</code></p>
+<pre class="language-python"><code class="language-python">pip install python<span class="token operator">-</span>docx
+<span class="token keyword">import</span> docx
+d <span class="token operator">=</span> docx<span class="token punctuation">.</span>Document<span class="token punctuation">(</span>filepath<span class="token punctuation">)</span>
+d<span class="token punctuation">.</span>paragraphs <span class="token comment"># returns a list with all the objects in a docx</span>
+d<span class="token punctuation">.</span>paragraphs<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token comment">#returns a paragraph object from the list</span>
+d<span class="token punctuation">.</span>paragraphs<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>text <span class="token comment"># returns the text within a single object in the list</span>
+p<span class="token punctuation">.</span>runs <span class="token comment"># returns a list of all the run objects</span>
+p<span class="token punctuation">.</span>runs<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>text <span class="token comment"># returns the text in the run object</span>
+p<span class="token punctuation">.</span>runs<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>bold <span class="token comment"># returns true if the run object is bold returns "NONE" (not false) if its not, this works for italic, bold and underline</span>
+</code></pre>
+<p>Word documents contain paragraph and run objects for structure.</p>
+<p>A run is created every time there is a style change in the text of a document. So italics, bold, and underline.</p>
+<hr>
+<strong>Children</strong>
+<ol>
+<li><a href="/DevNotes/notes/cBWB21JyyUFl8uoeVoRW4">Datatstructures</a></li>
+<li><a href="/DevNotes/notes/cd1cg9uf5is0w7vq6v5nkfx">Debugging</a></li>
+<li><a href="/DevNotes/notes/d40r117bk5ij1tf5gamvchp">Files</a></li>
+<li><a href="/DevNotes/notes/k4t9eNGAI0d94nSXz2Scx">Modules</a></li>
+<li><a href="/DevNotes/notes/lYnkSS5QyZPtmyqM38kP8">Python Datatypes</a></li>
+<li><a href="/DevNotes/notes/d5nvr7f85mdrbu24x9706r5">Scraping</a></li>
+</ol>

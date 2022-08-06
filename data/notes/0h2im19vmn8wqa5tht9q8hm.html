@@ -1,0 +1,79 @@
+<h1 id="react-hooks"><a aria-hidden="true" class="anchor-heading" href="#react-hooks"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>React Hooks</h1>
+<h2 id="general-info"><a aria-hidden="true" class="anchor-heading" href="#general-info"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>General Info</h2>
+<p>Hooks allow functional components to also have a lifecycle as well as a state.</p>
+<p>Imported as an object function from the React module:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword module">import</span> <span class="token imports"><span class="token maybe-class-name">React</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> useState<span class="token punctuation">,</span> useEffect <span class="token punctuation">}</span></span> <span class="token keyword module">from</span> <span class="token string">"react"</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Hooks were created as a way to solve these problems:</p>
+<ol>
+<li>It’s hard to reuse stateful logic between components
+<ul>
+<li>Patterns like render props and higher-order components that try to solve this. But these patterns require you to restructure your components when you use them, which can be cumbersome and make code harder to follow</li>
+<li>Hooks allow you to reuse stateful logic without changing your component hierarchy.</li>
+</ul>
+</li>
+<li>Complex components become hard to understand
+<ul>
+<li>Hooks let you split one component into smaller functions based on what pieces are related (such as setting up a subscription or fetching data)</li>
+</ul>
+</li>
+<li>Classes confuse both people and machines
+<ul>
+<li>You have to understand how this works in JavaScript, which is very different from how it works in most languages.</li>
+<li>You have to remember to bind the event handlers.</li>
+<li>Hooks let you use more of React’s features without classes.</li>
+</ul>
+</li>
+</ol>
+<h2 id="hook-rules"><a aria-hidden="true" class="anchor-heading" href="#hook-rules"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Hook Rules</h2>
+<ol>
+<li>Only call Hooks at the top level. Don’t call Hooks inside loops, conditions, or nested functions.</li>
+<li>Only call Hooks from React function components. Don’t call Hooks from regular JavaScript functions. (There is just one other valid place to call Hooks — your own custom Hooks. We’ll learn about them in a moment.)</li>
+</ol>
+<h2 id="custom-hooks"><a aria-hidden="true" class="anchor-heading" href="#custom-hooks"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Custom Hooks</h2>
+<p>Hooks are a way to reuse stateful logic, not state itself. In fact, each call to a Hook has a completely isolated state — so you can even use the same custom Hook twice in one component.</p>
+<p>Custom Hooks are more of a convention than a feature. If a function’s name starts with ”use” and it calls other Hooks, we say it is a custom Hook. The useSomething naming convention is how our linter plugin is able to find bugs in the code using Hooks.</p>
+<p>You can write custom Hooks that cover a wide range of use cases like form handling, animation, declarative subscriptions, timers, and probably many more we haven’t considered. We are excited to see what custom Hooks the React community will come up with.</p>
+<h2 id="usestate"><a aria-hidden="true" class="anchor-heading" href="#usestate"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>useState</h2>
+<p>Functional replacement for <code>this.state</code> and <code>setState()</code></p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> <span class="token punctuation">[</span>count<span class="token punctuation">,</span> setCount<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token punctuation">[</span>color<span class="token punctuation">,</span> setColor<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token string">'black'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token punctuation">[</span>shape<span class="token punctuation">,</span> setShape<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token string">'circle'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>However, unlike <code>this.setState</code> in a class, updating a state variable always replaces it instead of merging it.</p>
+<h2 id="useeffect"><a aria-hidden="true" class="anchor-heading" href="#useeffect"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>useEffect</h2>
+<p>Functional replacement for lifecycle methods syntax is:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token function">useEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<p>useEffect Hooks let us split the code based on what it is doing rather than a lifecycle method name. React will apply every effect used by the component, in the order they were specified.</p>
+<h3 id="componentdidmount-optional-use"><a aria-hidden="true" class="anchor-heading" href="#componentdidmount-optional-use"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>componentDidMount optional use</h3>
+<p>Leave it empty.</p>
+<p>This option is equal to a componentDidMount lifecycle method, meaning the hook runs one time when the component mounts (is inserted in the DOM tree)</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token function">useEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token punctuation">{</span>
+  <span class="token comment">// Do something</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="componentdidupdate-optional-use"><a aria-hidden="true" class="anchor-heading" href="#componentdidupdate-optional-use"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>componentDidUpdate optional use</h3>
+<p>Add a dependency to the array.</p>
+<p>This way, the <code>useEffect</code> hook will re-run anytime the dependency, in this case <code>(color)</code> changes. This is similar to a <code>componentDidUpdate</code> method, with the only difference that it only runs when a certain condition has changed.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token function">useEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token punctuation">{</span>
+  <span class="token comment">// Do something</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>color<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>If you use this optimization, make sure the array includes all values from the component scope (such as props and state) that change over time and that are used by the effect. Otherwise, your code will reference stale values from previous renders.</p>
+<h3 id="componentdidmount-and-componentdidupdate-combo-optional-use"><a aria-hidden="true" class="anchor-heading" href="#componentdidmount-and-componentdidupdate-combo-optional-use"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>componentDidMount and componentDidUpdate combo optional use</h3>
+<p>Leave out the dependency array.</p>
+<p>You can also completely leave out the dependency array. This way, the useEffect hook runs anytime the component is updated, AND right after the initial render. This is the difference compared to the componentDidUpdate lifecycle method, because it also runs after the initial render. This way it would be equal to a componentDidMount and componentDidUpdate method combined.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token function">useEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token punctuation">{</span>
+  <span class="token comment">// Do something</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="componentwillunmount-with-return-method"><a aria-hidden="true" class="anchor-heading" href="#componentwillunmount-with-return-method"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>componentWillUnmount with return method</h3>
+<p>If you write a return statement like the above in a useEffect, it will do the same as a componentWillUnmount method.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token function">useEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token punctuation">{</span>
+  <span class="token comment">// Do something</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>color<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword control-flow">return</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token punctuation">{</span>
+  <span class="token dom variable">document</span><span class="token punctuation">.</span><span class="token method function property-access">removeEventListener</span><span class="token punctuation">(</span><span class="token string">"click"</span><span class="token punctuation">,</span> changeColorOnClick<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>

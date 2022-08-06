@@ -1,0 +1,36 @@
+<h1 id="raspberrypi"><a aria-hidden="true" class="anchor-heading" href="#raspberrypi"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Raspberrypi</h1>
+<h2 id="general-info"><a aria-hidden="true" class="anchor-heading" href="#general-info"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>General Info</h2>
+<p>Getting the installation of Home Assistant and PiHole was a pain. This is not a good note.</p>
+<p>Was easiest to do the install with Docker Compose, my router from AT&#x26;T does not accept custom DNS so I had to use the PiHole as a DHCP Server. Had to modify the docker compose file and add a couple environmental variables to make it work. Will document these tomorrow.</p>
+<h2 id="home-assistant-container-installation"><a aria-hidden="true" class="anchor-heading" href="#home-assistant-container-installation"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Home Assistant Container Installation</h2>
+<pre class="language-bash"><code class="language-bash"><span class="token function">docker</span> run -d <span class="token punctuation">\</span>
+  --name homeassistant <span class="token punctuation">\</span>
+  --privileged <span class="token punctuation">\</span>
+  --restart<span class="token operator">=</span>unless-stopped <span class="token punctuation">\</span>
+  -e <span class="token assign-left variable">TZ</span><span class="token operator">=</span>America/Los_Angeles <span class="token punctuation">\</span>
+  -v /home/pi/homeassistant <span class="token punctuation">\</span>
+  --network<span class="token operator">=</span>host <span class="token punctuation">\</span>
+  ghcr.io/home-assistant/home-assistant:stable
+</code></pre>
+<h2 id="docker-commands"><a aria-hidden="true" class="anchor-heading" href="#docker-commands"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Docker Commands</h2>
+<pre class="language-bash"><code class="language-bash"><span class="token function">docker</span> container <span class="token function">ls</span>
+<span class="token function">docker</span> container <span class="token function">rm</span> <span class="token variable">$CONTAINER_NAME</span>
+<span class="token function">docker</span> image <span class="token function">ls</span>
+<span class="token function">docker</span> image <span class="token function">rm</span> <span class="token variable">$IMAGE_ID</span>
+</code></pre>
+<h2 id="general-rpi-commands"><a aria-hidden="true" class="anchor-heading" href="#general-rpi-commands"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>General RPI Commands</h2>
+<pre class="language-bash"><code class="language-bash"><span class="token function">sudo</span> rfkill block wifi
+<span class="token function">sudo</span> rfkill block bluetooth
+<span class="token function">sudo</span> rfkill unblock wifi
+</code></pre>
+<h2 id="how-to-reset-dhcp-settings"><a aria-hidden="true" class="anchor-heading" href="#how-to-reset-dhcp-settings"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>How to Reset DHCP Settings</h2>
+<pre class="language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">service</span> dhcpcd status
+<span class="token function">sudo</span> <span class="token function">service</span> dhcpcd start
+<span class="token function">sudo</span> systemctl <span class="token builtin class-name">enable</span> dhcpcd
+<span class="token function">sudo</span> <span class="token function">nano</span> /etc/dhcpcd.conf
+</code></pre>
+<hr>
+<strong>Children</strong>
+<ol>
+<li><a href="/DevNotes/notes/km3p1117axuqmoj2zjbwstu">RaspberryPi Pi-Hole</a></li>
+</ol>

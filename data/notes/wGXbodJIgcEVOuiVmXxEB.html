@@ -1,0 +1,32 @@
+<h1 id="strings"><a aria-hidden="true" class="anchor-heading" href="#strings"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Strings</h1>
+<h2 id="general-notes"><a aria-hidden="true" class="anchor-heading" href="#general-notes"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>General Notes</h2>
+<p>Triple quotes <code>'''</code> allow you to make multiline strings.</p>
+<p>You can use [] to get a specific letter of a strings.</p>
+<p>You can check for string partials with <code>in</code></p>
+<p>Strings are immutable so any changes with methods must be reassigned for example:</p>
+<pre class="language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> spam <span class="token operator">=</span> <span class="token string">"Hello World!"</span>
+<span class="token operator">>></span><span class="token operator">></span> spam<span class="token punctuation">.</span>upper<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token string">"HELLO WORLD!"</span>
+<span class="token operator">>></span><span class="token operator">></span> spam
+<span class="token string">"Hello World!"</span> <span class="token comment"># see how the value never changed. </span>
+<span class="token operator">>></span><span class="token operator">></span> spam <span class="token operator">=</span> spam<span class="token punctuation">.</span>upper<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment"># here we reassign the value</span>
+<span class="token operator">>></span><span class="token operator">></span> spam
+<span class="token string">"HELLO WORLD!"</span> <span class="token comment"># now it works</span>
+</code></pre>
+<p>.isalpha()
+.isdecimal() - true if it is a number
+.isspace() - true if it contains spaces
+.isalum() - true if is alpha numeric
+.istitle() - true if all starting letters have an uppercase</p>
+<p>.startswith(param)
+.endswith(param)
+.join() ex:</p>
+<pre class="language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span><span class="token string">','</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'cats'</span><span class="token punctuation">,</span> <span class="token string">'rats'</span><span class="token punctuation">,</span> <span class="token string">'bats'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token string">'cats,rats,bats'</span>
+</code></pre>
+<p>.split() does the opposite splits a string into a list.</p>
+<p>.rjust(total length of string) &#x26; .ljust(total length of string) &#x26; .center(total length of string)</p>
+<p>.strip() - removes white space
+.lstrip() - removes left white space
+.rstrip() - removes right white space</p>
+<p>%s - coversion specifier</p>

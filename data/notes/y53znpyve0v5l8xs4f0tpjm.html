@@ -1,0 +1,59 @@
+<h1 id="import-module"><a aria-hidden="true" class="anchor-heading" href="#import-module"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Import Module</h1>
+<h2 id="general-info"><a aria-hidden="true" class="anchor-heading" href="#general-info"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>General Info</h2>
+<p>The name parameter is the name of the "module object" which will be used as a kind of namespace to refer to the exports. The export parameters specify individual named exports, while the import * as name syntax imports all of them.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword module">import</span> <span class="token imports"><span class="token operator">*</span> <span class="token keyword module">as</span> myModule</span> <span class="token keyword module">from</span> <span class="token string">'/modules/my-module.js'</span><span class="token punctuation">;</span>
+
+myModule<span class="token punctuation">.</span><span class="token method function property-access">doAllTheAmazingThings</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="import-a-single-export-from-a-module"><a aria-hidden="true" class="anchor-heading" href="#import-a-single-export-from-a-module"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Import a single export from a module</h3>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword module">import</span> <span class="token imports"><span class="token punctuation">{</span>myExport<span class="token punctuation">}</span></span> <span class="token keyword module">from</span> <span class="token string">'/modules/my-module.js'</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="import-an-export-with-a-more-convenient-alias"><a aria-hidden="true" class="anchor-heading" href="#import-an-export-with-a-more-convenient-alias"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Import an export with a more convenient alias</h3>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword module">import</span> <span class="token imports"><span class="token punctuation">{</span>reallyReallyLongModuleExportName <span class="token keyword module">as</span> shortName<span class="token punctuation">}</span></span>
+  <span class="token keyword module">from</span> <span class="token string">'/modules/my-module.js'</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="importing-defaults"><a aria-hidden="true" class="anchor-heading" href="#importing-defaults"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Importing defaults</h3>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword module">import</span> <span class="token imports">myDefault</span> <span class="token keyword module">from</span> <span class="token string">'/modules/my-module.js'</span><span class="token punctuation">;</span>
+</code></pre>
+<p>It is also possible to use the default syntax with the ones seen above (namespace imports or named imports). In such cases, the default import will have to be declared first. For instance:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword module">import</span> <span class="token imports">myDefault<span class="token punctuation">,</span> <span class="token operator">*</span> <span class="token keyword module">as</span> myModule</span> <span class="token keyword module">from</span> <span class="token string">'/modules/my-module.js'</span><span class="token punctuation">;</span>
+<span class="token comment">// myModule used as a namespace</span>
+<span class="token comment">// OR:</span>
+<span class="token keyword module">import</span> <span class="token imports">myDefault<span class="token punctuation">,</span> <span class="token punctuation">{</span>foo<span class="token punctuation">,</span> bar<span class="token punctuation">}</span></span> <span class="token keyword module">from</span> <span class="token string">'/modules/my-module.js'</span><span class="token punctuation">;</span>
+<span class="token comment">// specific, named imports</span>
+</code></pre>
+<h2 id="dynamic-imports"><a aria-hidden="true" class="anchor-heading" href="#dynamic-imports"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Dynamic Imports</h2>
+<p>The standard import syntax is static and will always result in all code in the imported module being evaluated at load time. In situations where you wish to load a module conditionally or on demand, you can use a dynamic import instead. The following are some reasons why you might need to use dynamic import:</p>
+<ul>
+<li>When importing statically significantly slows the loading of your code and there is a low likelihood that you will need the code you are importing, or you will not need it until a later time.</li>
+<li>When importing statically significantly increases your program's memory usage and there is a low likelihood that you will need the code you are importing.</li>
+<li>When the module you are importing does not exist at load time</li>
+<li>When the import specifier string needs to be constructed dynamically. (Static import only supports static specifiers.)</li>
+<li>When the module being imported has side effects, and you do not want those side effects unless some condition is true. (It is recommended not to have any side effects in a module, but you sometimes cannot control this in your module dependencies.)</li>
+</ul>
+<p>Use dynamic import only when necessary. The static form is preferable for loading initial dependencies, and can benefit more readily from static analysis tools and tree shaking.</p>
+<p>To dynamically import a module, the import keyword may be called as a function. When used this way, it returns a promise.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword module">import</span><span class="token punctuation">(</span><span class="token string">'/modules/my-module.js'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token method function property-access">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">module</span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token punctuation">{</span>
+    <span class="token comment">// Do something with the module.</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>This form also supports the await keyword.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">let</span> module <span class="token operator">=</span> <span class="token keyword control-flow">await</span> <span class="token keyword module">import</span><span class="token punctuation">(</span><span class="token string">'/modules/my-module.js'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Dynamic Import Example:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> main <span class="token operator">=</span> <span class="token dom variable">document</span><span class="token punctuation">.</span><span class="token method function property-access">querySelector</span><span class="token punctuation">(</span><span class="token string">"main"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword control-flow">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> link <span class="token keyword">of</span> <span class="token dom variable">document</span><span class="token punctuation">.</span><span class="token method function property-access">querySelectorAll</span><span class="token punctuation">(</span><span class="token string">"nav > a"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  link<span class="token punctuation">.</span><span class="token method function property-access">addEventListener</span><span class="token punctuation">(</span><span class="token string">"click"</span><span class="token punctuation">,</span> <span class="token parameter">e</span> <span class="token arrow operator">=></span> <span class="token punctuation">{</span>
+    e<span class="token punctuation">.</span><span class="token method function property-access">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword module">import</span><span class="token punctuation">(</span><span class="token string">'/modules/my-module.js'</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token method function property-access">then</span><span class="token punctuation">(</span><span class="token parameter">module</span> <span class="token arrow operator">=></span> <span class="token punctuation">{</span>
+        module<span class="token punctuation">.</span><span class="token method function property-access">loadPageInto</span><span class="token punctuation">(</span>main<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token keyword control-flow">catch</span><span class="token punctuation">(</span><span class="token parameter">err</span> <span class="token arrow operator">=></span> <span class="token punctuation">{</span>
+        main<span class="token punctuation">.</span><span class="token property-access">textContent</span> <span class="token operator">=</span> err<span class="token punctuation">.</span><span class="token property-access">message</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>

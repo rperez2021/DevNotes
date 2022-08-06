@@ -1,0 +1,277 @@
+<h1 id="classes"><a aria-hidden="true" class="anchor-heading" href="#classes"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Classes</h1>
+<h2 id="general-info"><a aria-hidden="true" class="anchor-heading" href="#general-info"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>General Info</h2>
+<p>Introduced in ES6 with the <code>class</code> keyword.</p>
+<p>JavaScript provides a very flexible object system without the need to rely on <code>class</code>. So why did we add <code>class</code> in the first place? Because a lot of people are familiar with the class paradigm from other languages, and people kept trying to emulate it in JavaScript.</p>
+<blockquote>
+<p>Inheritance in JavaScript is so easy, it confuses people who expect it to >take effort. To make it harder, we added <code>class</code>.</p>
+</blockquote>
+<p>Several popular libraries implemented pseudo-class inheritance in JavaScript using the delegate prototype chain to emulate class inheritance. Adding an official <code>class</code> keyword provided a single canonical way to emulate class inheritance in JavaScript — but in my opinion, you should avoid it altogether.</p>
+<p>In JavaScript, composition is simpler, more expressive, and more flexible than class inheritance. I can’t think of a single good use case where <code>class</code> is a better fit than the native prototypal alternatives.</p>
+<p>Once you start thinking in terms of class-free objects and inheritance using prototypes, and concatenation, you begin to really appreciate how simple, powerful, and flexible JavaScript’s object system can be.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">class</span> <span class="token class-name">User</span> <span class="token punctuation">{</span>
+
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">name</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">name</span> <span class="token operator">=</span> name<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">sayHi</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">alert</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">name</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Usage:</span>
+<span class="token keyword">let</span> user <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span><span class="token string">"John"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+user<span class="token punctuation">.</span><span class="token method function property-access">sayHi</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<blockquote>
+<p>No comma between class methods
+A common pitfall for novice developers is to put a comma between class methods, which would result in a syntax error.
+The notation here is not to be confused with object literals. Within the class, no commas are required.</p>
+</blockquote>
+<h3 id="what-is-a-class"><a aria-hidden="true" class="anchor-heading" href="#what-is-a-class"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>What is a class?</h3>
+<p>What class User {...} construct really does is:</p>
+<ol>
+<li>Creates a function named User, that becomes the result of the class declaration. The function code is taken from the constructor method (assumed empty if we don’t write such method).</li>
+<li>Stores class methods, such as sayHi, in User.prototype.</li>
+</ol>
+<h3 id="hoisting"><a aria-hidden="true" class="anchor-heading" href="#hoisting"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Hoisting</h3>
+<p>An important difference between function declarations and class declarations is that while functions can be called in code that appears before they are defined, classes must be defined before they can be constructed. Code like the following will throw a ReferenceError:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> p <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Rectangle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// ReferenceError</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Rectangle</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+</code></pre>
+<h3 id="not-just-syntactic-sugar"><a aria-hidden="true" class="anchor-heading" href="#not-just-syntactic-sugar"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Not Just Syntactic Sugar</h3>
+<p>Sometimes people say that class is a “syntactic sugar” (syntax that is designed to make things easier to read, but doesn’t introduce anything new), because we could actually declare the same thing without using the class keyword at all.</p>
+<p>Still, there are important differences.</p>
+<ol>
+<li>
+<p>First, a function created by class is labelled by a special internal property <code>[[IsClassConstructor]]</code>: true. So it’s not entirely the same as creating it manually. The language checks for that property in a variety of places. For example, unlike a regular function, it must be called with <code>new</code></p>
+</li>
+<li>
+<p>Class methods are non-enumerable. A class definition sets <code>enumerable</code> flag to false for all methods in the "prototype". That’s good, because if we for..in over an object, we usually don’t want its class methods.</p>
+</li>
+<li>
+<p>Classes always use strict. All code inside the class construct is automatically in strict mode.</p>
+</li>
+</ol>
+<h3 id="class-expression"><a aria-hidden="true" class="anchor-heading" href="#class-expression"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Class Expression</h3>
+<p>Here is a class expression:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">let</span> <span class="token maybe-class-name">User</span> <span class="token operator">=</span> <span class="token keyword">class</span> <span class="token punctuation">{</span>
+  <span class="token function">sayHi</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"Hello"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>If a class expression has a name, it’s visible inside the class only:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token comment">// "Named Class Expression"</span>
+<span class="token comment">// (no such term in the spec, but that's similar to Named Function Expression)</span>
+<span class="token keyword">let</span> <span class="token maybe-class-name">User</span> <span class="token operator">=</span> <span class="token keyword">class</span> <span class="token class-name">MyClass</span> <span class="token punctuation">{</span>
+  <span class="token function">sayHi</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">alert</span><span class="token punctuation">(</span><span class="token maybe-class-name">MyClass</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// MyClass name is visible only inside the class</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token method function property-access">sayHi</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// works, shows MyClass definition</span>
+
+<span class="token function">alert</span><span class="token punctuation">(</span><span class="token maybe-class-name">MyClass</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// error, MyClass name isn't visible outside of the class</span>
+</code></pre>
+<p>We can even make classes dynamically “on-demand”, like this:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">makeClass</span><span class="token punctuation">(</span><span class="token parameter">phrase</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// declare a class and return it</span>
+  <span class="token keyword control-flow">return</span> <span class="token keyword">class</span> <span class="token punctuation">{</span>
+    <span class="token function">sayHi</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">alert</span><span class="token punctuation">(</span>phrase<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Create a new class</span>
+<span class="token keyword">let</span> <span class="token maybe-class-name">User</span> <span class="token operator">=</span> <span class="token function">makeClass</span><span class="token punctuation">(</span><span class="token string">"Hello"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token method function property-access">sayHi</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Hello</span>
+</code></pre>
+<h3 id="getters-and-setters-in-classes"><a aria-hidden="true" class="anchor-heading" href="#getters-and-setters-in-classes"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Getters and Setters in Classes</h3>
+<p>Just like literal objects, classes may include getters/setters, computed properties etc.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">class</span> <span class="token class-name">User</span> <span class="token punctuation">{</span>
+
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">name</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// invokes the setter</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">name</span> <span class="token operator">=</span> name<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">get</span> <span class="token function">name</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword control-flow">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">_name</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">set</span> <span class="token function">name</span><span class="token punctuation">(</span><span class="token parameter">value</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword control-flow">if</span> <span class="token punctuation">(</span>value<span class="token punctuation">.</span><span class="token property-access">length</span> <span class="token operator">&#x3C;</span> <span class="token number">4</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"Name is too short."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword control-flow">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">_name</span> <span class="token operator">=</span> value<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> user <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span><span class="token string">"John"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>user<span class="token punctuation">.</span><span class="token property-access">name</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// John</span>
+
+user <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Name is too short.</span>
+</code></pre>
+<h4 id="computed-names"><a aria-hidden="true" class="anchor-heading" href="#computed-names"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Computed Names</h4>
+<p>Here’s an example with a computed method name using brackets [...]:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">class</span> <span class="token class-name">User</span> <span class="token punctuation">{</span>
+
+  <span class="token punctuation">[</span><span class="token string">'say'</span> <span class="token operator">+</span> <span class="token string">'Hi'</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"Hello"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token method function property-access">sayHi</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="class-fields"><a aria-hidden="true" class="anchor-heading" href="#class-fields"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Class Fields</h3>
+<blockquote>
+<p>Old browsers may need a polyfill</p>
+</blockquote>
+<p>“Class fields” is a syntax that allows to add any properties.</p>
+<p>Previously, our classes only had methods.</p>
+<p>“Class fields” is a syntax that allows to add any properties.</p>
+<p>The important difference of class fields is that they are set on individual objects, not User.prototype:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">class</span> <span class="token class-name">User</span> <span class="token punctuation">{</span>
+  name <span class="token operator">=</span> <span class="token string">"John"</span><span class="token punctuation">;</span>
+
+  <span class="token function">sayHi</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">alert</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Hello, </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">name</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">!</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token method function property-access">sayHi</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Hello, John!</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>user<span class="token punctuation">.</span><span class="token property-access">name</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// John</span>
+<span class="token function">alert</span><span class="token punctuation">(</span><span class="token class-name">User</span><span class="token punctuation">.</span><span class="token property-access">prototype</span><span class="token punctuation">.</span><span class="token property-access">name</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// undefined</span>
+</code></pre>
+<h4 id="bound-methods-with-class-fields"><a aria-hidden="true" class="anchor-heading" href="#bound-methods-with-class-fields"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Bound Methods with Class Fields</h4>
+<p>As demonstrated in the chapter Function binding functions in JavaScript have a dynamic this. It depends on the context of the call.</p>
+<p>So if an object method is passed around and called in another context, this won’t be a reference to its object any more.</p>
+<p>For instance, this code will show undefined:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">class</span> <span class="token class-name">Button</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">value</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">value</span> <span class="token operator">=</span> value<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">click</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">alert</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">value</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> button <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Button</span><span class="token punctuation">(</span><span class="token string">"hello"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">setTimeout</span><span class="token punctuation">(</span>button<span class="token punctuation">.</span><span class="token property-access">click</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// undefined</span>
+</code></pre>
+<p>The problem is called "losing this".</p>
+<p>There are two approaches to fixing it, as discussed in the chapter Function binding:</p>
+<ol>
+<li>Pass a wrapper-function, such as <code>setTimeout(() => button.click(), 1000)</code>.</li>
+<li>Bind the method to object, e.g. in the constructor.</li>
+</ol>
+<p>Class fields provide another, quite elegant syntax:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">class</span> <span class="token class-name">Button</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">value</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">value</span> <span class="token operator">=</span> value<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token function-variable function">click</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token punctuation">{</span>
+    <span class="token function">alert</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">value</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> button <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Button</span><span class="token punctuation">(</span><span class="token string">"hello"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">setTimeout</span><span class="token punctuation">(</span>button<span class="token punctuation">.</span><span class="token property-access">click</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// hello</span>
+</code></pre>
+<p>The class field click = () => {...} is created on a per-object basis, there’s a separate function for each Button object, with this inside it referencing that object. We can pass button.click around anywhere, and the value of this will always be correct.</p>
+<p>That’s especially useful in browser environment, for event listeners.</p>
+<h3 id="static-initialization-blocks"><a aria-hidden="true" class="anchor-heading" href="#static-initialization-blocks"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Static Initialization Blocks</h3>
+<p>Class static initialization blocks allow flexible initialization of class static properties including the evaluation of statements during initialization, and granting access to private scope.</p>
+<p>Multiple static blocks can be declared, and these can be interleaved with the declaration of static properties and methods (all static items are evaluated in declaration order).</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">class</span> <span class="token class-name">ClassWithStaticInitializationBlock</span> <span class="token punctuation">{</span>
+  <span class="token keyword">static</span> staticProperty1 <span class="token operator">=</span> <span class="token string">'Property 1'</span><span class="token punctuation">;</span>
+  <span class="token keyword">static</span> staticProperty2<span class="token punctuation">;</span>
+  <span class="token keyword">static</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">staticProperty2</span> <span class="token operator">=</span> <span class="token string">'Property 2'</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token maybe-class-name">ClassWithStaticInitializationBlock</span><span class="token punctuation">.</span><span class="token property-access">staticProperty1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// output: "Property 1"</span>
+<span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token maybe-class-name">ClassWithStaticInitializationBlock</span><span class="token punctuation">.</span><span class="token property-access">staticProperty2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// output: "Property 2"</span>
+</code></pre>
+<h3 id="static-methods-and-properties"><a aria-hidden="true" class="anchor-heading" href="#static-methods-and-properties"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Static Methods and Properties</h3>
+<p>The static keyword defines a static method or property for a class. Static members (properties and methods) are called without instantiating their class and <strong>cannot</strong> be called through a class instance. Static methods are often used to create utility functions for an application, whereas static properties are useful for caches, fixed-configuration, or any other data you don't need to be replicated across instances.</p>
+<h3 id="sub-classing-with-extends"><a aria-hidden="true" class="anchor-heading" href="#sub-classing-with-extends"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Sub classing with extends</h3>
+<p>The extends keyword is used in class declarations or class expressions to create a class as a child of another class.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">class</span> <span class="token class-name">Animal</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">name</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">name</span> <span class="token operator">=</span> name<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">speak</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">name</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> makes a noise.</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Dog</span> <span class="token keyword">extends</span> <span class="token class-name">Animal</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">name</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// call the super class constructor and pass in the name parameter</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">speak</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">name</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> barks.</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> d <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Dog</span><span class="token punctuation">(</span><span class="token string">'Mitzie'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+d<span class="token punctuation">.</span><span class="token method function property-access">speak</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Mitzie barks.</span>
+</code></pre>
+<p>If there is a constructor present in the subclass, it needs to first call super() before using "this".</p>
+<p>One may also extend traditional function-based "classes":</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function"><span class="token maybe-class-name">Animal</span></span> <span class="token punctuation">(</span><span class="token parameter">name</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">name</span> <span class="token operator">=</span> name<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token class-name">Animal</span><span class="token punctuation">.</span><span class="token property-access">prototype</span><span class="token punctuation">.</span><span class="token method-variable function-variable method function property-access">speak</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">name</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> makes a noise.</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Dog</span> <span class="token keyword">extends</span> <span class="token class-name">Animal</span> <span class="token punctuation">{</span>
+  <span class="token function">speak</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">name</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> barks.</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> d <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Dog</span><span class="token punctuation">(</span><span class="token string">'Mitzie'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+d<span class="token punctuation">.</span><span class="token method function property-access">speak</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Mitzie barks.</span>
+
+<span class="token comment">// For similar methods, the child's method takes precedence over parent's method</span>
+</code></pre>
+<h3 id="mixins"><a aria-hidden="true" class="anchor-heading" href="#mixins"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Mixin's</h3>
+<p>Abstract subclasses or mix-ins are templates for classes. An ECMAScript class can only have a single superclass, so multiple inheritance from tooling classes, for example, is not possible. The functionality must be provided by the superclass.</p>
+<p>A function with a superclass as input and a subclass extending that superclass as output can be used to implement mix-ins in ECMAScript:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">let</span> <span class="token function-variable function">calculatorMixin</span> <span class="token operator">=</span> <span class="token parameter"><span class="token maybe-class-name">Base</span></span> <span class="token arrow operator">=></span> <span class="token keyword">class</span> <span class="token class-name">extends</span> <span class="token maybe-class-name">Base</span> <span class="token punctuation">{</span>
+  <span class="token function">calc</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> <span class="token function-variable function">randomizerMixin</span> <span class="token operator">=</span> <span class="token parameter"><span class="token maybe-class-name">Base</span></span> <span class="token arrow operator">=></span> <span class="token keyword">class</span> <span class="token class-name">extends</span> <span class="token maybe-class-name">Base</span> <span class="token punctuation">{</span>
+  <span class="token function">randomize</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>A class that uses these mix-ins can then be written like this:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">class</span> <span class="token class-name">Foo</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+<span class="token keyword">class</span> <span class="token class-name">Bar</span> <span class="token keyword">extends</span> <span class="token class-name">calculatorMixin</span><span class="token punctuation">(</span><span class="token function">randomizerMixin</span><span class="token punctuation">(</span><span class="token maybe-class-name">Foo</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+</code></pre>
+<hr>
+<strong>Children</strong>
+<ol>
+<li><a href="/DevNotes/notes/yq9sj7gblligauciaw77k7o">Functional to OOP Example</a></li>
+</ol>

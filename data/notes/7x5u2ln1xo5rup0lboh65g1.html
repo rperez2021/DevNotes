@@ -1,0 +1,26 @@
+<h1 id="json"><a aria-hidden="true" class="anchor-heading" href="#json"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>JSON</h1>
+<h2 id="general-info"><a aria-hidden="true" class="anchor-heading" href="#general-info"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>General Info</h2>
+<p>A JSON string can be stored in its own file, which is basically just a text file with an extension of .json, and a <a title="Private" style="color: brown" href="https://wiki.dendron.so/notes/hfyvYGJZQiUwQaaxQO27q.html" target="_blank">MIME type (Private)</a> of application/json.</p>
+<h2 id="jsonparse"><a aria-hidden="true" class="anchor-heading" href="#jsonparse"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>JSON.parse()</h2>
+<p>When receiving data from a web server, the data is always a string. Parse the data with JSON.parse(), and the data becomes a JavaScript object.</p>
+<h3 id="parsing-dates"><a aria-hidden="true" class="anchor-heading" href="#parsing-dates"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Parsing Dates</h3>
+<p>The reviver parameter is a function that checks each property, before returning the value. It can be used to parse things like dates:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> text <span class="token operator">=</span> <span class="token string">'{"name":"John", "birth":"1986-12-14", "city":"New York"}'</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> obj <span class="token operator">=</span> <span class="token known-class-name class-name">JSON</span><span class="token punctuation">.</span><span class="token method function property-access">parse</span><span class="token punctuation">(</span>text<span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">key<span class="token punctuation">,</span> value</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword control-flow">if</span> <span class="token punctuation">(</span>key <span class="token operator">==</span> <span class="token string">"birth"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword control-flow">return</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword control-flow">else</span> <span class="token punctuation">{</span>
+    <span class="token keyword control-flow">return</span> value<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="parsing-functions"><a aria-hidden="true" class="anchor-heading" href="#parsing-functions"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Parsing Functions</h3>
+<p>Functions are not allowed in JSON. If you need to include a function, write it as a string. Then do something like this:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> text <span class="token operator">=</span> <span class="token string">'{"name":"John", "age":"function () {return 30;}", "city":"New York"}'</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> obj <span class="token operator">=</span> <span class="token known-class-name class-name">JSON</span><span class="token punctuation">.</span><span class="token method function property-access">parse</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">;</span>
+obj<span class="token punctuation">.</span><span class="token property-access">age</span> <span class="token operator">=</span> <span class="token function">eval</span><span class="token punctuation">(</span><span class="token string">"("</span> <span class="token operator">+</span> obj<span class="token punctuation">.</span><span class="token property-access">age</span> <span class="token operator">+</span> <span class="token string">")"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="jsonstringify"><a aria-hidden="true" class="anchor-heading" href="#jsonstringify"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>JSON.stringify()</h2>
+<p>Convert a JavaScript object into a string with JSON.stringify().</p>
+<h2 id="json-formatter-site"><a aria-hidden="true" class="anchor-heading" href="#json-formatter-site"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Json Formatter Site</h2>
+<p>To check if JSON is improperly formatted <a href="https://jsonformatter.curiousconcept.com/">use this site</a></p>

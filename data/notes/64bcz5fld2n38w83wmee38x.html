@@ -1,0 +1,17 @@
+<h1 id="image-sprites"><a aria-hidden="true" class="anchor-heading" href="#image-sprites"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Image Sprites</h1>
+<h2 id="general-info"><a aria-hidden="true" class="anchor-heading" href="#general-info"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>General Info</h2>
+<p><img src="/DevNotes/assets/images/img_navsprites_hover.gif" alt="Image Sprites"></p>
+<p>You can use an image sprite to reduce the number of requests done for images and then use css to select a part of the sprite for your image. Here is an example</p>
+<pre class="language-css"><code class="language-css"><span class="token selector"><span class="token id">#home</span></span> <span class="token punctuation">{</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">46</span><span class="token unit">px</span><span class="token punctuation">;</span> <span class="token comment">/* Width of the Sprite You Want Selected */</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> <span class="token number">44</span><span class="token unit">px</span><span class="token punctuation">;</span> <span class="token comment">/* Height of the Sprite You Want Selected */</span>
+  <span class="token property">background</span><span class="token punctuation">:</span> <span class="token url"><span class="token function">url</span><span class="token punctuation">(</span>img_navsprites.gif<span class="token punctuation">)</span></span> <span class="token number">0</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">/* Image has to be pulled as a background for this to work, the numbers at the end indicate location of the sprite in x(left) and y(top) axis */</span>
+<span class="token punctuation">}</span>
+
+
+<span class="token selector"><span class="token id">#next</span></span> <span class="token punctuation">{</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">46</span><span class="token unit">px</span><span class="token punctuation">;</span> 
+  <span class="token property">height</span><span class="token punctuation">:</span> <span class="token number">44</span><span class="token unit">px</span><span class="token punctuation">;</span> 
+  <span class="token property">background</span><span class="token punctuation">:</span> <span class="token url"><span class="token function">url</span><span class="token punctuation">(</span>img_navsprites.gif<span class="token punctuation">)</span></span> <span class="token number">46</span> <span class="token number">0</span><span class="token punctuation">;</span> 
+  <span class="token punctuation">}</span>
+</code></pre>

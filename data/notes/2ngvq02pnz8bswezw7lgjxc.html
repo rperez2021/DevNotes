@@ -1,0 +1,48 @@
+<h1 id="functions"><a aria-hidden="true" class="anchor-heading" href="#functions"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Functions</h1>
+<h2 id="use-cases"><a aria-hidden="true" class="anchor-heading" href="#use-cases"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Use Cases</h2>
+<ul>
+<li><a href="https://web.dev/min-max-clamp/">Web.dev Examples for min(), max() and clamp()</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Functions">MDN List of all CSS Functions</a></li>
+</ul>
+<h3 id="calc"><a aria-hidden="true" class="anchor-heading" href="#calc"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>calc()</h3>
+<ul>
+<li>Mixing Units, ex:</li>
+</ul>
+<pre class="language-css"><code class="language-css"><span class="token selector"><span class="token pseudo-class">:root</span></span> <span class="token punctuation">{</span>
+    <span class="token variable">--header</span><span class="token punctuation">:</span> <span class="token number">3</span><span class="token unit">rem</span><span class="token punctuation">;</span>
+    <span class="token variable">--footer</span><span class="token punctuation">:</span> <span class="token number">40</span><span class="token unit">px</span><span class="token punctuation">;</span>
+    <span class="token variable">--main</span><span class="token punctuation">:</span> <span class="token function">calc</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token unit">vh</span> <span class="token operator">-</span> <span class="token function">calc</span><span class="token punctuation">(</span><span class="token function">var</span><span class="token punctuation">(</span><span class="token variable">--header</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token function">var</span><span class="token punctuation">(</span><span class="token variable">--footer</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="min--max"><a aria-hidden="true" class="anchor-heading" href="#min--max"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>min() &#x26; max()</h3>
+<ul>
+<li>Allows you to set different types of behaviors based on elements current size.</li>
+</ul>
+<pre class="language-css"><code class="language-css"><span class="token selector"><span class="token id">#iconHolder</span></span> <span class="token punctuation">{</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> <span class="token function">min</span><span class="token punctuation">(</span><span class="token number">150</span><span class="token unit">px</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token unit">%</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> <span class="token function">min</span><span class="token punctuation">(</span><span class="token number">150</span><span class="token unit">px</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token unit">%</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token property">box-sizing</span><span class="token punctuation">:</span> border-box<span class="token punctuation">;</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> <span class="token number">6</span><span class="token unit">px</span> solid <span class="token color">blue</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="clamp"><a aria-hidden="true" class="anchor-heading" href="#clamp"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>clamp()</h3>
+<ul>
+<li>
+<p>Great way to make elements fluid and responsive. clamp() takes 3 values:</p>
+<ol>
+<li>the smallest value (320px)</li>
+<li>the ideal value (80vw)</li>
+<li>the largest value (60rem)</li>
+</ol>
+</li>
+</ul>
+<h3 id="conic-gradient"><a aria-hidden="true" class="anchor-heading" href="#conic-gradient"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>conic-gradient()</h3>
+<ul>
+<li>Cool Stuff</li>
+</ul>
+<pre class="language-css"><code class="language-css"><span class="token property">background</span><span class="token punctuation">:</span> <span class="token function">conic-gradient</span><span class="token punctuation">(</span> 
+    <span class="token color">red</span> <span class="token number">6</span><span class="token unit">deg</span><span class="token punctuation">,</span> <span class="token color">orange</span> <span class="token number">6</span><span class="token unit">deg</span> <span class="token number">18</span><span class="token unit">deg</span><span class="token punctuation">,</span> <span class="token color">yellow</span> <span class="token number">18</span><span class="token unit">deg</span> <span class="token number">45</span><span class="token unit">deg</span><span class="token punctuation">,</span> 
+    <span class="token color">green</span> <span class="token number">45</span><span class="token unit">deg</span> <span class="token number">110</span><span class="token unit">deg</span><span class="token punctuation">,</span> <span class="token color">blue</span> <span class="token number">110</span><span class="token unit">deg</span> <span class="token number">200</span><span class="token unit">deg</span><span class="token punctuation">,</span> <span class="token color">purple</span> <span class="token number">200</span><span class="token unit">deg</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<div style="background: conic-gradient(red 6deg, orange 6deg 18deg, yellow 18deg 45deg, green 45deg 110deg, blue 110deg 200deg, purple 200deg);width:200px;height:200px"></div>
+<h3 id="cross-fade"><a aria-hidden="true" class="anchor-heading" href="#cross-fade"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>cross-fade</h3>

@@ -1,0 +1,37 @@
+<h1 id="pure-functions"><a aria-hidden="true" class="anchor-heading" href="#pure-functions"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Pure Functions</h1>
+<h2 id="what-is-a-pure-function"><a aria-hidden="true" class="anchor-heading" href="#what-is-a-pure-function"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>What is a pure function</h2>
+<ol>
+<li>The function always returns the same result if the same arguments are passed in. It does not depend on any state, or data, change during a program’s execution. It must only depend on its input arguments.</li>
+<li>The function does not produce any observable side effects such as network requests, input and output devices, or data mutation.</li>
+</ol>
+<h2 id="what-are-observable-side-effects"><a aria-hidden="true" class="anchor-heading" href="#what-are-observable-side-effects"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>What are Observable Side Effects</h2>
+<p><strong>Note</strong>: If a pure function calls a pure function this isn’t a side effect and the calling function is still pure.</p>
+<p>Side effects include, but are not limited to:</p>
+<ul>
+<li>Making a HTTP request</li>
+<li>Mutating data</li>
+<li>Printing to a screen or console</li>
+<li>DOM Query/Manipulation</li>
+<li>Math.random()</li>
+<li>Getting the current time</li>
+</ul>
+<h3 id="pure-function-example"><a aria-hidden="true" class="anchor-heading" href="#pure-function-example"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Pure Function Example</h3>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">priceAfterTax</span><span class="token punctuation">(</span><span class="token parameter">productPrice</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+ <span class="token keyword control-flow">return</span> <span class="token punctuation">(</span>productPrice <span class="token operator">*</span> <span class="token number">0.20</span><span class="token punctuation">)</span> <span class="token operator">+</span> productPrice<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>It passes both 1, and 2, of the requirements for a function to be declared pure. It doesn’t depend on any external input, it doesn’t mutate any data and it doesn’t have any side effects.</p>
+<h3 id="impure-function-example"><a aria-hidden="true" class="anchor-heading" href="#impure-function-example"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Impure Function Example</h3>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">var</span> tax <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">calculateTax</span><span class="token punctuation">(</span><span class="token parameter">productPrice</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+ <span class="token keyword control-flow">return</span> <span class="token punctuation">(</span>productPrice <span class="token operator">*</span> <span class="token punctuation">(</span>tax<span class="token operator">/</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">+</span> productPrice<span class="token punctuation">;</span> 
+<span class="token punctuation">}</span>
+</code></pre>
+<p>A pure function can not depend on outside variables. It fails one of the requirements thus this function is impure.</p>
+<h2 id="why-are-pure-functions-important-in-javascript"><a aria-hidden="true" class="anchor-heading" href="#why-are-pure-functions-important-in-javascript"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Why Are Pure Functions Important In JavaScript?</h2>
+<p>Not all functions need to be , or should be, pure. For example, an event handler for a button press that manipulates the DOM is not a good candidate for a pure function. But, the event handler can call other pure functions which will reduce the number of impure functions in your application.</p>
+<h3 id="testability-and-refactoring"><a aria-hidden="true" class="anchor-heading" href="#testability-and-refactoring"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Testability And Refactoring</h3>
+<p>One of the major benefits of using pure functions is they are immediately testable. They will always produce the same result if you pass in the same arguments.</p>
+<p>They also makes maintaining and refactoring code much easier. You can change a pure function and not have to worry about unintended side effects messing up the entire application and ending up in debugging hell.</p>
+<p>When used correctly the use of pure functions produces better quality code. It’s a cleaner way of working with lots of benefits.</p>
+<p>Note that pure functions are not limited to JavaScript. For an in depth — mind numbing — explanation of pure functions see here. I also highly recommend reading this and this.</p>

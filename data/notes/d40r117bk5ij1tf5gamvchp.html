@@ -1,0 +1,56 @@
+<h1 id="files"><a aria-hidden="true" class="anchor-heading" href="#files"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Files</h1>
+<h2 id="filepaths-and-the-os-path-module"><a aria-hidden="true" class="anchor-heading" href="#filepaths-and-the-os-path-module"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Filepaths and the OS Path Module</h2>
+<p><code>os.chdir('filepath')</code> - allows you to change current working directory</p>
+<p><code>os.getcwd()</code> - gets current working directory</p>
+<p><code>os.listdir('c:\\folder1\\folder2\\')</code> - returns content of a directory</p>
+<p><code>os.makedirs('c:\\folder1\\folder2\\')</code> - creates new folders</p>
+<p><code>os.path.abspath()</code> - gets you the absolute path from a relative path</p>
+<p><code>os.path.isabs('filepath')</code> - returns true if the path in the params is absolute, false if not</p>
+<p><code>os.path.relpath('filepath1','filepath2')</code> - returns the relative path between two directories. </p>
+<p><code>os.path.dirname('c:\\folder1\\folder2\\spam.png')</code> - returns the directory part of the filepath</p>
+<p><code>os.path.basename('c:\\folder1\\folder2\\spam.png')</code> - returns the filename and type part of a filepath</p>
+<p><code>os.path.exists('c:\\folder1\\folder2\\spam.png')</code> -returns bool if path exists or not</p>
+<p><code>os.path.isfile('c:\\folder1\\folder2\\spam.png')</code> - returns bool if filepath contains a file</p>
+<p><code>os.path.isdir('c:\\folder1\\folder2\\spam.png')</code> - returns bool if filepath is for a directory only</p>
+<p><code>os.path.getsize('c:\\folder1\\folder2\\spam.png')</code> - returns filesize in bytes</p>
+<p>Example function to read filesize of all items in a folder</p>
+<pre class="language-python"><code class="language-python">totalSize <span class="token operator">=</span> <span class="token number">0</span>
+<span class="token keyword">for</span> filename <span class="token keyword">in</span> os<span class="token punctuation">.</span>listdir<span class="token punctuation">(</span><span class="token string">'c:\\folder1\\folder2\\'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> <span class="token keyword">not</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>isfile<span class="token punctuation">(</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token string">'c:\\folder1\\folder2\\'</span><span class="token punctuation">,</span> filename<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">continue</span>
+    totalSize <span class="token operator">=</span> totalSize <span class="token operator">+</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>getsize<span class="token punctuation">(</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token string">'c:\\folder1\\folder2\\'</span><span class="token punctuation">,</span> filename<span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre>
+<h2 id="plaintext-files"><a aria-hidden="true" class="anchor-heading" href="#plaintext-files"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Plaintext Files</h2>
+<p><code>.open('filepath', 'w' )</code> - second param can be 'a' for append, if not param is passed the file will be opened in readmode which will not allow you to write to it.</p>
+<p>need to run <code>.close()</code> after any changes to the file for them to be saved</p>
+<h3 id="shelve-module"><a aria-hidden="true" class="anchor-heading" href="#shelve-module"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Shelve Module</h3>
+<p>You can save variables in your Python programs to binary shelf files using the shelve module. This way, your program can restore data to variables from the hard drive.</p>
+<pre class="language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">import</span> shelve
+<span class="token operator">>></span><span class="token operator">></span> shelfFile <span class="token operator">=</span> shelve<span class="token punctuation">.</span><span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">'mydata'</span><span class="token punctuation">)</span>
+<span class="token operator">>></span><span class="token operator">></span> cats <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'Zophie'</span><span class="token punctuation">,</span> <span class="token string">'Pooka'</span><span class="token punctuation">,</span> <span class="token string">'Simon'</span><span class="token punctuation">]</span>
+<span class="token operator">>></span><span class="token operator">></span> shelfFile<span class="token punctuation">[</span><span class="token string">'cats'</span><span class="token punctuation">]</span> <span class="token operator">=</span> cats
+<span class="token operator">>></span><span class="token operator">></span> shelfFile<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<h2 id="copying-moving-and-deleting"><a aria-hidden="true" class="anchor-heading" href="#copying-moving-and-deleting"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Copying, Moving and Deleting</h2>
+<p>Copy a file
+<code>shutil.copy('filepath1', 'filepath2')</code></p>
+<p>Copy all folder contents
+<code>shutil.copytree('filepath1', 'filepath2')</code></p>
+<p>Move a file (or rename a file)
+<code>shutil.move('filepath1', 'filepath2')</code></p>
+<p>Deleting files:</p>
+<pre class="language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">import</span> os
+<span class="token operator">>></span><span class="token operator">></span> os<span class="token punctuation">.</span>unlink<span class="token punctuation">(</span><span class="token string">'filepath'</span><span class="token punctuation">)</span> <span class="token comment"># delete a file</span>
+<span class="token operator">>></span><span class="token operator">></span> os<span class="token punctuation">.</span>rmdir<span class="token punctuation">(</span><span class="token string">'filepath'</span><span class="token punctuation">)</span> <span class="token comment"># delete a folder (must be empty)</span>
+<span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">import</span> shutil
+<span class="token operator">>></span><span class="token operator">></span> shutil<span class="token punctuation">.</span>rmtree<span class="token punctuation">(</span><span class="token string">'filepath'</span><span class="token punctuation">)</span> <span class="token comment">#deletes a folder and its content</span>
+</code></pre>
+<p>Note: send2trash is a pip module for not permanently deleting stuff.</p>
+<h2 id="walking-the-directory-tree"><a aria-hidden="true" class="anchor-heading" href="#walking-the-directory-tree"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Walking the Directory Tree</h2>
+<pre class="language-python"><code class="language-python"><span class="token keyword">import</span> os
+<span class="token keyword">for</span> folderName<span class="token punctuation">,</span> subfolders<span class="token punctuation">,</span> filenames <span class="token keyword">in</span> os<span class="token punctuation">.</span>walk<span class="token punctuation">(</span><span class="token string">'filepath'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'The Folder is '</span> <span class="token operator">+</span> folderName<span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'The subfolders in '</span> <span class="token operator">+</span> folderName <span class="token operator">+</span> <span class="token string">' are: '</span> <span class="token operator">+</span> <span class="token builtin">str</span><span class="token punctuation">(</span>subfolders<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'The filenames in '</span> <span class="token operator">+</span> folderName <span class="token operator">+</span> <span class="token string">' are: '</span> <span class="token operator">+</span> <span class="token builtin">str</span><span class="token punctuation">(</span>filenames<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>

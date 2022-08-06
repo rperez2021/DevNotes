@@ -1,0 +1,45 @@
+<h1 id="arrays"><a aria-hidden="true" class="anchor-heading" href="#arrays"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Arrays</h1>
+<h2 id="general-notes"><a aria-hidden="true" class="anchor-heading" href="#general-notes"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>General Notes</h2>
+<p><code>Array.isArray()</code> was created because there is no typeof property for arrays since they are typeof <code>objects</code></p>
+<p>Weird stuff happens when you use an array constructor for a single item in an array.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> points <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Array</span><span class="token punctuation">(</span><span class="token number">40</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+points
+<span class="token punctuation">[</span><span class="token number">40</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">1</span>
+
+<span class="token keyword">const</span> points2 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">40</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span>
+points
+<span class="token punctuation">[</span><span class="token number">40</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span>
+
+<span class="token keyword">const</span> points3 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Array</span><span class="token punctuation">(</span><span class="token number">40</span><span class="token punctuation">)</span>
+points
+<span class="token punctuation">[</span> <span class="token operator">&#x3C;</span><span class="token number">40</span> empty items<span class="token operator">></span> <span class="token punctuation">]</span>
+
+<span class="token keyword">const</span> points4 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">40</span><span class="token punctuation">]</span>
+points
+<span class="token punctuation">[</span> <span class="token number">40</span> <span class="token punctuation">]</span>
+</code></pre>
+<h2 id="array-methods"><a aria-hidden="true" class="anchor-heading" href="#array-methods"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Array Methods</h2>
+<h3 id="converting-arrays-to-strings"><a aria-hidden="true" class="anchor-heading" href="#converting-arrays-to-strings"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Converting Arrays to Strings</h3>
+<p><code>.toString()</code> converts an array into a comma separated string</p>
+<p><code>.join(separator)</code> also converts an array into a string and you can specify the separator as a parameter.</p>
+<p>JavaScript automatically converts an array to a comma separated string when a primitive value is expected. Without needing to call the <code>.toString()</code> method</p>
+<h3 id="popping-and-pushing"><a aria-hidden="true" class="anchor-heading" href="#popping-and-pushing"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Popping and Pushing</h3>
+<p><code>.pop(element)</code> removes the last element</p>
+<p><code>.push(element)</code> adds an element to the end of the array</p>
+<h3 id="shifting-elements"><a aria-hidden="true" class="anchor-heading" href="#shifting-elements"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Shifting Elements</h3>
+<p><code>.shift()</code> removes the first element and shifts the others to the left, it also returns the element that was shifted out</p>
+<p><code>.unshift()</code> adds a new element at the beginning of the array and returns the new array length</p>
+<h3 id="changing-elements"><a aria-hidden="true" class="anchor-heading" href="#changing-elements"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Changing Elements</h3>
+<p><code>.length</code> easy way to append an element to an array, also provides the length of an array</p>
+<p><code>delete array[0]</code> will delete the element but leave an <code>undefined</code> hole</p>
+<p><code>.concat()</code> will combine any number of arrays or strings</p>
+<p><code>.splice()</code> can be used to add new items to the array ex:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> fruits <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"Banana"</span><span class="token punctuation">,</span> <span class="token string">"Orange"</span><span class="token punctuation">,</span> <span class="token string">"Apple"</span><span class="token punctuation">,</span> <span class="token string">"Mango"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+fruits<span class="token punctuation">.</span><span class="token method function property-access">splice</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token string">"Lemon"</span><span class="token punctuation">,</span> <span class="token string">"Kiwi"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p><code>.slice(start, end)</code> slices out a piece of an array into a new array but does not modify the old array.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> fruits <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"Banana"</span><span class="token punctuation">,</span> <span class="token string">"Orange"</span><span class="token punctuation">,</span> <span class="token string">"Lemon"</span><span class="token punctuation">,</span> <span class="token string">"Apple"</span><span class="token punctuation">,</span> <span class="token string">"Mango"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> citrus <span class="token operator">=</span> fruits<span class="token punctuation">.</span><span class="token method function property-access">slice</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+citrus <span class="token operator">=</span> <span class="token punctuation">[</span> <span class="token string">'Orange'</span><span class="token punctuation">,</span> <span class="token string">'Lemon'</span><span class="token punctuation">,</span> <span class="token string">'Apple'</span><span class="token punctuation">,</span> <span class="token string">'Mango'</span> <span class="token punctuation">]</span>
+fruits <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"Banana"</span><span class="token punctuation">,</span> <span class="token string">"Orange"</span><span class="token punctuation">,</span> <span class="token string">"Lemon"</span><span class="token punctuation">,</span> <span class="token string">"Apple"</span><span class="token punctuation">,</span> <span class="token string">"Mango"</span><span class="token punctuation">]</span>
+</code></pre>

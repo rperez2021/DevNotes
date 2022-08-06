@@ -1,0 +1,52 @@
+<h1 id="iife"><a aria-hidden="true" class="anchor-heading" href="#iife"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>IIFE</h1>
+<h2 id="general-information"><a aria-hidden="true" class="anchor-heading" href="#general-information"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>General Information</h2>
+<p>An Immediately-invoked function expression, or IIFE (pronounced “iffy”), is a function expression (named or anonymous) that is executed right away after its creation.</p>
+<p>It doesn't take very long working with JavaScript before you come across this pattern:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// logic here</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// variant 2</span>
+
+<span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">'Woohoo!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="how-to"><a aria-hidden="true" class="anchor-heading" href="#how-to"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>How To</h2>
+<ol>
+<li>
+<p>You need to wrap the whole function in parentheses. As the name suggests, an IIFE must be a function expression, not a function definition. So, the purpose of the enclosing parentheses is to transform a function definition into an expression. This is because, in JavaScript, everything in parentheses is treated as an expression.</p>
+</li>
+<li>
+<p>You need to add a pair of parentheses at the very end (variant 1), or right after the closing curly brace (variant 2), which causes the function to be executed immediately.</p>
+</li>
+<li>
+<p>If you assign the function to a variable, you don’t need to enclose the whole function in parentheses, because it is already an expression:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">var</span> <span class="token function-variable function">sayWoohoo</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">'Woohoo!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+</li>
+<li>
+<p>A semicolon is required at the end of an IIFE, as otherwise your code may not work properly.</p>
+</li>
+<li>
+<p>You can pass arguments to an IIFE (it’s a function, after all), as the following example demonstrates:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">name<span class="token punctuation">,</span> profession</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token string">"My name is "</span> <span class="token operator">+</span> name <span class="token operator">+</span> <span class="token string">". I'm an "</span> <span class="token operator">+</span> profession <span class="token operator">+</span> <span class="token string">"."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token string">"Jackie Chan"</span><span class="token punctuation">,</span> <span class="token string">"actor"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// output: My name is Jackie Chan. I'm an actor.</span>
+</code></pre>
+</li>
+</ol>
+<h2 id="why"><a aria-hidden="true" class="anchor-heading" href="#why"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Why</h2>
+<p>The primary reason to use an IIFE is to obtain data privacy. Because JavaScript's var scopes variables to their containing function, any variables declared within the IIFE cannot be accessed by the outside world.</p>
+<p>Of course, you could explicitly name and then invoke a function to achieve the same ends.</p>
+<p>However, this approach has a few downsides. First, it unnecessarily takes up a name in the global namespace, increasing the possibility of name collisions. Second, the intentions of this code aren't as self-documenting as an IIFE. And third, because it is named and isn't self-documenting it might accidentally be invoked more than once.</p>
+<p>It is worth pointing out that you can easily pass arguments into the IIFE as well.</p>
+<h2 id="sources"><a aria-hidden="true" class="anchor-heading" href="#sources"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Sources</h2>
+<p><a href="https://www.sitepoint.com/demystifying-javascript-closures-callbacks-iifes/">SitePoint Article</a></p>
+<hr>
+<strong>Backlinks</strong>
+<ul>
+<li><a href="/DevNotes/notes/95k6bobdc8tsmqe41o6wloo">Module Pattern</a></li>
+</ul>

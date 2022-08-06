@@ -1,0 +1,90 @@
+<h1 id="prototype"><a aria-hidden="true" class="anchor-heading" href="#prototype"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Prototype</h1>
+<h2 id="general-info"><a aria-hidden="true" class="anchor-heading" href="#general-info"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>General Info</h2>
+<p><strong>Prototype Property</strong>: Every JavaScript function has a prototype property that is empty by default.</p>
+<p><strong>Prototype Attribute</strong>: Think of the prototype attribute as a characteristic of the object; this characteristic tells us the object’s “parent”.</p>
+<p><strong>Constructor</strong>: is a function used for initializing new objects, and you use the new keyword to call the constructor.</p>
+<p><strong>Prototype Property: Prototype-based Inheritance (Prototypal inheritance)</strong>: In JavaScript, you implement inheritance with the prototype property. For example, you can create a Fruit function (an object, since all functions in JavaScript are objects) and add properties and methods on the Fruit prototype property, and all instances of the Fruit function will inherit all the Fruit’s properties and methods.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token comment">// Explicitly Passing Inheretance</span>
+<span class="token class-name">Fruit</span><span class="token punctuation">.</span><span class="token property-access">prototype</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Plant</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Another way, you probably shouldnt do it like this but you can:</span>
+<span class="token keyword">let</span> animal <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token literal-property property">eats</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token function">walk</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"Animal walk"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> rabbit <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token literal-property property">jumps</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">__proto__</span><span class="token operator">:</span> animal
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// walk is taken from the prototype</span>
+rabbit<span class="token punctuation">.</span><span class="token method function property-access">walk</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Animal walk</span>
+
+</code></pre>
+<p><strong>Prototype Attribute: Accessing Properties on Objects</strong>: prototype attribute (or prototype object) of any object is the “parent” object where the inherited properties were originally defined.</p>
+<p>If the property is not found on the object’s prototype, the search for the property then moves to prototype of the object’s prototype (the father of the object’s father—the grandfather). And this continues until there is no more prototype (no more great-grand father; no more lineage to follow).</p>
+<p>This in essence is the <strong>prototype chain:</strong> the chain from an object’s prototype to its prototype’s prototype and onwards.</p>
+<p>If the property does not exist on any of the object’s prototype in its prototype chain, then the property does not exist and undefined is returned.</p>
+<p>This prototype chain mechanism is essentially the same concept we have discussed above with the prototype-based inheritance, except we are now focusing specifically on how JavaScript accesses object properties and methods via the prototype object.</p>
+<p><strong>Object.prototype Properties Inherited by all Objects</strong>: All objects in JavaScript inherit properties and methods from Object.prototype. These inherited properties and methods are:</p>
+<ol>
+<li><code>constructor</code></li>
+<li><code>hasOwnProperty()</code></li>
+<li><code>isPrototypeOf()</code></li>
+<li><code>propertyIsEnumerable()</code></li>
+<li><code>toLocaleString()</code></li>
+<li><code>toString()</code></li>
+<li><code>valueOf()</code></li>
+<li>ECMAScript 5 also adds 4 accessor methods to Object.prototype.</li>
+</ol>
+<h3 id="prototypal-inheretance"><a aria-hidden="true" class="anchor-heading" href="#prototypal-inheretance"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Prototypal Inheretance</h3>
+<p><a href="/DevNotes/notes/imj2klai3czrmnvx416fjqk">Method Delegation Inheretance</a></p>
+<h3 id="limitations-on-prototypal-inheretance"><a aria-hidden="true" class="anchor-heading" href="#limitations-on-prototypal-inheretance"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Limitations on Prototypal Inheretance</h3>
+<ol>
+<li>References cant go in circles. JavaScript will throw an error if we try to assign <code>__proto__</code> in a circle.</li>
+<li>The value of <code>__proto__</code> can be either an object or null. Other types are ignored.</li>
+</ol>
+<h3 id="the-getter--setter-exception"><a aria-hidden="true" class="anchor-heading" href="#the-getter--setter-exception"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>The Getter / Setter Exception</h3>
+<p>There is an exception to how Prototypal Inheretance functions with getters and setters, because they are functions using them is the same as using a function from the prototype.</p>
+<h3 id="how-this-functions"><a aria-hidden="true" class="anchor-heading" href="#how-this-functions"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>How 'this' functions</h3>
+<p>This is not affected by prototypes at all.</p>
+<p>No matter where the method is found: in an object or its prototype. In a method call, this is always the object before the dot.</p>
+<p>That is actually a super-important thing, because we may have a big object with many methods, and have objects that inherit from it. And when the inheriting objects run the inherited methods, they will modify only their own states, not the state of the big object.</p>
+<h3 id="utilizing-forin-loops"><a aria-hidden="true" class="anchor-heading" href="#utilizing-forin-loops"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Utilizing For...in loops</h3>
+<p><code>Object.keys(objName)</code> will only return the keys associated with objName</p>
+<p>but a for...in loop will return both its own keys and its inhereted keys</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword control-flow">for</span><span class="token punctuation">(</span><span class="token keyword">let</span> property <span class="token keyword">in</span> objName<span class="token punctuation">)</span> <span class="token function">alert</span><span class="token punctuation">(</span>property<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>if you only want to return an objects own properties (exclude prototype props) there is a buil in JS method called <code>obj.hasOwnProperty(key)</code> which returns <code>true</code> if the object has the property.</p>
+<p>You can use a for loop to filter like so:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">let</span> animal <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token literal-property property">eats</span><span class="token operator">:</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> rabbit <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token literal-property property">jumps</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">__proto__</span><span class="token operator">:</span> animal
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword control-flow">for</span><span class="token punctuation">(</span><span class="token keyword">let</span> prop <span class="token keyword">in</span> rabbit<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> isOwn <span class="token operator">=</span> rabbit<span class="token punctuation">.</span><span class="token method function property-access">hasOwnProperty</span><span class="token punctuation">(</span>prop<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword control-flow">if</span> <span class="token punctuation">(</span>isOwn<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">alert</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Our: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>prop<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Our: jumps</span>
+  <span class="token punctuation">}</span> <span class="token keyword control-flow">else</span> <span class="token punctuation">{</span>
+    <span class="token function">alert</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Inherited: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>prop<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Inherited: eats</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="enumerable-flag-in-protoypes"><a aria-hidden="true" class="anchor-heading" href="#enumerable-flag-in-protoypes"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Enumerable Flag in Protoypes</h3>
+<p>Like all other properties of Object.prototype, it has enumerable:false flag. And for..in only lists enumerable properties. That’s why it and the rest of the Object.prototype properties are not listed.</p>
+<h3 id="recommended-method-for-prototypal-inheretance"><a aria-hidden="true" class="anchor-heading" href="#recommended-method-for-prototypal-inheretance"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Recommended Method for Prototypal Inheretance</h3>
+<p>The recommended way of setting the prototype of an object is <code>Object.create</code>(here is the documentation for that method). Object.create very simply returns a new object with the specified prototype and any additional properties you want to add.</p>
+<hr>
+<strong>Backlinks</strong>
+<ul>
+<li><a href="/DevNotes/notes/imj2klai3czrmnvx416fjqk">Method Delegation Inheretance</a></li>
+</ul>

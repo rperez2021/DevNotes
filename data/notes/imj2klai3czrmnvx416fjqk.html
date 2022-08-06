@@ -1,0 +1,67 @@
+<h1 id="method-delegation-inheretance"><a aria-hidden="true" class="anchor-heading" href="#method-delegation-inheretance"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Method Delegation Inheretance</h1>
+<h2 id="method-delegation-prototypal-inheretance-or-class-inheretance"><a aria-hidden="true" class="anchor-heading" href="#method-delegation-prototypal-inheretance-or-class-inheretance"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Method Delegation (Prototypal Inheretance or Class Inheretance)</h2>
+<p><a href="/DevNotes/notes/viploue6ww80cf7iueemp5k">Prototype</a></p>
+<h3 id="es6-class-constructor-version"><a aria-hidden="true" class="anchor-heading" href="#es6-class-constructor-version"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>ES6 Class Constructor Version</h3>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">class</span> <span class="token class-name">Greeter</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span> <span class="token punctuation">(</span><span class="token parameter">name</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">name</span> <span class="token operator">=</span> name <span class="token operator">||</span> <span class="token string">'John Doe'</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">hello</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword control-flow">return</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Hello, my name is </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">name</span> <span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> george <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Greeter</span><span class="token punctuation">(</span><span class="token string">'George'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> msg <span class="token operator">=</span> george<span class="token punctuation">.</span><span class="token method function property-access">hello</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ 
+<span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span>msg<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Hello, my name is George</span>
+</code></pre>
+<h3 id="es5-constructor-function-version"><a aria-hidden="true" class="anchor-heading" href="#es5-constructor-function-version"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>ES5 Constructor Function Version</h3>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function"><span class="token maybe-class-name">Greeter</span></span> <span class="token punctuation">(</span><span class="token parameter">name</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">name</span> <span class="token operator">=</span> name <span class="token operator">||</span> <span class="token string">'John Doe'</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token class-name">Greeter</span><span class="token punctuation">.</span><span class="token property-access">prototype</span><span class="token punctuation">.</span><span class="token method-variable function-variable method function property-access">hello</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token function">hello</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword control-flow">return</span> <span class="token string">'Hello, my name is '</span> <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">name</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> george <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Greeter</span><span class="token punctuation">(</span><span class="token string">'George'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> msg <span class="token operator">=</span> george<span class="token punctuation">.</span><span class="token method function property-access">hello</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span>msg<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Hello, my name is George</span>
+</code></pre>
+<h3 id="factory-function-version"><a aria-hidden="true" class="anchor-heading" href="#factory-function-version"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Factory Function Version</h3>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> proto <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token function">hello</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword control-flow">return</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Hello, my name is </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">name</span> <span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token function-variable function">greeter</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">name</span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token known-class-name class-name">Object</span><span class="token punctuation">.</span><span class="token method function property-access">assign</span><span class="token punctuation">(</span><span class="token known-class-name class-name">Object</span><span class="token punctuation">.</span><span class="token method function property-access">create</span><span class="token punctuation">(</span>proto<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  name
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> george <span class="token operator">=</span> <span class="token function">greeter</span><span class="token punctuation">(</span><span class="token string">'george'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> msg <span class="token operator">=</span> george<span class="token punctuation">.</span><span class="token method function property-access">hello</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span>msg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="composition-over-class-inheretance"><a aria-hidden="true" class="anchor-heading" href="#composition-over-class-inheretance"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Composition Over Class Inheretance</h2>
+<p>Class inheritance creates is-a relationships with restrictive taxonomies, all of which are eventually wrong for new use-cases. But it turns out, we usually employ inheritance for has-a, uses-a, or can-do relationships.</p>
+<p>Composition is more like a guitar effects pedalboard. Want something that can do delay, subtle distortion, and a robot voice? No problem! Just plug them all in:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> effect <span class="token operator">=</span> <span class="token function">compose</span><span class="token punctuation">(</span>delay<span class="token punctuation">,</span> distortion<span class="token punctuation">,</span> robovoice<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Rock on!</span>
+</code></pre>
+<p>Composition is:</p>
+<ol>
+<li>Simple</li>
+<li>More expressive</li>
+<li>More flexible</li>
+</ol>
+<hr>
+<strong>Backlinks</strong>
+<ul>
+<li><a href="/DevNotes/notes/viploue6ww80cf7iueemp5k">Prototype</a></li>
+</ul>

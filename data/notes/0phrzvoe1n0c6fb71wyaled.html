@@ -1,0 +1,61 @@
+<h1 id="aws-kinesis"><a aria-hidden="true" class="anchor-heading" href="#aws-kinesis"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>AWS Kinesis</h1>
+<h2 id="general-info"><a aria-hidden="true" class="anchor-heading" href="#general-info"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>General Info</h2>
+<p>Makes it easy to collect, process and analyze realtime streaming data.</p>
+<ul>
+<li>Real time</li>
+<li>Fully managed</li>
+<li>Scalable</li>
+<li>Pay as you go</li>
+</ul>
+<p>There are four types of service offerings:</p>
+<ol>
+<li>Kinesis Data Streams</li>
+<li>Kinesis Video Streams</li>
+<li>Kinesis Data Firehouse</li>
+<li>Kinesis Data Analytics</li>
+</ol>
+<h2 id="use-cases"><a aria-hidden="true" class="anchor-heading" href="#use-cases"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Use Cases</h2>
+<ul>
+<li>Log and Event Data Collection</li>
+<li>Real time analytics</li>
+<li>Mobile data capture</li>
+<li>Gaming data feed</li>
+</ul>
+<h2 id="key-concepts"><a aria-hidden="true" class="anchor-heading" href="#key-concepts"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Key Concepts</h2>
+<p><strong>Shard</strong>: base throughput unit of the stream.</p>
+<ul>
+<li>Append only log</li>
+<li>Ordered sequence of records</li>
+<li>Can ingest 1 MB/Sec</li>
+<li>More shards means more ingestion capacity</li>
+</ul>
+<p><strong>Data Stream</strong>:</p>
+<ul>
+<li>Logical grouping of shards no bound on number of shards</li>
+<li>Data is retained for retain data for 24hrs to 7 days</li>
+</ul>
+<p><strong>Partition Key</strong>:</p>
+<ul>
+<li>Meaningful identifier</li>
+<li>Used to route data records to different shards</li>
+</ul>
+<p><strong>Sequence Number</strong>:</p>
+<ul>
+<li>Unique Identifier for each data record assigned by Kinesis on record creation</li>
+</ul>
+<p><strong>Data Record</strong>:</p>
+<ul>
+<li>Unit of data stored</li>
+<li>Composed of a sequence number, partition key and data blob.</li>
+<li>Max size of the blob is 1 MB</li>
+</ul>
+<p><strong>Data Producer</strong>:</p>
+<ul>
+<li>Application that emits data records to the stream</li>
+<li>It assigns partition keys to records</li>
+<li>Partition keys determine which shard consumes the data</li>
+</ul>
+<p><strong>Data Consumer</strong>:</p>
+<ul>
+<li>Application or AWS Service that gets the data from the stream</li>
+</ul>

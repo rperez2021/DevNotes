@@ -1,0 +1,35 @@
+<h1 id="constructors"><a aria-hidden="true" class="anchor-heading" href="#constructors"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Constructors</h1>
+<h2 id="general-info"><a aria-hidden="true" class="anchor-heading" href="#general-info"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>General Info</h2>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function"><span class="token maybe-class-name">Apple</span></span><span class="token punctuation">(</span><span class="token parameter">color<span class="token punctuation">,</span> weight</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">color</span> <span class="token operator">=</span> color<span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">weight</span> <span class="token operator">=</span> weight<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>If you’re using constructors to make your objects it is best to define functions on the prototype of that object. Doing so means that a single instance of each function will be shared between all of the Student objects. If we declare the function directly in the constructor, like we did when they were first introduced, that function would be duplicated every time a new Student is created.</p>
+<h2 id="recommended-method-for-prototypal-inheretance"><a aria-hidden="true" class="anchor-heading" href="#recommended-method-for-prototypal-inheretance"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Recommended Method for Prototypal Inheretance</h2>
+<p>The recommended way of setting the prototype of an object is Object.create (here is the documentation for that method). Object.create very simply returns a new object with the specified prototype and any additional properties you want to add. For our purposes, you use it like so:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function"><span class="token maybe-class-name">Student</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+
+<span class="token class-name">Student</span><span class="token punctuation">.</span><span class="token property-access">prototype</span><span class="token punctuation">.</span><span class="token method-variable function-variable method function property-access">sayName</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">name</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function"><span class="token maybe-class-name">EighthGrader</span></span><span class="token punctuation">(</span><span class="token parameter">name</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">name</span> <span class="token operator">=</span> name
+  <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">grade</span> <span class="token operator">=</span> <span class="token number">8</span>
+<span class="token punctuation">}</span>
+
+<span class="token class-name">EighthGrader</span><span class="token punctuation">.</span><span class="token property-access">prototype</span> <span class="token operator">=</span> <span class="token known-class-name class-name">Object</span><span class="token punctuation">.</span><span class="token method function property-access">create</span><span class="token punctuation">(</span><span class="token class-name">Student</span><span class="token punctuation">.</span><span class="token property-access">prototype</span><span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> carl <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">EighthGrader</span><span class="token punctuation">(</span><span class="token string">"carl"</span><span class="token punctuation">)</span>
+carl<span class="token punctuation">.</span><span class="token method function property-access">sayName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// console.logs "carl"</span>
+carl<span class="token punctuation">.</span><span class="token property-access">grade</span> <span class="token comment">// 8</span>
+</code></pre>
+<p>After creating the constructor for EighthGrader, we set its prototype to a new object that has a copy of Student.prototype.</p>
+<p>A warning… this doesn’t work:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token class-name">EighthGrader</span><span class="token punctuation">.</span><span class="token property-access">prototype</span> <span class="token operator">=</span> <span class="token class-name">Student</span><span class="token punctuation">.</span><span class="token property-access">prototype</span>
+</code></pre>
+<h2 id="constructor-method-in-classes"><a aria-hidden="true" class="anchor-heading" href="#constructor-method-in-classes"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Constructor Method in Classes</h2>
+<p>The constructor method is a special method for creating and initializing an object created with a class. There can only be one special method with the name "constructor" in a class. A SyntaxError will be thrown if the class contains more than one occurrence of a constructor method.</p>
+<p>A constructor can use the super keyword to call the constructor of the super class.</p>

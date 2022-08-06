@@ -1,0 +1,8 @@
+<h1 id="jsx"><a aria-hidden="true" class="anchor-heading" href="#jsx"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>JSX</h1>
+<h2 id="attribute-syntax"><a aria-hidden="true" class="anchor-heading" href="#attribute-syntax"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Attribute Syntax</h2>
+<p>Since JSX is closer to JavaScript than to HTML, React DOM uses camelCase property naming convention instead of HTML attribute names.</p>
+<p>For example, <code>class</code> becomes <code>className</code> in JSX, and <code>tabindex</code> becomes <code>tabIndex</code>.</p>
+<h2 id="asi-in-jsx"><a aria-hidden="true" class="anchor-heading" href="#asi-in-jsx"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>ASI in JSX</h2>
+<p>We split JSX over multiple lines for readability. While it isn’t required, when doing this, we also recommend wrapping it in parentheses to avoid the pitfalls of automatic semicolon insertion.</p>
+<h2 id="jsx-and-injection-attacks"><a aria-hidden="true" class="anchor-heading" href="#jsx-and-injection-attacks"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>JSX and Injection Attacks</h2>
+<p>By default, React DOM escapes any values embedded in JSX before rendering them. Thus it ensures that you can never inject anything that’s not explicitly written in your application. Everything is converted to a string before being rendered. This helps prevent XSS (cross-site-scripting) attacks.</p>

@@ -1,0 +1,12 @@
+<h1 id="eventcapture"><a aria-hidden="true" class="anchor-heading" href="#eventcapture"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Eventcapture</h1>
+<h2 id="general-info"><a aria-hidden="true" class="anchor-heading" href="#general-info"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>General Info</h2>
+<p>Capture is a parameter that can be passed into an event listener. The parameter takes a boolean value indicating that events of this type will be dispatched to the registered listener before being dispatched to any EventTarget beneath it in the DOM tree. If not specified, defaults to false.</p>
+<h2 id="quick-links"><a aria-hidden="true" class="anchor-heading" href="#quick-links"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Quick Links</h2>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener">MDN for addEventListener</a></p>
+<p><a href="https://www.youtube.com/watch?v=F1anRyL37lE">Wes Bos 30 Days of JS Video</a></p>
+<h2 id="sample-code"><a aria-hidden="true" class="anchor-heading" href="#sample-code"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Sample Code</h2>
+<pre class="language-javascript"><code class="language-javascript">  divs<span class="token punctuation">.</span><span class="token method function property-access">forEach</span><span class="token punctuation">(</span><span class="token parameter">div</span> <span class="token arrow operator">=></span> div<span class="token punctuation">.</span><span class="token method function property-access">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> callback<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">capture</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">once</span><span class="token operator">:</span> <span class="token boolean">true</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>

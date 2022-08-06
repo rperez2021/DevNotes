@@ -1,0 +1,50 @@
+<h1 id="media-queries"><a aria-hidden="true" class="anchor-heading" href="#media-queries"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Media Queries</h1>
+<h2 id="general-info"><a aria-hidden="true" class="anchor-heading" href="#general-info"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>General Info</h2>
+<p>With media queries it is possible to completely restyle your web projects based on the size of a user’s screen.</p>
+<h2 id="syntax"><a aria-hidden="true" class="anchor-heading" href="#syntax"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Syntax</h2>
+<pre class="language-css"><code class="language-css"><span class="token selector">body</span> <span class="token punctuation">{</span>
+  <span class="token property">margin</span><span class="token punctuation">:</span> <span class="token number">24</span><span class="token unit">px</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token atrule"><span class="token rule">@media</span> <span class="token punctuation">(</span><span class="token property">max-width</span><span class="token punctuation">:</span> <span class="token number">600</span><span class="token unit">px</span><span class="token punctuation">)</span></span> <span class="token punctuation">{</span>
+  <span class="token selector">body</span> <span class="token punctuation">{</span>
+    <span class="token property">margin</span><span class="token punctuation">:</span> <span class="token number">8</span><span class="token unit">px</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>In the above example, margin is changed based on screen size. Specifically, on all screens below or equal to 600px, the margin will be 8px, and on all screens above 600px, it will be 24px.</p>
+<h2 id="best-practices"><a aria-hidden="true" class="anchor-heading" href="#best-practices"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Best Practices</h2>
+<ol>
+<li>Limit Media Queries: minimize your media-query usage and rely more on the natural flexibility of your layouts.</li>
+<li>Common Breakpoints:
+<ul>
+<li>&#x3C; 600px Mobile</li>
+<li>600px - 1200px Tablet</li>
+<li><code>></code> 1200px Desktop</li>
+<li><code>></code> 2000px Ultra Wide</li>
+</ul>
+</li>
+<li>Zooming: in most browsers, zooming in on a webpage will change the effective resolution of that page.</li>
+<li>Other Queries: <code>min-width</code> (screens larger than a given value), <code>max-height</code> &#x26; <code>min-height</code></li>
+</ol>
+<h2 id="more-complex-queries"><a aria-hidden="true" class="anchor-heading" href="#more-complex-queries"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>More Complex Queries</h2>
+<h3 id="combining-multiple-types-of-features"><a aria-hidden="true" class="anchor-heading" href="#combining-multiple-types-of-features"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Combining Multiple Types of Features</h3>
+<pre class="language-css"><code class="language-css"><span class="token atrule"><span class="token rule">@media</span> <span class="token punctuation">(</span><span class="token property">min-width</span><span class="token punctuation">:</span> <span class="token number">30</span><span class="token unit">em</span><span class="token punctuation">)</span> <span class="token keyword">and</span> <span class="token punctuation">(</span><span class="token property">orientation</span><span class="token punctuation">:</span> landscape<span class="token punctuation">)</span></span> <span class="token punctuation">{</span> ... <span class="token punctuation">}</span>
+<span class="token atrule"><span class="token rule">@media</span> screen <span class="token keyword">and</span> <span class="token punctuation">(</span><span class="token property">min-width</span><span class="token punctuation">:</span> <span class="token number">30</span><span class="token unit">em</span><span class="token punctuation">)</span> <span class="token keyword">and</span> <span class="token punctuation">(</span><span class="token property">orientation</span><span class="token punctuation">:</span> landscape<span class="token punctuation">)</span></span> <span class="token punctuation">{</span> ... <span class="token punctuation">}</span>
+</code></pre>
+<h3 id="testing-for-multiple-queries"><a aria-hidden="true" class="anchor-heading" href="#testing-for-multiple-queries"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Testing for Multiple Queries</h3>
+<p>You can use a comma-separated list to apply styles when the user's device matches any one of various media types, features, or states. For instance, the following rule will apply its styles if the user's device has either a minimum height of 680px or is a screen device in portrait mode:</p>
+<pre class="language-css"><code class="language-css"><span class="token atrule"><span class="token rule">@media</span> <span class="token punctuation">(</span><span class="token property">min-height</span><span class="token punctuation">:</span> <span class="token number">680</span><span class="token unit">px</span><span class="token punctuation">)</span><span class="token punctuation">,</span> screen <span class="token keyword">and</span> <span class="token punctuation">(</span><span class="token property">orientation</span><span class="token punctuation">:</span> portrait<span class="token punctuation">)</span></span> <span class="token punctuation">{</span> ... <span class="token punctuation">}</span>
+</code></pre>
+<p>Taking the above example, if the user had a printer with a page height of 800px, the media statement would return true because the first query would apply. Likewise, if the user were on a smartphone in portrait mode with a viewport height of 480px, the second query would apply and the media statement would still return true.</p>
+<h3 id="inverting-a-querys-meaning"><a aria-hidden="true" class="anchor-heading" href="#inverting-a-querys-meaning"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Inverting a Query's Meaning</h3>
+<p>The not keyword inverts the meaning of an entire media query. It will only negate the specific media query it is applied to. (Thus, it will not apply to every media query in a comma-separated list of media queries.) The not keyword can't be used to negate an individual feature query, only an entire media query. The not is evaluated last in the following query:</p>
+<pre class="language-css"><code class="language-css"><span class="token atrule"><span class="token rule">@media</span> <span class="token keyword">not</span> all <span class="token keyword">and</span> <span class="token punctuation">(</span>monochrome<span class="token punctuation">)</span></span> <span class="token punctuation">{</span> ... <span class="token punctuation">}</span>
+</code></pre>
+<p>... so that the above query is evaluated like this:</p>
+<pre class="language-css"><code class="language-css"><span class="token atrule"><span class="token rule">@media</span> <span class="token keyword">not</span> <span class="token punctuation">(</span>all <span class="token keyword">and</span> <span class="token punctuation">(</span>monochrome<span class="token punctuation">)</span><span class="token punctuation">)</span></span> <span class="token punctuation">{</span> ... <span class="token punctuation">}</span>
+</code></pre>
+<h3 id="improving-compatibility-with-older-browsers"><a aria-hidden="true" class="anchor-heading" href="#improving-compatibility-with-older-browsers"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Improving compatibility with older browsers</h3>
+<p>The only keyword prevents older browsers that do not support media queries with media features from applying the given styles. It has no effect on modern browsers.</p>
+<pre class="language-css"><code class="language-css"><span class="token atrule"><span class="token rule">@media</span> <span class="token keyword">only</span> screen <span class="token keyword">and</span> <span class="token punctuation">(</span>color<span class="token punctuation">)</span></span> <span class="token punctuation">{</span> ... <span class="token punctuation">}</span>
+</code></pre>

@@ -1,0 +1,72 @@
+<h1 id="concatenative_inheretance"><a aria-hidden="true" class="anchor-heading" href="#concatenative_inheretance"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Concatenative_inheretance</h1>
+<h2 id="definition"><a aria-hidden="true" class="anchor-heading" href="#definition"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Definition</h2>
+<p>Concatenative inheritance is the process of copying the properties from one object to another, without retaining a reference between the two objects. It relies on JavaScript’s dynamic object extension feature.</p>
+<p>Cloning is a great way to store default state for objects: This process is commonly achieved using <code>Object.assign()</code>. Prior to ES6, it was common to use similar <code>.extend()</code> methods from Lodash, Underscore, or jQuery.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> proto <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token function-variable function">hello</span><span class="token operator">:</span> <span class="token keyword">function</span> <span class="token function">hello</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword control-flow">return</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Hello, my name is </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">name</span> <span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> george <span class="token operator">=</span> <span class="token known-class-name class-name">Object</span><span class="token punctuation">.</span><span class="token method function property-access">assign</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> proto<span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'George'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> msg <span class="token operator">=</span> george<span class="token punctuation">.</span><span class="token method function property-access">hello</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span>msg<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Hello, my name is George</span>
+</code></pre>
+<p>It’s common to see this style used for mixins. For example, you can turn any object into an event emitter by mixing in an <code>EventEmitter3</code> prototype:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword module">import</span> <span class="token imports"><span class="token maybe-class-name">Events</span></span> <span class="token keyword module">from</span> <span class="token string">'eventemitter3'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> object <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token known-class-name class-name">Object</span><span class="token punctuation">.</span><span class="token method function property-access">assign</span><span class="token punctuation">(</span>object<span class="token punctuation">,</span> <span class="token class-name">Events</span><span class="token punctuation">.</span><span class="token property-access">prototype</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+object<span class="token punctuation">.</span><span class="token method function property-access">on</span><span class="token punctuation">(</span><span class="token string">'event'</span><span class="token punctuation">,</span> <span class="token parameter">payload</span> <span class="token arrow operator">=></span> <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span>payload<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+object<span class="token punctuation">.</span><span class="token method function property-access">emit</span><span class="token punctuation">(</span><span class="token string">'event'</span><span class="token punctuation">,</span> <span class="token string">'some data'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 'some data'</span>
+</code></pre>
+<p>Concatenative inheritance is very powerful, but it gets even better when you combine it with closures.</p>
+<h2 id="functional-inheretance-and-functional-mixins"><a aria-hidden="true" class="anchor-heading" href="#functional-inheretance-and-functional-mixins"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Functional Inheretance and Functional Mixins</h2>
+<p>Functional inheritance makes use of a factory function, and then tacks on new properties using concatenative inheritance.</p>
+<p>Functions created for the purpose of extending existing objects are commonly referred to as functional mixins. The primary advantage of using functions for extension is that it allows you to use the function closure to encapsulate private data. In other words, you can enforce private state.</p>
+<p>It’s a bit awkward to hang the attributes on a public property where a user could set or get them without calling the proper methods. What we really want to do is hide the attributes in a private closure. It looks something like this:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword module">import</span> <span class="token imports"><span class="token maybe-class-name">Events</span></span> <span class="token keyword module">from</span> <span class="token string">'eventemitter3'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token function-variable function">rawMixin</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> attrs <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token keyword control-flow">return</span> <span class="token known-class-name class-name">Object</span><span class="token punctuation">.</span><span class="token method function property-access">assign</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    <span class="token function">set</span> <span class="token punctuation">(</span>name<span class="token punctuation">,</span> value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      attrs<span class="token punctuation">[</span>name<span class="token punctuation">]</span> <span class="token operator">=</span> value<span class="token punctuation">;</span>
+
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token method function property-access">emit</span><span class="token punctuation">(</span><span class="token string">'change'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+        <span class="token literal-property property">prop</span><span class="token operator">:</span> name<span class="token punctuation">,</span>
+        <span class="token literal-property property">value</span><span class="token operator">:</span> value
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+    <span class="token function">get</span> <span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword control-flow">return</span> attrs<span class="token punctuation">[</span>name<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token class-name">Events</span><span class="token punctuation">.</span><span class="token property-access">prototype</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token function-variable function">mixinModel</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">target</span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> rawMixin<span class="token punctuation">.</span><span class="token method function property-access">call</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> george <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'george'</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> model <span class="token operator">=</span> <span class="token function">mixinModel</span><span class="token punctuation">(</span>george<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+model<span class="token punctuation">.</span><span class="token method function property-access">on</span><span class="token punctuation">(</span><span class="token string">'change'</span><span class="token punctuation">,</span> <span class="token parameter">data</span> <span class="token arrow operator">=></span> <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+model<span class="token punctuation">.</span><span class="token method function property-access">set</span><span class="token punctuation">(</span><span class="token string">'name'</span><span class="token punctuation">,</span> <span class="token string">'Sam'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">/*
+{
+  prop: 'name',
+  value: 'Sam'
+}
+*/</span>
+</code></pre>
+<p>By moving <code>attrs</code> from a public property to a private identifier, we remove all trace of it from the public API. The only way to use it now is via the <strong>privileged methods</strong>.</p>
+<h3 id="priviliged-methods"><a aria-hidden="true" class="anchor-heading" href="#priviliged-methods"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Priviliged Methods</h3>
+<p><strong>Privileged methods</strong> are any methods defined within the closure’s function scope, which gives them access to the private data.</p>
+<p>Note in the example above, we have the <code>mixinModel()</code> wrapper around the actual functional mixin, <code>rawMixin()</code>. The reason we need that is because we need to set the value of <code>this</code> inside the function, which we do with <code>Function.prototype.call()</code>. We could skip the wrapper and let callers do that instead, but that would be obnoxious.</p>

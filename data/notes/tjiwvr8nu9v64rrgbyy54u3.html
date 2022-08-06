@@ -1,0 +1,23 @@
+<h1 id="es2016"><a aria-hidden="true" class="anchor-heading" href="#es2016"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Es2016</h1>
+<h2 id="list-of-changes"><a aria-hidden="true" class="anchor-heading" href="#list-of-changes"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>List of Changes</h2>
+<p>Just two changes:</p>
+<ol>
+<li>Array.prototype.includes</li>
+<li>Exponentiation Operator</li>
+</ol>
+<h3 id="arrayprototypeincludes"><a aria-hidden="true" class="anchor-heading" href="#arrayprototypeincludes"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Array.prototype.includes()</h3>
+<p>With ES6 and lower, to check if an array contained an element you had to use indexOf, which checks the index in the array, and returns -1 if the element is not there.</p>
+<p>Since -1 is evaluated as a true value, you could not do for example</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword control-flow">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token method function property-access">indexOf</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token string">'Not found'</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>With this feature introduced in ES2016 we can do</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword control-flow">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token method function property-access">includes</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token string">'Not found'</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="exponentiation-operator-"><a aria-hidden="true" class="anchor-heading" href="#exponentiation-operator-"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Exponentiation Operator **</h3>
+<p>The exponentiation operator ** is the equivalent of Math.pow(), but brought into the language instead of being a library function.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token known-class-name class-name">Math</span><span class="token punctuation">.</span><span class="token method function property-access">pow</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">4</span> <span class="token operator">**</span> <span class="token number">2</span>
+</code></pre>

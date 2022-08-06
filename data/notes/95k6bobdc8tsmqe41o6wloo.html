@@ -1,0 +1,106 @@
+<h1 id="module-pattern"><a aria-hidden="true" class="anchor-heading" href="#module-pattern"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Module Pattern</h1>
+<h2 id="general-info"><a aria-hidden="true" class="anchor-heading" href="#general-info"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>General Info</h2>
+<p>Modules are actually very similar to factory functions. The main difference is how they’re created.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> calculator <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token function-variable function">add</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">a<span class="token punctuation">,</span> b</span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> a <span class="token operator">+</span> b<span class="token punctuation">;</span>
+  <span class="token keyword">const</span> <span class="token function-variable function">sub</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">a<span class="token punctuation">,</span> b</span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> a <span class="token operator">-</span> b<span class="token punctuation">;</span>
+  <span class="token keyword">const</span> <span class="token function-variable function">mul</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">a<span class="token punctuation">,</span> b</span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> a <span class="token operator">*</span> b<span class="token punctuation">;</span>
+  <span class="token keyword">const</span> <span class="token function-variable function">div</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">a<span class="token punctuation">,</span> b</span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> a <span class="token operator">/</span> b<span class="token punctuation">;</span>
+  <span class="token keyword control-flow">return</span> <span class="token punctuation">{</span>
+    add<span class="token punctuation">,</span>
+    sub<span class="token punctuation">,</span>
+    mul<span class="token punctuation">,</span>
+    div<span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+calculator<span class="token punctuation">.</span><span class="token method function property-access">add</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 8</span>
+calculator<span class="token punctuation">.</span><span class="token method function property-access">sub</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 4</span>
+calculator<span class="token punctuation">.</span><span class="token method function property-access">mul</span><span class="token punctuation">(</span><span class="token number">14</span><span class="token punctuation">,</span><span class="token number">5534</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 77476</span>
+</code></pre>
+<p>The concepts are exactly the same as the factory function. However, instead of creating a factory that we can use over and over again to create multiple objects, the module pattern wraps the factory in an IIFE (Immediately Invoked Function Expression) <a href="/DevNotes/notes/xw8fc28leh6h0o4q51ju5br">IIFE</a>.</p>
+<p>The Module Pattern is one of the most common design patterns used in JavaScript and for good reason. The module pattern is easy to use and creates encapsulation of our code. Modules are commonly used as singleton style objects where only one instance exists. The Module Pattern is great for services and testing/TDD.</p>
+<h2 id="creating-a-module"><a aria-hidden="true" class="anchor-heading" href="#creating-a-module"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Creating a Module</h2>
+<p>Start with an anonymous closure. Anonymous closures are just functions that wrap our code and create an enclosed scope around it. Closures help keep any state or privacy within that function. Closures are one of the best and most powerful features of JavaScript.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token string">'use strict'</span><span class="token punctuation">;</span>
+  <span class="token comment">// Your code here</span>
+  <span class="token comment">// All function and variables are scoped to this function</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>This pattern is well known as a Immediately Invoked Function Expression or IIFE. The function is evaluated then immediately invoked. Its also a good practice to run your modules in ES5 strict mode. Strict mode will protect you from some of the more dangerous parts in JavaScript.</p>
+<h2 id="exporting-a-module"><a aria-hidden="true" class="anchor-heading" href="#exporting-a-module"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Exporting a Module</h2>
+<p>This basically assigns the module to a variable that we can use to call our modules methods.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">var</span> myModule <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token string">'use strict'</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Next lets create a public method for our module to call. To expose this method to code outside our module we return an Object with the methods defined.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">var</span> myModule <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token string">'use strict'</span><span class="token punctuation">;</span>
+
+  <span class="token keyword control-flow">return</span> <span class="token punctuation">{</span>
+    <span class="token function-variable function">publicMethod</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token string">'Hello World!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+myModule<span class="token punctuation">.</span><span class="token method function property-access">publicMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// outputs 'Hello World'</span>
+</code></pre>
+<h2 id="private-methods-and-properties"><a aria-hidden="true" class="anchor-heading" href="#private-methods-and-properties"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Private Methods and Properties</h2>
+<p>JavaScript does not have a private keyword by default but using closures we can create private methods and private state.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">var</span> myModule <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token string">'use strict'</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">var</span> _privateProperty <span class="token operator">=</span> <span class="token string">'Hello World'</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">function</span> <span class="token function">_privateMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span>_privateProperty<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword control-flow">return</span> <span class="token punctuation">{</span>
+    <span class="token function-variable function">publicMethod</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">_privateMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+myModule<span class="token punctuation">.</span><span class="token method function property-access">publicMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// outputs 'Hello World'</span>
+<span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span>myModule<span class="token punctuation">.</span><span class="token property-access">_privateProperty</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// is undefined protected by the module closure</span>
+myModule<span class="token punctuation">.</span><span class="token method function property-access">_privateMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// is TypeError protected by the module closure</span>
+</code></pre>
+<p>Because our private properties are not returned they are not available outside of our module. Only our public method has given us access to our private methods. This gives us ability to create private state and encapsulation within our code.</p>
+<p>You may have noticed the _ before our private methods and properties. Because JavaScript does not have a private keyword its common to prefix private properties with an underscore.</p>
+<h2 id="revealing-module-pattern"><a aria-hidden="true" class="anchor-heading" href="#revealing-module-pattern"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Revealing Module Pattern</h2>
+<p>The Revealing Module Pattern is one of the most popular ways of creating modules. Using the return statement we can return a object literal that 'reveals' only the methods or properties we want to be publicly available.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">var</span> myModule <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token string">'use strict'</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">var</span> _privateProperty <span class="token operator">=</span> <span class="token string">'Hello World'</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> publicProperty <span class="token operator">=</span> <span class="token string">'I am a public property'</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">function</span> <span class="token function">_privateMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span>_privateProperty<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">function</span> <span class="token function">publicMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">_privateMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword control-flow">return</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">publicMethod</span><span class="token operator">:</span> publicMethod<span class="token punctuation">,</span>
+    <span class="token literal-property property">publicProperty</span><span class="token operator">:</span> publicProperty
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+myModule<span class="token punctuation">.</span><span class="token method function property-access">publicMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// outputs 'Hello World'</span>
+<span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span>myModule<span class="token punctuation">.</span><span class="token property-access">publicProperty</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// outputs 'I am a public property'</span>
+<span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span>myModule<span class="token punctuation">.</span><span class="token property-access">_privateProperty</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// is undefined protected by the module closure</span>
+myModule<span class="token punctuation">.</span><span class="token method function property-access">_privateMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// is TypeError protected by the module closure</span>
+</code></pre>
+<p>The benefit to the Revealing Module Pattern is that we can look at the bottom of our modules and quickly see what is publicly available for use.</p>
+<p>The Module Pattern is not a silver bullet for adding code re-usability to your JavaScript. Using the Module Pattern with Prototypal Inheritance or ES6 Classes can give you a wide range of design patterns with varying pros and cons.</p>
+<h2 id="requireresolvesome_module"><a aria-hidden="true" class="anchor-heading" href="#requireresolvesome_module"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>require.resolve('some_module')</h2>
+<p>The command <code>require.resolve('some_module')</code> will show you the path to the module that node finds as a result of the tree climbing process.</p>

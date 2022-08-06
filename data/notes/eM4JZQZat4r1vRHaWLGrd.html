@@ -1,0 +1,54 @@
+<h1 id="a11y"><a aria-hidden="true" class="anchor-heading" href="#a11y"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>A11y</h1>
+<h2 id="general-notes"><a aria-hidden="true" class="anchor-heading" href="#general-notes"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>General Notes</h2>
+<p>You Are Not the User: The False-Consensus Effect, <a href="https://www.nngroup.com/articles/false-consensus/">Link</a></p>
+<p>The <code>&#x3C;button></code> element should be used for any interaction that performs an action on the current page. The <code>&#x3C;a></code> element should be used for any interaction that navigates to another view.</p>
+<p>Adding an HTML Attribute <code>tabindex="0"</code> allows tab focus. These can also be numbered to order tabbing.</p>
+<p>Synthetic Click Activator</p>
+<p>Screen reader users generally use headings to navigate a page quickly. Using heading in orders is super important.</p>
+<h3 id="cool-examples-of-all-the-things"><a aria-hidden="true" class="anchor-heading" href="#cool-examples-of-all-the-things"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Cool Examples of All the Things</h3>
+<p><a href="https://www.smashingmagazine.com/2021/03/complete-guide-accessible-front-end-components/">A Complete Guide to A11y Components</a></p>
+<h3 id="modals"><a aria-hidden="true" class="anchor-heading" href="#modals"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Modals</h3>
+<p>The final boss battle of a11y! 😂</p>
+<p>With Modals make sure that when you close a modal focus is returned to where the modal was opened.</p>
+<p>Make sure that the modal is a created just as child of the body, do not nest it far in the document or it will make it harder to navigate.</p>
+<p><a href="https://github.com/WICG/inert">WICG Inert Polyfill</a> was created to make a DOM Node uninteractable and prevent the user from navigating to that node.</p>
+<h3 id="contrast-ratio-from-wcag-2"><a aria-hidden="true" class="anchor-heading" href="#contrast-ratio-from-wcag-2"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Contrast Ratio from WCAG 2</h3>
+<p>Minimum for Text &#x26; Images: 4.5:1</p>
+<p>Minimum for Large Text: 3:1</p>
+<p>Enhanced for Text &#x26; Images: 7:1</p>
+<p>Enhanced for Large Text: 4:1</p>
+<h4 id="tools-for-contrast-checking"><a aria-hidden="true" class="anchor-heading" href="#tools-for-contrast-checking"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Tools for Contrast Checking</h4>
+<ol>
+<li>
+<p><a href="https://goo.gl/YVcYIS">WCAG Color Contrast Analyzer</a></p>
+</li>
+<li>
+<p><a href="https://goo.gl/TMZoBP">aXe Chrome Extension</a></p>
+</li>
+<li>
+<p><a href="https://goo.gl/0fqfVo">Lea Verous Contrast Ratio</a></p>
+</li>
+<li>
+<p><a href="https://goo.gl/Nj31Jj">Automated Testing with aXe</a></p>
+</li>
+</ol>
+<h3 id="assistive-tech"><a aria-hidden="true" class="anchor-heading" href="#assistive-tech"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Assistive Tech</h3>
+<ol>
+<li>
+<p>TalkBack: assistive reader for Mobile Devices.</p>
+</li>
+<li>
+<p>Switch Device: button switch device for low dexterity users.</p>
+</li>
+<li>
+<p>NVDA: Windows Screen Reader</p>
+</li>
+<li>
+<p>VoiceOver: IOS Screen Reader</p>
+</li>
+</ol>
+<hr>
+<strong>Children</strong>
+<ol>
+<li><a href="/DevNotes/notes/a5y34zgjcq1ci23zez4v7hn">WAI-ARIA</a></li>
+</ol>

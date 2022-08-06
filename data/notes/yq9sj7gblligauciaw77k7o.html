@@ -1,0 +1,80 @@
+<h1 id="functional-to-oop-example"><a aria-hidden="true" class="anchor-heading" href="#functional-to-oop-example"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Functional to OOP Example</h1>
+<h2 id="functional-example"><a aria-hidden="true" class="anchor-heading" href="#functional-example"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Functional Example</h2>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function"><span class="token maybe-class-name">Clock</span></span><span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> template <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  
+    <span class="token keyword">let</span> timer<span class="token punctuation">;</span>
+  
+    <span class="token keyword">function</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">let</span> date <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  
+      <span class="token keyword">let</span> hours <span class="token operator">=</span> date<span class="token punctuation">.</span><span class="token method function property-access">getHours</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword control-flow">if</span> <span class="token punctuation">(</span>hours <span class="token operator">&#x3C;</span> <span class="token number">10</span><span class="token punctuation">)</span> hours <span class="token operator">=</span> <span class="token string">'0'</span> <span class="token operator">+</span> hours<span class="token punctuation">;</span>
+  
+      <span class="token keyword">let</span> mins <span class="token operator">=</span> date<span class="token punctuation">.</span><span class="token method function property-access">getMinutes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword control-flow">if</span> <span class="token punctuation">(</span>mins <span class="token operator">&#x3C;</span> <span class="token number">10</span><span class="token punctuation">)</span> mins <span class="token operator">=</span> <span class="token string">'0'</span> <span class="token operator">+</span> mins<span class="token punctuation">;</span>
+  
+      <span class="token keyword">let</span> secs <span class="token operator">=</span> date<span class="token punctuation">.</span><span class="token method function property-access">getSeconds</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword control-flow">if</span> <span class="token punctuation">(</span>secs <span class="token operator">&#x3C;</span> <span class="token number">10</span><span class="token punctuation">)</span> secs <span class="token operator">=</span> <span class="token string">'0'</span> <span class="token operator">+</span> secs<span class="token punctuation">;</span>
+  
+      <span class="token keyword">let</span> output <span class="token operator">=</span> template
+        <span class="token punctuation">.</span><span class="token method function property-access">replace</span><span class="token punctuation">(</span><span class="token string">'h'</span><span class="token punctuation">,</span> hours<span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token method function property-access">replace</span><span class="token punctuation">(</span><span class="token string">'m'</span><span class="token punctuation">,</span> mins<span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token method function property-access">replace</span><span class="token punctuation">(</span><span class="token string">'s'</span><span class="token punctuation">,</span> secs<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  
+      <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span>output<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token method-variable function-variable method function property-access">stop</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">clearInterval</span><span class="token punctuation">(</span>timer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token method-variable function-variable method function property-access">start</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      timer <span class="token operator">=</span> <span class="token function">setInterval</span><span class="token punctuation">(</span>render<span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  
+  <span class="token punctuation">}</span>
+  
+  <span class="token keyword">let</span> clock <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Clock</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token literal-property property">template</span><span class="token operator">:</span> <span class="token string">'h:m:s'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  clock<span class="token punctuation">.</span><span class="token method function property-access">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>  OOP Class Example</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">class</span> <span class="token class-name">Clock</span> <span class="token punctuation">{</span>
+<span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> template <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">template</span> <span class="token operator">=</span> template<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> date <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">let</span> hours <span class="token operator">=</span> date<span class="token punctuation">.</span><span class="token method function property-access">getHours</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword control-flow">if</span> <span class="token punctuation">(</span>hours <span class="token operator">&#x3C;</span> <span class="token number">10</span><span class="token punctuation">)</span> hours <span class="token operator">=</span> <span class="token string">'0'</span> <span class="token operator">+</span> hours<span class="token punctuation">;</span>
+
+  <span class="token keyword">let</span> mins <span class="token operator">=</span> date<span class="token punctuation">.</span><span class="token method function property-access">getMinutes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword control-flow">if</span> <span class="token punctuation">(</span>mins <span class="token operator">&#x3C;</span> <span class="token number">10</span><span class="token punctuation">)</span> mins <span class="token operator">=</span> <span class="token string">'0'</span> <span class="token operator">+</span> mins<span class="token punctuation">;</span>
+
+  <span class="token keyword">let</span> secs <span class="token operator">=</span> date<span class="token punctuation">.</span><span class="token method function property-access">getSeconds</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword control-flow">if</span> <span class="token punctuation">(</span>secs <span class="token operator">&#x3C;</span> <span class="token number">10</span><span class="token punctuation">)</span> secs <span class="token operator">=</span> <span class="token string">'0'</span> <span class="token operator">+</span> secs<span class="token punctuation">;</span>
+
+  <span class="token keyword">let</span> output <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">template</span>
+    <span class="token punctuation">.</span><span class="token method function property-access">replace</span><span class="token punctuation">(</span><span class="token string">'h'</span><span class="token punctuation">,</span> hours<span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token method function property-access">replace</span><span class="token punctuation">(</span><span class="token string">'m'</span><span class="token punctuation">,</span> mins<span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token method function property-access">replace</span><span class="token punctuation">(</span><span class="token string">'s'</span><span class="token punctuation">,</span> secs<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span>output<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">stop</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">clearInterval</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">timer</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token method function property-access">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">timer</span> <span class="token operator">=</span> <span class="token function">setInterval</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token method function property-access">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+
+<span class="token keyword">let</span> clock <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Clock</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token literal-property property">template</span><span class="token operator">:</span> <span class="token string">'h:m:s'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+clock<span class="token punctuation">.</span><span class="token method function property-access">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>

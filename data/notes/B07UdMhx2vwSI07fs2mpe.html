@@ -1,0 +1,396 @@
+<h1 id="css"><a aria-hidden="true" class="anchor-heading" href="#css"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>CSS</h1>
+<h2 id="cool-tools"><a aria-hidden="true" class="anchor-heading" href="#cool-tools"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Cool Tools</h2>
+<p><a href="https://browserdefaultstyles.com/">Browser Default Styles</a></p>
+<h3 id="box-model"><a aria-hidden="true" class="anchor-heading" href="#box-model"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Box Model</h3>
+<p>Margin collapses between elements.</p>
+<h3 id="standard-box-model"><a aria-hidden="true" class="anchor-heading" href="#standard-box-model"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Standard Box Model</h3>
+<p><img src="/DevNotes/assets/images/2022-02-04-09-19-24.png" alt="Standard Box Model"></p>
+<p>Alternate Box Model</p>
+<pre class="language-css"><code class="language-CSS"><span class="token selector">html</span> <span class="token punctuation">{</span>
+  <span class="token property">box-sizing</span><span class="token punctuation">:</span> border-box<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">*<span class="token punctuation">,</span> *<span class="token pseudo-element">::before</span><span class="token punctuation">,</span> *<span class="token pseudo-element">::after</span></span> <span class="token punctuation">{</span>
+  <span class="token property">box-sizing</span><span class="token punctuation">:</span> inherit<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p><img src="/DevNotes/assets/images/alternate-box-model.png" alt="Alternate Box Model"></p>
+<p><strong>Note:</strong> The margin is not counted towards the actual size of the box — sure, it affects the total space that the box will take up on the page, but only the space outside the box. The box's area stops at the border — it does not extend into the margin.</p>
+<h3 id="flex-box"><a aria-hidden="true" class="anchor-heading" href="#flex-box"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Flex Box</h3>
+<p>Centered on X and Y axis <code>justify-content: center</code> is the X axis <code>align-items: center</code> is the Y axis if the <code>flex-direction</code> is default <code>flex-direction: row</code></p>
+<pre class="language-css"><code class="language-CSS"><span class="token selector"><span class="token class">.box</span></span> <span class="token punctuation">{</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+  <span class="token property">align-items</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+  <span class="token property">justify-content</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector"><span class="token class">.box</span> div</span> <span class="token punctuation">{</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">50</span><span class="token unit">px</span><span class="token punctuation">;</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> <span class="token number">50</span><span class="token unit">px</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<pre class="language-html"><code class="language-HTML"><span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>box<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>div</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>div</span><span class="token punctuation">></span></span>
+</code></pre>
+<h3 id="css-colors"><a aria-hidden="true" class="anchor-heading" href="#css-colors"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>CSS Colors</h3>
+<p>3 Digit Hex Code: The 3-digit hex code can only be used when both the values (RR, GG, and BB) are the same for each components. So, if we have <a title="Private" style="color: brown" href="https://wiki.dendron.so/notes/hfyvYGJZQiUwQaaxQO27q.html" target="_blank">#ff00cc (Private)</a>, it can be written like this: <a title="Private" style="color: brown" href="https://wiki.dendron.so/notes/hfyvYGJZQiUwQaaxQO27q.html" target="_blank">#f0c (Private)</a>.</p>
+<h2 id="margins"><a aria-hidden="true" class="anchor-heading" href="#margins"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Margins</h2>
+<h3 id="margin-auto"><a aria-hidden="true" class="anchor-heading" href="#margin-auto"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Margin Auto</h3>
+<p>Margin <code>auto</code> will center an element in the middle of the page.</p>
+<h3 id="margin-collapse"><a aria-hidden="true" class="anchor-heading" href="#margin-collapse"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Margin Collapse</h3>
+<p>Only happens in top or bottom margins, if two consecutive elements have top or bottom margins they are not additive but the greater of the two will be displayed.</p>
+<h3 id="lists"><a aria-hidden="true" class="anchor-heading" href="#lists"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Lists</h3>
+<pre class="language-css"><code class="language-css"><span class="token selector">ul</span> <span class="token punctuation">{</span>
+  <span class="token comment">/* To replace list marker with image */</span>
+  <span class="token property">list-style-image</span><span class="token punctuation">:</span> <span class="token url"><span class="token function">url</span><span class="token punctuation">(</span><span class="token string url">'sqpurple.gif'</span><span class="token punctuation">)</span></span><span class="token punctuation">;</span>
+  <span class="token comment">/* To place list marker outside the list item, outside is default */</span>
+  <span class="token property">list-style-position</span><span class="token punctuation">:</span> inside<span class="token punctuation">;</span>
+  
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="tables"><a aria-hidden="true" class="anchor-heading" href="#tables"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Tables</h3>
+<p>Removing double borders on tables:</p>
+<pre class="language-css"><code class="language-css"><span class="token selector">table</span> <span class="token punctuation">{</span>
+  <span class="token property">border-collapse</span><span class="token punctuation">:</span> collapse<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Responsive Table: place the table in an element with <code>overflow-x: auto</code></p>
+<pre class="language-css"><code class="language-css">&#x3C;div style=<span class="token string">"overflow-x:auto;"</span>>
+
+&#x3C;table>
+... table content ...
+&#x3C;/table>
+
+&#x3C;/div>
+</code></pre>
+<h3 id="z-index"><a aria-hidden="true" class="anchor-heading" href="#z-index"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Z-Index</h3>
+<p>z-index only works on positioned elements (position: absolute, position: relative, position: fixed, or position: sticky) and flex items (elements that are direct children of display: flex elements).</p>
+<p>If two positioned elements overlap each other without a z-index specified, the element defined last in the HTML code will be shown on top.</p>
+<h3 id="clear-fix-hack"><a aria-hidden="true" class="anchor-heading" href="#clear-fix-hack"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Clear-Fix Hack</h3>
+<p>If a floated element is taller than the containing element, it will "overflow" outside of its container.</p>
+<pre class="language-css"><code class="language-css"><span class="token selector"><span class="token class">.clearfix</span><span class="token pseudo-element">::after</span></span> <span class="token punctuation">{</span>
+  <span class="token property">content</span><span class="token punctuation">:</span> <span class="token string">""</span><span class="token punctuation">;</span>
+  <span class="token property">clear</span><span class="token punctuation">:</span> both<span class="token punctuation">;</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> table<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p><img src="/DevNotes/assets/images/clearfix_prob.jpg" alt="Clearfix Problem"></p>
+<p><img src="/DevNotes/assets/images/clearfix_solution.jpg" alt="Clearfix Solution"></p>
+<h3 id="inline-block"><a aria-hidden="true" class="anchor-heading" href="#inline-block"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Inline-Block</h3>
+<ul>
+<li>
+<p>Compared to <code>display: inline</code>, the major difference is that <code>display: inline-block</code> allows to set a width and height on the element.</p>
+</li>
+<li>
+<p>Also, with <code>display: inline-block</code>, the top and bottom margins/paddings are respected, but with <code>display: inline</code> they are not.</p>
+</li>
+<li>
+<p>Compared to <code>display: block</code>, the major difference is that <code>display: inline-block</code> does not add a line-break after the element, so the element can sit next to other elements.</p>
+</li>
+</ul>
+<style>
+span.a {
+  display: inline; /*the default for span*/
+  width: 100px;
+  height: 100px;
+  padding: 5px;
+  border: 1px solid blue;  
+  background-color: yellow;
+  color: black;
+}
+
+span.b {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  padding: 5px;
+  border: 1px solid blue;
+  background-color: yellow;
+  color: black;
+}
+
+span.c {
+  display: block;
+  width: 100px;
+  height: 100px;
+  padding: 5px;
+  border: 1px solid blue;
+  background-color: yellow;
+  color: black;
+}
+</style>
+
+
+<h3 id="display-inline"><a aria-hidden="true" class="anchor-heading" href="#display-inline"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>display: inline</h3>
+<div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum consequat scelerisque elit sit amet consequat. Aliquam erat volutpat. <span class="a">Aliquam</span> <span class="a">venenatis</span> gravida nisl sit amet facilisis. Nullam cursus fermentum velit sed laoreet. </div>
+<h3 id="display-inline-block"><a aria-hidden="true" class="anchor-heading" href="#display-inline-block"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>display: inline-block</h3>
+<div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum consequat scelerisque elit sit amet consequat. Aliquam erat volutpat. <span class="b">Aliquam</span> <span class="b">venenatis</span> gravida nisl sit amet facilisis. Nullam cursus fermentum velit sed laoreet. </div>
+<h3 id="display-block"><a aria-hidden="true" class="anchor-heading" href="#display-block"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>display: block</h3>
+<div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum consequat scelerisque elit sit amet consequat. Aliquam erat volutpat. <span class="c">Aliquam</span> <span class="c">venenatis</span> gravida nisl sit amet facilisis. Nullam cursus fermentum velit sed laoreet. </div>
+
+
+<h3 id="centering-elements"><a aria-hidden="true" class="anchor-heading" href="#centering-elements"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Centering Elements</h3>
+<p><strong>Center Align Element:</strong> To horizontally center a block element (like <code>&#x3C;div></code>), use <code>margin: auto;</code> <strong>Note</strong>: Center aligning has no effect if the width property is not set (or set to 100%).</p>
+<p><strong>Center Align Text:</strong> To just center the text inside an element, use text-align: center;</p>
+<p><strong>Center An Image:</strong> To center an image, set left and right margin to auto and make it into a block element:</p>
+<p><strong>Center Vertically:</strong></p>
+<ul>
+<li>Use bottom and top padding.</li>
+</ul>
+<p>-You can also use <code>line-height</code> with a value equal to the height property of the element.</p>
+<ul>
+<li>
+<p>If padding and line-height are not options, another solution is to use positioning and the transform property: <code>transform: translate(-50%, -50%);</code></p>
+</li>
+<li>
+<p>You can also use flexbox to center things. Just note that flexbox is not supported in IE10 and earlier versions:</p>
+</li>
+</ul>
+<pre class="language-css"><code class="language-css"><span class="token selector"><span class="token class">.center</span></span> <span class="token punctuation">{</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+  <span class="token property">justify-content</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+  <span class="token property">align-items</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> <span class="token number">200</span><span class="token unit">px</span><span class="token punctuation">;</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> <span class="token number">3</span><span class="token unit">px</span> solid <span class="token color">green</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="css-combinators"><a aria-hidden="true" class="anchor-heading" href="#css-combinators"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>CSS Combinators</h3>
+<h4 id="descendant-selector"><a aria-hidden="true" class="anchor-heading" href="#descendant-selector"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Descendant Selector</h4>
+<pre class="language-css"><code class="language-css"><span class="token selector">div p</span> <span class="token punctuation">{</span>
+  <span class="token property">background-color</span><span class="token punctuation">:</span> <span class="token color">yellow</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Selects all P elements inside a div.</p>
+<h4 id="child-selector-"><a aria-hidden="true" class="anchor-heading" href="#child-selector-"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Child Selector (>)</h4>
+<pre class="language-css"><code class="language-css"><span class="token selector">div <span class="token combinator">></span> p</span> <span class="token punctuation">{</span>
+  <span class="token property">background-color</span><span class="token punctuation">:</span> <span class="token color">yellow</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Selects all direct child P elements inside a div.</p>
+<h4 id="adjacent-sibling-selector-"><a aria-hidden="true" class="anchor-heading" href="#adjacent-sibling-selector-"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Adjacent Sibling Selector (+)</h4>
+<p>The adjacent sibling selector is used to select an element that is directly after another specific element.</p>
+<pre class="language-css"><code class="language-css"><span class="token selector">div <span class="token combinator">+</span> p</span> <span class="token punctuation">{</span>
+  <span class="token property">background-color</span><span class="token punctuation">:</span> <span class="token color">yellow</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Selects the first <code>&#x3C;p></code> element that are placed immediately after <code>&#x3C;div></code> elements</p>
+<h4 id="general-sibling-selector"><a aria-hidden="true" class="anchor-heading" href="#general-sibling-selector"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>General Sibling Selector</h4>
+<p>The general sibling selector selects all elements that are next siblings of a specified element.</p>
+<pre class="language-css"><code class="language-css"><span class="token selector">div <span class="token combinator">~</span> p</span> <span class="token punctuation">{</span>
+  <span class="token property">background-color</span><span class="token punctuation">:</span> <span class="token color">yellow</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Selects all <code>&#x3C;p></code> elements that are next siblings of <code>&#x3C;div></code> elements:</p>
+<h3 id="pseudo-classes"><a aria-hidden="true" class="anchor-heading" href="#pseudo-classes"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Pseudo Classes</h3>
+<p>A pseudo-class is used to define a special state of an element.</p>
+<p><strong>Note:</strong> <code>a:hover</code> MUST come after <code>a:link</code> and <code>a:visited</code> in the CSS definition in order to be effective! <code>a:active</code> MUST come after <code>a:hover</code> in the CSS definition in order to be effective!</p>
+<p>Pseudo-class names are not case-sensitive.</p>
+<p><code>:first-child</code></p>
+<p><code>:lang(es)</code> usage <code>&#x3C;q lang="es"></code></p>
+<table class="ws-table-all notranslate">
+  <tbody><tr>
+    <th style="width:20%">Selector</th>
+    <th style="width:20%">Example</th>
+    <th>Example description</th>
+  </tr>
+  <tr>
+    <td>:active</td>
+    <td>a:active</td>
+    <td>Selects the active link</td>
+  </tr>
+  <tr>
+    <td>:checked</td>
+    <td>input:checked</td>
+    <td>Selects every checked &#x3C;input> element</td>
+  </tr>
+  <tr>
+    <td>:disabled</td>
+    <td>input:disabled</td>
+    <td>Selects every disabled &#x3C;input> element</td>
+  </tr>
+  <tr>
+    <td>:empty</td>
+    <td>p:empty</td>
+    <td>Selects every &#x3C;p> element that has no children</td>
+  </tr>
+  <tr>
+    <td>:enabled</td>
+    <td>input:enabled</td>
+    <td>Selects every enabled &#x3C;input> element</td>
+  </tr>
+  <tr>
+    <td>:first-child</td>
+    <td>p:first-child</td>
+    <td>Selects every &#x3C;p> elements that is the first child of its parent</td>
+  </tr>
+  <tr>
+    <td>:first-of-type</td>
+    <td>p:first-of-type</td>
+    <td>Selects every &#x3C;p> element that is the first &#x3C;p> element of its parent</td>
+  </tr>
+  <tr>
+    <td>:focus</td>
+    <td>input:focus</td>
+    <td>Selects the &#x3C;input> element that has focus</td>
+  </tr>
+  <tr>
+    <td>:hover</td>
+    <td>a:hover</td>
+    <td>Selects links on mouse over</td>
+  </tr>
+  <tr>
+    <td>:in-range</td>
+    <td>input:in-range</td>
+    <td>Selects &#x3C;input> elements with a value within a specified range</td>
+  </tr>
+  <tr>
+    <td>:invalid</td>
+    <td>input:invalid</td>
+    <td>Selects all &#x3C;input> elements with an invalid value</td>
+  </tr>
+  <tr>
+    <td>:lang(<i>language</i>)</td>
+    <td>p:lang(it)</td>
+    <td>Selects every &#x3C;p> element with a lang attribute value starting with "it"</td>
+  </tr>
+  <tr>
+    <td>:last-child</td>
+    <td>p:last-child</td>
+    <td>Selects every &#x3C;p> elements that is the last child of its parent</td>
+  </tr>
+  <tr>
+    <td>:last-of-type</td>
+    <td>p:last-of-type</td>
+    <td>Selects every &#x3C;p> element that is the last &#x3C;p> element of its parent</td>
+  </tr>
+  <tr>
+    <td>:link</td>
+    <td>a:link</td>
+    <td>Selects all unvisited links</td>
+  </tr>
+  <tr>
+    <td>:not(selector)</td>
+    <td>:not(p)</td>
+    <td>Selects every element that is not a &#x3C;p> element</td>
+  </tr>
+  <tr>
+    <td>:nth-child(n)</td>
+    <td>p:nth-child(2)</td>
+    <td>Selects every &#x3C;p> element that is the second child of its parent</td>
+  </tr>
+  <tr>
+    <td>:nth-last-child(n)</td>
+    <td>p:nth-last-child(2)</td>
+    <td>Selects every &#x3C;p> element that is the second child of its parent, counting from the last child</td>
+  </tr>
+  <tr>
+    <td>:nth-last-of-type(n)</td>
+    <td>p:nth-last-of-type(2)</td>
+    <td>Selects every &#x3C;p> element that is the second &#x3C;p> element of its parent, counting from the last child</td>
+  </tr>
+  <tr>
+    <td>:nth-of-type(n)</td>
+    <td>p:nth-of-type(2)</td>
+    <td>Selects every &#x3C;p> element that is the second &#x3C;p> element of its parent</td>
+  </tr>
+  <tr>
+    <td>:only-of-type</td>
+    <td>p:only-of-type</td>
+    <td>Selects every &#x3C;p> element that is the only &#x3C;p> element of its parent</td>
+  </tr>
+  <tr>
+    <td>:only-child</td>
+    <td>p:only-child</td>
+    <td>Selects every &#x3C;p> element that is the only child of its parent</td>
+  </tr>
+  <tr>
+    <td>:optional</td>
+    <td>input:optional</td>
+    <td>Selects &#x3C;input> elements with no "required" attribute</td>
+  </tr>
+  <tr>
+    <td>:out-of-range</td>
+    <td>input:out-of-range</td>
+    <td>Selects &#x3C;input> elements with a value outside a specified range</td>
+  </tr>
+  <tr>
+    <td>:read-only</td>
+    <td>input:read-only</td>
+    <td>Selects &#x3C;input> elements with a "readonly" attribute specified</td>
+  </tr>
+  <tr>
+    <td>:read-write</td>
+    <td>input:read-write</td>
+    <td>Selects &#x3C;input> elements with no "readonly" attribute</td>
+  </tr>
+  <tr>
+    <td>:required</td>
+    <td>input:required</td>
+    <td>Selects &#x3C;input> elements with a "required" attribute specified</td>
+  </tr>
+  <tr>
+    <td>:root</td>
+    <td>root</td>
+    <td>Selects the document's root element</td>
+  </tr>
+  <tr>
+    <td>:target</td>
+    <td>#news:target</td>
+    <td>Selects the current active #news element (clicked on a URL containing that anchor name)</td>
+  </tr>
+  <tr>
+    <td>:valid</td>
+    <td>input:valid</td>
+    <td>Selects all &#x3C;input> elements with a valid value</td>
+  </tr>
+  <tr>
+    <td>:visited</td>
+    <td>a:visited</td>
+    <td>Selects all visited links</td>
+  </tr>
+</tbody></table>
+<h2 id="resizing-text"><a aria-hidden="true" class="anchor-heading" href="#resizing-text"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Resizing Text</h2>
+<p>You can use <code>calc()</code> to create a resizing rule that keeps a baseline size but allows you to enlarge as the viewport increases.</p>
+<pre class="language-css"><code class="language-css"><span class="token selector">body</span> <span class="token punctuation">{</span>
+  // font grows <span class="token number">1</span><span class="token unit">px</span> for every <span class="token number">100</span><span class="token unit">px</span> of viewport width
+  <span class="token property">font-size</span><span class="token punctuation">:</span> <span class="token function">calc</span><span class="token punctuation">(</span><span class="token number">16</span><span class="token unit">px</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token unit">vw</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  // leading grows along with font<span class="token punctuation">,</span>
+  // with an additional <span class="token number">0.1</span><span class="token unit">em</span> <span class="token operator">+</span> <span class="token number">0.5</span><span class="token unit">px</span> per <span class="token number">100</span><span class="token unit">px</span> of the viewport
+  <span class="token property">line-height</span><span class="token punctuation">:</span> <span class="token function">calc</span><span class="token punctuation">(</span><span class="token number">1.1</span><span class="token unit">em</span> <span class="token operator">+</span> <span class="token number">0.5</span><span class="token unit">vw</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="fluid-aspect-ratios"><a aria-hidden="true" class="anchor-heading" href="#fluid-aspect-ratios"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Fluid Aspect Ratios</h2>
+<pre class="language-css"><code class="language-css"><span class="token comment">/* full-width * aspect-ratio */</span>
+<span class="token selector"><span class="token class">.full-width</span></span> <span class="token punctuation">{</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">100</span><span class="token unit">vw</span><span class="token punctuation">;</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> <span class="token function">calc</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token unit">vw</span> <span class="token operator">*</span> <span class="token punctuation">(</span><span class="token number">9</span>/<span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="css-truncate"><a aria-hidden="true" class="anchor-heading" href="#css-truncate"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>CSS Truncate</h2>
+<p>Allows you to truncate a line of text. <a href="https://css-tricks.com/snippets/css/truncate-string-with-ellipsis/">CSS Tricks Page</a></p>
+<pre class="language-css"><code class="language-css"><span class="token selector"><span class="token class">.truncate</span></span> <span class="token punctuation">{</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">250</span><span class="token unit">px</span><span class="token punctuation">;</span>
+  <span class="token property">white-space</span><span class="token punctuation">:</span> nowrap<span class="token punctuation">;</span>
+  <span class="token property">overflow</span><span class="token punctuation">:</span> hidden<span class="token punctuation">;</span>
+  <span class="token property">text-overflow</span><span class="token punctuation">:</span> ellipsis<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="opacity"><a aria-hidden="true" class="anchor-heading" href="#opacity"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Opacity</h2>
+<p>If you dont want to apply opacity to child elements you can use RGBA colors instead of the <code>opacity</code> css property.</p>
+<hr>
+<strong>Children</strong>
+<ol>
+<li><a href="/DevNotes/notes/m0mah926hsfi22f6gzwhdpm">CSS Animations</a></li>
+<li><a href="/DevNotes/notes/5f3d0t294g02nes2iyfnpo1">CSS Only Scroll</a></li>
+<li><a href="/DevNotes/notes/qf9443fygt5ex993crv5c0w">CSS Specificity</a></li>
+<li><a href="/DevNotes/notes/4k8jx70ww4gqow8k56wlevp">CSS Variables</a></li>
+<li><a href="/DevNotes/notes/2ngvq02pnz8bswezw7lgjxc">Functions</a></li>
+<li><a href="/DevNotes/notes/gwtxdrn8mqjq8p2u9c5s8ja">Grid</a></li>
+<li><a href="/DevNotes/notes/64bcz5fld2n38w83wmee38x">Image Sprites</a></li>
+<li><a href="/DevNotes/notes/ixjdv6uobiiporkdddwteyb">Media Queries</a></li>
+<li><a href="/DevNotes/notes/w0kaeeefi9k06djba4zvkd0">Position</a></li>
+<li><a href="/DevNotes/notes/9eoq8togzd89aibjh4q94hu">Pseudo Classes</a></li>
+<li><a href="/DevNotes/notes/xvbbugpzluf1p5xzpqax7fn">Responsive Image</a></li>
+<li><a href="/DevNotes/notes/ys3tkjryq0adflws6guy7sc">Selectors</a></li>
+<li><a href="/DevNotes/notes/phnjc5yteyb5cb878n3eh10">Transform</a></li>
+</ol>

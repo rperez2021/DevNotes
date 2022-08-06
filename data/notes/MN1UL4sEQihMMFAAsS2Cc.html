@@ -1,0 +1,1098 @@
+<h1 id="html"><a aria-hidden="true" class="anchor-heading" href="#html"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>HTML</h1>
+<h2 id="general-info"><a aria-hidden="true" class="anchor-heading" href="#general-info"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>General Info</h2>
+<p>You can use a <code>start</code> attribute when using ordered (numbered) lists to start at a different interger. If you want to start your list at number 10 simply do <code>&#x3C;ol start="10"></code>
+Ex:</p>
+<pre class="language-html"><code class="language-HTML"><span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>ol</span> <span class="token attr-name">start</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>10<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>li</span><span class="token punctuation">></span></span>This should be 10
+<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>li</span><span class="token punctuation">></span></span>This should be 11
+<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>li</span><span class="token punctuation">></span></span>This should be 12
+<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>ol</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>Apparently this does not work on Dendron.</p>
+<p>On the same note <code>reversed</code> attribute flips the number order.</p>
+<p>Also <code>value</code> can change the value on an individual <code>&#x3C;li></code> and change the following list items.</p>
+<p><a href="https://learn.shayhowe.com/html-css/creating-lists/">Shay Howe's Lists Tutorial</a> has a bunch of uncommon use cases.</p>
+<h2 id="best-practices-from-this-gh-repo"><a aria-hidden="true" class="anchor-heading" href="#best-practices-from-this-gh-repo"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Best Practices from <a href="https://github.com/hail2u/html-best-practices">this GH Repo</a></h2>
+<p>For writing maintainable and scalable HTML documents</p>
+<h2 id="general"><a aria-hidden="true" class="anchor-heading" href="#general"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>General</h2>
+<h3 id="start-with-doctype"><a aria-hidden="true" class="anchor-heading" href="#start-with-doctype"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Start with DOCTYPE</h3>
+<p>DOCTYPE is required for activating no-quirks mode.</p>
+<p>Bad:</p>
+<pre class="language-html"><code class="language-html">    <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>html</span><span class="token punctuation">></span></span>
+      ...
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>html</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>Good:</p>
+<pre class="language-html"><code class="language-html">    <span class="token doctype"><span class="token punctuation">&#x3C;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>html</span><span class="token punctuation">></span></span>
+      ...
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>html</span><span class="token punctuation">></span></span>
+</code></pre>
+<h3 id="dont-use-legacy-or-obsolete-doctype"><a aria-hidden="true" class="anchor-heading" href="#dont-use-legacy-or-obsolete-doctype"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Don’t use legacy or obsolete DOCTYPE</h3>
+<p>DOCTYPE is not for DTD anymore, be simple.</p>
+<p>Bad:</p>
+<p><code>&#x3C;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"></code></p>
+<p>Good:</p>
+<p><code>&#x3C;!DOCTYPE html></code></p>
+<h3 id="dont-use-xml-declaration"><a aria-hidden="true" class="anchor-heading" href="#dont-use-xml-declaration"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Don’t use XML Declaration</h3>
+<p>Are you sure you want to write XHTML?</p>
+<p>Bad:</p>
+<p><code>&#x3C;?xml version="1.0" encoding="UTF-8" standalone="yes"?>&#x3C;!DOCTYPE html></code></p>
+<p>Good:</p>
+<p><code>&#x3C;!DOCTYPE html></code></p>
+<h3 id="dont-use-character-references-as-much-as-possible"><a aria-hidden="true" class="anchor-heading" href="#dont-use-character-references-as-much-as-possible"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Don’t use character references as much as possible</h3>
+<p>If you write an HTML document with UTF-8, almost all characters (including
+Emoji) can be written directly.</p>
+<p>Bad:</p>
+<p><code>&#x3C;p>&#x3C;small>Copyright &#x26;copy; 2014 W3C&#x3C;sup>&#x26;reg;&#x3C;/sup>&#x3C;/small>&#x3C;/p></code></p>
+<p>Good:</p>
+<p><code>&#x3C;p>&#x3C;small>Copyright © 2014 W3C&#x3C;sup>®&#x3C;/sup>&#x3C;/small>&#x3C;/p></code></p>
+<h3 id="escape-----and--with-named-character-references"><a aria-hidden="true" class="anchor-heading" href="#escape-----and--with-named-character-references"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Escape <code>&#x26;</code>, <code>&#x3C;</code>, <code>></code>, <code>"</code>, and <code>'</code> with named character references</h3>
+<p>These characters should escape always for a bug-free HTML document.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;h1>The "&#x26;" character&#x3C;/h1>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;h1>The &#x26;quot;&#x26;amp;&#x26;quot; character&#x3C;/h1>
+</code></pre>
+<h3 id="use-numeric-character-references-for-control-or-invisible-characters"><a aria-hidden="true" class="anchor-heading" href="#use-numeric-character-references-for-control-or-invisible-characters"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Use numeric character references for control or invisible characters</h3>
+<p>These characters are easily mistaken for another character. And also spec does
+not guarantee to define a human readable name for these characters.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;p>This book can read in 1 hour.&#x3C;/p>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;p>This book can read in 1&#x26;#xA0;hour.&#x3C;/p>
+</code></pre>
+<h3 id="put-white-spaces-around-comment-contents"><a aria-hidden="true" class="anchor-heading" href="#put-white-spaces-around-comment-contents"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Put white spaces around comment contents</h3>
+<p>Some character cannot be used immediately after comment open or before comment
+close.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;!--This section is non-normative-->
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;!-- This section is non-normative -->
+</code></pre>
+<h3 id="dont-omit-closing-tag"><a aria-hidden="true" class="anchor-heading" href="#dont-omit-closing-tag"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Don’t omit closing tag</h3>
+<p>I think you don’t understand a rule for omitting closing tag.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;html>
+  &#x3C;body>
+    ...
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;html>
+  &#x3C;body>
+    ...
+  &#x3C;/body>
+&#x3C;/html>
+</code></pre>
+<h3 id="dont-mix-empty-element-format"><a aria-hidden="true" class="anchor-heading" href="#dont-mix-empty-element-format"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Don’t mix empty element format</h3>
+<p>Consistency is a key for readability.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;img alt="HTML Best Practices" src="/img/logo.png">
+&#x3C;hr />
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;img alt="HTML Best Practices" src="/img/logo.png">
+&#x3C;hr>
+</code></pre>
+<h3 id="dont-put-white-spaces-around-tags-and-attribute-values"><a aria-hidden="true" class="anchor-heading" href="#dont-put-white-spaces-around-tags-and-attribute-values"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Don’t put white spaces around tags and attribute values</h3>
+<p>There is no reason for doing this.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;h1 class=" title " >HTML Best Practices&#x3C;/h1>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;h1 class="title">HTML Best Practices&#x3C;/h1>
+</code></pre>
+<h3 id="dont-mix-character-cases"><a aria-hidden="true" class="anchor-heading" href="#dont-mix-character-cases"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Don’t mix character cases</h3>
+<p>It gives a consistency also.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;a HREF="#general">General&#x3C;/A>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;a href="#general">General&#x3C;/a>
+</code></pre>
+<p>Also Good:</p>
+<pre><code>&#x3C;A HREF="#general">General&#x3C;/A>
+</code></pre>
+<h3 id="dont-mix-quotation-marks"><a aria-hidden="true" class="anchor-heading" href="#dont-mix-quotation-marks"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Don’t mix quotation marks</h3>
+<p>Same as above.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;img alt="HTML Best Practices" src='/img/logo.jpg'>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;img alt="HTML Best Practices" src="/img/logo.jpg">
+</code></pre>
+<h3 id="dont-separate-attributes-with-two-or-more-white-spaces"><a aria-hidden="true" class="anchor-heading" href="#dont-separate-attributes-with-two-or-more-white-spaces"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Don’t separate attributes with two or more white spaces</h3>
+<p>Your weird formatting rule confuses someone.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;input   name="q"  type="search">
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;input name="q" type="search">
+</code></pre>
+<h3 id="omit-boolean-attribute-value"><a aria-hidden="true" class="anchor-heading" href="#omit-boolean-attribute-value"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Omit boolean attribute value</h3>
+<p>It’s easy to write, isn’t it?</p>
+<p>Bad:</p>
+<pre><code>&#x3C;audio autoplay="autoplay" src="/audio/theme.mp3">
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;audio autoplay src="/audio/theme.mp3">
+</code></pre>
+<h3 id="omit-namespaces"><a aria-hidden="true" class="anchor-heading" href="#omit-namespaces"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Omit namespaces</h3>
+<p>SVG and MathML can be used directly in an HTML document.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;svg xmlns="http://www.w3.org/2000/svg">
+  ...
+&#x3C;/svg>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;svg>
+  ...
+&#x3C;/svg>
+</code></pre>
+<h3 id="dont-use-xml-attributes"><a aria-hidden="true" class="anchor-heading" href="#dont-use-xml-attributes"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Don’t use XML attributes</h3>
+<p>We write an HTML document.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;span lang="ja" xml:lang="ja">...&#x3C;/span>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;span lang="ja">...&#x3C;/span>
+</code></pre>
+<h3 id="dont-mix-data--microdata-and-rdfa-lite-attributes-with-common-attributes"><a aria-hidden="true" class="anchor-heading" href="#dont-mix-data--microdata-and-rdfa-lite-attributes-with-common-attributes"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Don’t mix <code>data-*</code>, Microdata, and RDFa Lite attributes with common attributes</h3>
+<p>A tag string can be very complicated. This simple rule helps reading such tag
+string.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;img alt="HTML Best Practices" data-height="31" data-width="88" itemprop="image" src="/img/logo.png">
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;img alt="HTML Best Practices" src="/img/logo.png" data-width="88" data-height="31" itemprop="image">
+</code></pre>
+<h3 id="prefer-default-implicit-aria-semantics"><a aria-hidden="true" class="anchor-heading" href="#prefer-default-implicit-aria-semantics"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Prefer default implicit ARIA semantics</h3>
+<p>Some element has an ARIA <code>role</code> implicitly in an HTML document, don’t specify it.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;nav role="navigation">
+  ...
+&#x3C;/nav>
+
+&#x3C;hr role="separator">
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;nav>
+  ...
+&#x3C;/nav>
+
+&#x3C;hr>
+</code></pre>
+<h2 id="the-root-element"><a aria-hidden="true" class="anchor-heading" href="#the-root-element"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>The root element</h2>
+<h3 id="add-lang-attribute"><a aria-hidden="true" class="anchor-heading" href="#add-lang-attribute"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Add <code>lang</code> attribute</h3>
+<p><code>lang</code> attribute will help translating an HTML document.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;html>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;html lang="en-US">
+</code></pre>
+<h3 id="keep-lang-attribute-value-as-short-as-possible"><a aria-hidden="true" class="anchor-heading" href="#keep-lang-attribute-value-as-short-as-possible"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Keep <code>lang</code> attribute value as short as possible</h3>
+<p>Japanese is only used in Japan. So country code is not necessary.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;html lang="ja-JP">
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;html lang="ja">
+</code></pre>
+<h3 id="avoid-data--as-much-as-possible"><a aria-hidden="true" class="anchor-heading" href="#avoid-data--as-much-as-possible"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Avoid <code>data-*</code> as much as possible</h3>
+<p>An appropriate attribute can be handled properly by browsers.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;span data-language="french">chemises&#x3C;/span>
+...
+&#x3C;strong data-type="warning">Do not wash!&#x3C;/strong>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;span title="French">&#x3C;span lang="fr-FR">chemises&#x3C;/span>&#x3C;/span>
+...
+&#x3C;strong class="warning">Do not wash!&#x3C;/strong>
+</code></pre>
+<h2 id="document-metadata"><a aria-hidden="true" class="anchor-heading" href="#document-metadata"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Document metadata</h2>
+<h3 id="add-title-element"><a aria-hidden="true" class="anchor-heading" href="#add-title-element"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Add <code>title</code> element</h3>
+<p>A value for <code>title</code> element is used by various application not only a browser.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;head>
+  &#x3C;meta charset="UTF-8">
+&#x3C;/head>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;head>
+  &#x3C;meta charset="UTF-8">
+  &#x3C;title>HTML Best Practices&#x3C;/title>
+&#x3C;/head>
+</code></pre>
+<h3 id="dont-use-base-element"><a aria-hidden="true" class="anchor-heading" href="#dont-use-base-element"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Don’t use <code>base</code> element</h3>
+<p>An absolute path or URL is safer for both developers and users.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;head>
+  ...
+  &#x3C;base href="/blog/">
+  &#x3C;link href="hello-world" rel="canonical">
+  ...
+&#x3C;/head>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;head>
+  ...
+  &#x3C;link href="/blog/hello-world" rel="canonical">
+  ...
+&#x3C;/head>
+</code></pre>
+<h3 id="specify-mime-type-of-minor-linked-resources"><a aria-hidden="true" class="anchor-heading" href="#specify-mime-type-of-minor-linked-resources"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Specify MIME type of minor linked resources</h3>
+<p>This is a hint how application handles this resource.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;link href="/pdf" rel="alternate">
+&#x3C;link href="/feed" rel="alternate">
+&#x3C;link href="/css/screen.css" rel="stylesheet">
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;link href="/pdf" rel="alternate" type="application/pdf">
+&#x3C;link href="/feed" rel="alternate" type="application/rss+xml">
+&#x3C;link href="/css/screen.css" rel="stylesheet">
+</code></pre>
+<h3 id="dont-link-to-faviconico"><a aria-hidden="true" class="anchor-heading" href="#dont-link-to-faviconico"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Don’t link to <code>favicon.ico</code></h3>
+<p>Almost all browsers fetch <code>/favicon.ico</code> automatically and asynchronously.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;link href="/favicon.ico" rel="icon" type="image/vnd.microsoft.icon">
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;!-- Place `favicon.ico` in the root directory. -->
+</code></pre>
+<h3 id="add-apple-touch-icon-link"><a aria-hidden="true" class="anchor-heading" href="#add-apple-touch-icon-link"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Add <code>apple-touch-icon</code> link</h3>
+<p>A default request path for touch icon was changed suddenly.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;!-- Hey Apple! Please download `/apple-touch-icon.png`! -->
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;link href="/apple-touch-icon.png" rel="apple-touch-icon">
+</code></pre>
+<h3 id="add-title-attribute-to-alternate-stylesheets"><a aria-hidden="true" class="anchor-heading" href="#add-title-attribute-to-alternate-stylesheets"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Add <code>title</code> attribute to alternate stylesheets</h3>
+<p>A human readable label helps people selecting proper stylesheet.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;link href="/css/screen.css" rel="stylesheet">
+&#x3C;link href="/css/high-contrast.css" rel="alternate stylesheet">
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;link href="/css/screen.css" rel="stylesheet">
+&#x3C;link href="/css/high-contrast.css" rel="alternate stylesheet" title="High contrast">
+</code></pre>
+<h3 id="for-url-use-link-element"><a aria-hidden="true" class="anchor-heading" href="#for-url-use-link-element"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>For URL, use <code>link</code> element</h3>
+<p>A value of <code>href</code> attribute can be resolved as URL.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;section itemscope itemtype="http://schema.org/BlogPosting">
+  &#x3C;meta content="https://example.com/blog/hello" itemprop="url">
+  ...
+&#x3C;/section>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;section itemscope itemtype="http://schema.org/BlogPosting">
+  &#x3C;link href="/blog/hello" itemprop="url">
+  ...
+&#x3C;/section>
+</code></pre>
+<h3 id="specify-document-character-encoding"><a aria-hidden="true" class="anchor-heading" href="#specify-document-character-encoding"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Specify document character encoding</h3>
+<p>UTF-8 is not default in all browsers yet.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;head>
+  &#x3C;title>HTML Best Practices&#x3C;/title>
+&#x3C;/head>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;head>
+  &#x3C;meta charset="UTF-8">
+  &#x3C;title>HTML Best Practices&#x3C;/title>
+&#x3C;/head>
+</code></pre>
+<h3 id="dont-use-legacy-character-encoding-format"><a aria-hidden="true" class="anchor-heading" href="#dont-use-legacy-character-encoding-format"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Don’t use legacy character encoding format</h3>
+<p>HTTP headers should be specified by a server, be simple.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;meta charset="UTF-8">
+</code></pre>
+<h3 id="specify-character-encoding-at-first"><a aria-hidden="true" class="anchor-heading" href="#specify-character-encoding-at-first"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Specify character encoding at first</h3>
+<p>Spec requires the character encoding is specified within the first 1024 bytes of
+the document.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;head>
+  &#x3C;meta content="width=device-width" name="viewport">
+  &#x3C;meta charset="UTF-8">
+  ...
+&#x3C;/head>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;head>
+  &#x3C;meta charset="UTF-8">
+  &#x3C;meta content="width=device-width" name="viewport">
+  ...
+&#x3C;/head>
+</code></pre>
+<h3 id="use-utf-8"><a aria-hidden="true" class="anchor-heading" href="#use-utf-8"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Use UTF-8</h3>
+<p>With UTF-8, you are free to use Emoji.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;meta charset="Shift_JIS">
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;meta charset="UTF-8">
+</code></pre>
+<h3 id="omit-type-attribute-for-css"><a aria-hidden="true" class="anchor-heading" href="#omit-type-attribute-for-css"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Omit <code>type</code> attribute for CSS</h3>
+<p>In HTML, default <code>type</code> attribute’s value of <code>style</code> element is <code>text/css</code>.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;style type="text/css">
+  ...
+&#x3C;/style>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;style>
+  ...
+&#x3C;/style>
+</code></pre>
+<h3 id="dont-comment-out-contents-of-style-element"><a aria-hidden="true" class="anchor-heading" href="#dont-comment-out-contents-of-style-element"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Don’t comment out contents of <code>style</code> element</h3>
+<p>This ritual is for the old browser.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;style>
+&#x3C;!--
+  ...
+  -->
+&#x3C;/style>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;style>
+  ...
+&#x3C;/style>
+</code></pre>
+<h3 id="dont-mix-tag-for-css-and-javascript"><a aria-hidden="true" class="anchor-heading" href="#dont-mix-tag-for-css-and-javascript"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Don’t mix tag for CSS and JavaScript</h3>
+<p>Sometimes <code>script</code> element blocks DOM construction.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;script src="/js/jquery.min.js">&#x3C;/script>
+&#x3C;link href="/css/screen.css" rel="stylesheet">
+&#x3C;script src="/js/main.js">&#x3C;/script>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;link href="/css/screen.css" rel="stylesheet">
+&#x3C;script src="/js/jquery.min.js">&#x3C;/script>
+&#x3C;script src="/js/main.js">&#x3C;/script>
+</code></pre>
+<p>Also good:</p>
+<pre><code>&#x3C;script src="/js/jquery.min.js">&#x3C;/script>
+&#x3C;script src="/js/main.js">&#x3C;/script>
+&#x3C;link href="/css/screen.css" rel="stylesheet">
+</code></pre>
+<h2 id="sections"><a aria-hidden="true" class="anchor-heading" href="#sections"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Sections</h2>
+<h3 id="add-body-element"><a aria-hidden="true" class="anchor-heading" href="#add-body-element"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Add <code>body</code> element</h3>
+<p>Sometimes <code>body</code> element is complemented in unexpected position by a browser.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;html>
+  &#x3C;head>
+    ...
+  &#x3C;/head>
+  ...
+&#x3C;/html>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;html>
+  &#x3C;head>
+    ...
+  &#x3C;/head>
+  &#x3C;body>
+    ...
+  &#x3C;/body>
+&#x3C;/html>
+</code></pre>
+<h3 id="forget-about-hgroup-element"><a aria-hidden="true" class="anchor-heading" href="#forget-about-hgroup-element"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Forget about <code>hgroup</code> element</h3>
+<p>This element is not used very much.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;hgroup>
+  &#x3C;h1>HTML Best Practices&#x3C;/h1>
+  &#x3C;h2>For writing maintainable and scalable HTML documents.&#x3C;/h2>
+&#x3C;/hgroup>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;h1>HTML Best Practices&#x3C;/h1>
+&#x3C;p>For writing maintainable and scalable HTML documents.&#x3C;/p>
+</code></pre>
+<h3 id="use-address-element-only-for-contact-information"><a aria-hidden="true" class="anchor-heading" href="#use-address-element-only-for-contact-information"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Use <code>address</code> element only for contact information</h3>
+<p><code>address</code> element is for email address, social network account, street address,
+telephone number, or something you can get in touch with.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;address>No rights reserved.&#x3C;/address>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;address>Contact: &#x3C;a href="https://twitter.com/hail2u_">Kyo Nagashima&#x3C;/a>&#x3C;/address>
+</code></pre>
+<h2 id="grouping-content"><a aria-hidden="true" class="anchor-heading" href="#grouping-content"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Grouping content</h2>
+<h3 id="dont-start-with-newline-in-pre-element"><a aria-hidden="true" class="anchor-heading" href="#dont-start-with-newline-in-pre-element"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Don’t start with newline in <code>pre</code> element</h3>
+<p>A first newline will ignored in the browsers, but second and later are rendered.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;pre>
+&#x26;lt;!DOCTYPE html&#x26;gt;
+&#x3C;/pre>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;pre>&#x26;lt;!DOCTYPE html&#x26;gt;
+&#x3C;/pre>
+</code></pre>
+<h3 id="use-appropriate-element-in-blockquote-element"><a aria-hidden="true" class="anchor-heading" href="#use-appropriate-element-in-blockquote-element"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Use appropriate element in <code>blockquote</code> element</h3>
+<p><code>blockquote</code> element’s content is a quote, not a chunks of characters.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;blockquote>For writing maintainable and scalable HTML documents.&#x3C;/blockquote>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;blockquote>
+  &#x3C;p>For writing maintainable and scalable HTML documents.&#x3C;/p>
+&#x3C;/blockquote>
+</code></pre>
+<h3 id="dont-include-attribution-directly-in-blockquote-element"><a aria-hidden="true" class="anchor-heading" href="#dont-include-attribution-directly-in-blockquote-element"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Don’t include attribution directly in <code>blockquote</code> element</h3>
+<p><code>blockquote</code> element’s content is a quote.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;blockquote>
+  &#x3C;p>For writing maintainable and scalable HTML documents.&#x3C;/p>
+
+  &#x3C;p>— HTML Best Practices&#x3C;/p>
+&#x3C;/blockquote>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;blockquote>
+  &#x3C;p>For writing maintainable and scalable HTML documents.&#x3C;/p>
+&#x3C;/blockquote>
+
+&#x3C;p>— HTML Best Practices&#x3C;/p>
+</code></pre>
+<p>Also good:</p>
+<pre><code>&#x3C;figure>
+  &#x3C;blockquote>
+    &#x3C;p>For writing maintainable and scalable HTML documents.&#x3C;/p>
+  &#x3C;/blockquote>
+
+  &#x3C;figcaption>— HTML Best Practices&#x3C;/figcaption>
+&#x3C;/figure>
+</code></pre>
+<h3 id="write-one-list-item-per-line"><a aria-hidden="true" class="anchor-heading" href="#write-one-list-item-per-line"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Write one list item per line</h3>
+<p>Looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong
+line is hard toooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo read.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;ul>
+  &#x3C;li>General&#x3C;/li>&#x3C;li>The root Element&#x3C;/li>&#x3C;li>Sections&#x3C;/li>...
+&#x3C;/ul>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;ul>
+  &#x3C;li>General&#x3C;/li>
+  &#x3C;li>The root Element&#x3C;/li>
+  &#x3C;li>Sections&#x3C;/li>
+  ...
+&#x3C;/ul>
+</code></pre>
+<h3 id="use-type-attribute-for-ol-element"><a aria-hidden="true" class="anchor-heading" href="#use-type-attribute-for-ol-element"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Use <code>type</code> attribute for <code>ol</code> element</h3>
+<p>Sometimes marker referenced by the contents in the near. If you change marker
+with <code>type</code> attribute, you will be safe to reference.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;head>
+  &#x3C;style>
+    .toc {
+      list-style-type: upper-roman;
+    }
+  &#x3C;/style>
+&#x3C;/head>
+&#x3C;body>
+  &#x3C;ol class="toc">
+    &#x3C;li>General&#x3C;/li>
+    &#x3C;li>The root Element&#x3C;/li>
+    &#x3C;li>Sections&#x3C;/li>
+    ...
+  &#x3C;/ol>
+&#x3C;/body>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;body>
+  &#x3C;ol type="I">
+    &#x3C;li>General&#x3C;/li>
+    &#x3C;li>The root Element&#x3C;/li>
+    &#x3C;li>Sections&#x3C;/li>
+    ...
+  &#x3C;/ol>
+&#x3C;/body>
+</code></pre>
+<h3 id="dont-use-dl-for-dialogue"><a aria-hidden="true" class="anchor-heading" href="#dont-use-dl-for-dialogue"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Don’t use <code>dl</code> for dialogue</h3>
+<p><code>dl</code> element is restricted to an association list in HTML.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;dl>
+  &#x3C;dt>Costello&#x3C;/dt>
+  &#x3C;dd>Look, you gotta first baseman?&#x3C;/dd>
+  &#x3C;dt>Abbott&#x3C;/dt>
+  &#x3C;dd>Certainly.&#x3C;/dd>
+  &#x3C;dt>Costello&#x3C;/dt>
+  &#x3C;dd>Who’s playing first?&#x3C;/dd>
+  &#x3C;dt>Abbott&#x3C;/dt>
+  &#x3C;dd>That’s right.&#x3C;/dd>
+  &#x3C;dt>Costello becomes exasperated.&#x3C;/dd>
+  &#x3C;dt>Costello&#x3C;/dt>
+  &#x3C;dd>When you pay off the first baseman every month, who gets the money?&#x3C;/dd>
+  &#x3C;dt>Abbott&#x3C;/dt>
+  &#x3C;dd>Every dollar of it.&#x3C;/dd>
+&#x3C;/dl>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;p>Costello: Look, you gotta first baseman?&#x3C;/p>
+&#x3C;p>Abbott: Certainly.&#x3C;/p>
+&#x3C;p>Costello: Who’s playing first?&#x3C;/p>
+&#x3C;p>Abbott: That’s right.&#x3C;/p>
+&#x3C;p>Costello becomes exasperated.&#x3C;/p>
+&#x3C;p>Costello: When you pay off the first baseman every month, who gets the money?&#x3C;/p>
+&#x3C;p>Abbott: Every dollar of it.&#x3C;/p>
+</code></pre>
+<h3 id="place-figcaption-element-as-first-or-last-child-of-figure-element"><a aria-hidden="true" class="anchor-heading" href="#place-figcaption-element-as-first-or-last-child-of-figure-element"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Place <code>figcaption</code> element as first or last child of <code>figure</code> element</h3>
+<p>Spec disallows <code>figcaption</code> element in the middle of <code>figure</code> element.</p>
+<p>Bad:</p>
+<pre class="language-html"><code class="language-html">    <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>figure</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>img</span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Front cover of the “HTML Best Practices” book<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/img/front-cover.png<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>figcaption</span><span class="token punctuation">></span></span>“HTML Best Practices” Cover Art<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>figcaption</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>img</span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Back cover of the “HTML Best Practices” book<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/img/back-cover.png<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>figure</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>Good:</p>
+<pre class="language-html"><code class="language-html">    <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>figure</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>img</span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Front cover of the “HTML Best Practices” book<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/img/front-cover.png<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>img</span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Back cover of the “HTML Best Practices” book<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/img/back-cover.png<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>figcaption</span><span class="token punctuation">></span></span>“HTML Best Practices” Cover Art<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>figcaption</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>figure</span><span class="token punctuation">></span></span>
+</code></pre>
+<h3 id="use-main-element"><a aria-hidden="true" class="anchor-heading" href="#use-main-element"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Use <code>main</code> element</h3>
+<p><code>main</code> element can be used wrapping contents.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;div id="content">
+  ...
+&#x3C;/div>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;main>
+  ...
+&#x3C;/main>
+</code></pre>
+<h3 id="avoid-div-element-as-much-as-possible"><a aria-hidden="true" class="anchor-heading" href="#avoid-div-element-as-much-as-possible"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Avoid <code>div</code> element as much as possible</h3>
+<p><code>div</code> element is an element of last resort.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;div class="chapter">
+  ...
+&#x3C;/div>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;section>
+  ...
+&#x3C;/section>
+</code></pre>
+<h2 id="text-level-semantics"><a aria-hidden="true" class="anchor-heading" href="#text-level-semantics"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Text-level semantics</h2>
+<h3 id="dont-split-same-link-that-can-be-grouped"><a aria-hidden="true" class="anchor-heading" href="#dont-split-same-link-that-can-be-grouped"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Don’t split same link that can be grouped</h3>
+<p><code>a</code> element can wrap almost all elements (except interactive elements like form
+controls and <code>a</code> element itself).</p>
+<p>Bad:</p>
+<pre><code>&#x3C;h1>&#x3C;a href="https://whatwg.org/">WHATWG&#x3C;/a>&#x3C;/h1>
+
+&#x3C;p>&#x3C;a href="https://whatwg.org/">A community maintaining and evolving HTML since 2004.&#x3C;/a>&#x3C;/p>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;a href="https://whatwg.org/">
+  &#x3C;h1>WHATWG&#x3C;/h1>
+
+  &#x3C;p>A community maintaining and evolving HTML since 2004.&#x3C;/p>
+&#x3C;/a>
+</code></pre>
+<h3 id="use-download-attribute-for-downloading-a-resource"><a aria-hidden="true" class="anchor-heading" href="#use-download-attribute-for-downloading-a-resource"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Use <code>download</code> attribute for downloading a resource</h3>
+<p>It will force browsers to download linked resource to the storage.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;a href="/downloads/offline.zip">offline version&#x3C;/a>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;a download href="/downloads/offline.zip">offline version&#x3C;/a>
+</code></pre>
+<h3 id="use-rel-hreflang-and-type-attribute-if-needed"><a aria-hidden="true" class="anchor-heading" href="#use-rel-hreflang-and-type-attribute-if-needed"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Use <code>rel</code>, <code>hreflang</code>, and <code>type</code> attribute if needed</h3>
+<p>These hints helps applications how handle linked resource.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;a href="/ja/pdf">Japanese PDF version&#x3C;/a>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;a href="/ja/pdf" hreflang="ja" rel="alternate" type="application/pdf">Japanese PDF version&#x3C;/a>
+</code></pre>
+<h3 id="clear-link-text"><a aria-hidden="true" class="anchor-heading" href="#clear-link-text"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Clear link text</h3>
+<p>Link text should be the label of its linked resource.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;p>&#x3C;a href="/pdf" rel="alternate" type="application/pdf">Click here&#x3C;/a> to view PDF version.&#x3C;/p>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;p>&#x3C;a href="/pdf" rel="alternate" type="application/pdf">PDF version&#x3C;/a> is also available.&#x3C;/p>
+</code></pre>
+<h3 id="dont-use-em-element-for-warning-or-caution"><a aria-hidden="true" class="anchor-heading" href="#dont-use-em-element-for-warning-or-caution"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Don’t use <code>em</code> element for warning or caution</h3>
+<p>These are seriousness. So, <code>strong</code> element is more appropriate.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;em>Caution!&#x3C;/em>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;strong>Caution!&#x3C;/strong>
+</code></pre>
+<h3 id="avoid-s-i-b-and-u-element-as-much-as-possible"><a aria-hidden="true" class="anchor-heading" href="#avoid-s-i-b-and-u-element-as-much-as-possible"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Avoid <code>s</code>, <code>i</code>, <code>b</code>, and <code>u</code> element as much as possible</h3>
+<p>These elements’ semantics is too difficult to humans.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;i class="icon-search">&#x3C;/i>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;span class="icon-search" aria-hidden="true">&#x3C;/span>
+</code></pre>
+<h3 id="dont-put-quotes-to-q-element"><a aria-hidden="true" class="anchor-heading" href="#dont-put-quotes-to-q-element"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Don’t put quotes to <code>q</code> element</h3>
+<p>Quotes are provided by the browser.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;q>“For writing maintainable and scalable HTML documents”&#x3C;/q>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;q>For writing maintainable and scalable HTML documents&#x3C;/q>
+</code></pre>
+<p>Also good:</p>
+<pre><code>“For writing maintainable and scalable HTML documents”
+</code></pre>
+<h3 id="add-title-attribute-to-abbr-element"><a aria-hidden="true" class="anchor-heading" href="#add-title-attribute-to-abbr-element"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Add <code>title</code> attribute to <code>abbr</code> element</h3>
+<p>There is no other way to represent its expansion.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;abbr>HBP&#x3C;/abbr>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;abbr title="HTML Best Practices">HBP&#x3C;/abbr>
+</code></pre>
+<h3 id="markup-ruby-element-verbosely"><a aria-hidden="true" class="anchor-heading" href="#markup-ruby-element-verbosely"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Markup <code>ruby</code> element verbosely</h3>
+<p><code>ruby</code> element support is not completed across the modern browsers.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;ruby>HTML&#x3C;rt>えいちてぃーえむえる&#x3C;/ruby>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;ruby>HTML&#x3C;rp> (&#x3C;/rp>&#x3C;rt>えいちてぃーえむえる&#x3C;/rt>&#x3C;rp>) &#x3C;/rp>&#x3C;/ruby>
+</code></pre>
+<h3 id="add-datetime-attribute-to-non-machine-readable-time-element"><a aria-hidden="true" class="anchor-heading" href="#add-datetime-attribute-to-non-machine-readable-time-element"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Add <code>datetime</code> attribute to non-machine-readable <code>time</code> element</h3>
+<p>When <code>datetime</code> attribute does not present, the format of <code>time</code> element’s
+content is restricted.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;time>Dec 19, 2014&#x3C;/time>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;time datetime="2014-12-19">Dec 19, 2014&#x3C;/time>
+</code></pre>
+<h3 id="specify-code-language-with-class-attribute-prefixed-with-language-"><a aria-hidden="true" class="anchor-heading" href="#specify-code-language-with-class-attribute-prefixed-with-language-"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Specify code language with <code>class</code> attribute prefixed with <code>language-</code></h3>
+<p>This is not a formal way, but spec mentions this.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;code>&#x26;lt;!DOCTYPE html&#x26;gt;&#x3C;/code>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;code class="language-html">&#x26;lt;!DOCTYPE html&#x26;gt;&#x3C;/code>
+</code></pre>
+<h3 id="keep-kbd-element-as-simple-as-possible"><a aria-hidden="true" class="anchor-heading" href="#keep-kbd-element-as-simple-as-possible"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Keep <code>kbd</code> element as simple as possible</h3>
+<p>Nesting <code>kbd</code> element is too difficult to humans.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;kbd>&#x3C;kbd>Ctrl&#x3C;/kbd>+&#x3C;kbd>F5&#x3C;/kbd>&#x3C;/kbd>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;kbd>Ctrl+F5&#x3C;/kbd>
+</code></pre>
+<h3 id="avoid-span-element-as-much-as-possible"><a aria-hidden="true" class="anchor-heading" href="#avoid-span-element-as-much-as-possible"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Avoid <code>span</code> element as much as possible</h3>
+<p><code>span</code> element is an element of last resort.</p>
+<p>Bad:</p>
+<pre><code>HTML &#x3C;span class="best">Best&#x3C;/span> Practices
+</code></pre>
+<p>Good:</p>
+<pre><code>HTML &#x3C;em>Best&#x3C;/em> Practices
+</code></pre>
+<h3 id="break-after-br-element"><a aria-hidden="true" class="anchor-heading" href="#break-after-br-element"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Break after <code>br</code> element</h3>
+<p>Line break should be needed where <code>br</code> element is used.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;p>HTML&#x3C;br>Best&#x3C;br>Practices&#x3C;/p>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;p>HTML&#x3C;br>
+Best&#x3C;br>
+Practices&#x3C;/p>
+</code></pre>
+<h3 id="dont-use-br-element-only-for-presentational-purpose"><a aria-hidden="true" class="anchor-heading" href="#dont-use-br-element-only-for-presentational-purpose"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Don’t use <code>br</code> element only for presentational purpose</h3>
+<p><code>br</code> element is not for line breaking, it is for line breaks in the contents.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;p>&#x3C;label>Rule name: &#x3C;input name="rule-name" type="text">&#x3C;/label>&#x3C;br>
+&#x3C;label>Rule description:&#x3C;br>
+&#x3C;textarea name="rule-description">&#x3C;/textarea>&#x3C;/label>&#x3C;/p>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;p>&#x3C;label>Rule name: &#x3C;input name="rule-name" type="text">&#x3C;/label>&#x3C;/p>
+&#x3C;p>&#x3C;label>Rule description:&#x3C;br>
+&#x3C;textarea name="rule-description">&#x3C;/textarea>&#x3C;/label>&#x3C;/p>
+</code></pre>
+<h2 id="edits"><a aria-hidden="true" class="anchor-heading" href="#edits"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Edits</h2>
+<h3 id="dont-stride-ins-and-del-element-over-other-elements"><a aria-hidden="true" class="anchor-heading" href="#dont-stride-ins-and-del-element-over-other-elements"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Don’t stride <code>ins</code> and <code>del</code> element over other elements</h3>
+<p>Elements cannot be overflow other elements.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;p>For writing maintainable and scalable HTML documents.&#x3C;del> And for mental stability.&#x3C;/p>
+
+&#x3C;p>Don’t trust!&#x3C;/p>&#x3C;/del>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;p>For writing maintainable and scalable HTML documents.&#x3C;del> And for mental stability.&#x3C;/del>&#x3C;/p>
+
+&#x3C;del>&#x3C;p>Don’t trust!&#x3C;/p>&#x3C;/del>
+</code></pre>
+<h2 id="embedded-content"><a aria-hidden="true" class="anchor-heading" href="#embedded-content"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Embedded content</h2>
+<h3 id="provide-fallback-img-element-for-picture-element"><a aria-hidden="true" class="anchor-heading" href="#provide-fallback-img-element-for-picture-element"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Provide fallback <code>img</code> element for <code>picture</code> element</h3>
+<p>The support of <code>picture</code> element is not good yet.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;picture>
+  &#x3C;source srcset="/img/logo.webp" type="image/webp">
+  &#x3C;source srcset="/img/logo.hdp" type="image/vnd.ms-photo">
+  &#x3C;source srcset="/img/logo.jp2" type="image/jp2">
+  &#x3C;source srcset="/img/logo.jpg" type="image/jpg">
+&#x3C;/picture>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;picture>
+  &#x3C;source srcset="/img/logo.webp" type="image/webp">
+  &#x3C;source srcset="/img/logo.hdp" type="image/vnd.ms-photo">
+  &#x3C;source srcset="/img/logo.jp2" type="image/jp2">
+  &#x3C;img src="/img/logo.jpg">
+&#x3C;/picture>
+</code></pre>
+<h3 id="add-alt-attrbute-to-img-element-if-needed"><a aria-hidden="true" class="anchor-heading" href="#add-alt-attrbute-to-img-element-if-needed"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Add <code>alt</code> attrbute to <code>img</code> element if needed</h3>
+<p><code>alt</code> attribute helps those who cannot process images or have image loading
+disabled.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;img src="/img/logo.png">
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;img alt="HTML Best Practices" src="/img/logo.png">
+</code></pre>
+<h3 id="empty-alt-attribute-if-possible"><a aria-hidden="true" class="anchor-heading" href="#empty-alt-attribute-if-possible"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Empty <code>alt</code> attribute if possible</h3>
+<p>If the image is supplemental, there is equivalent content somewhere in the near.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;img alt="Question mark icon" src="/img/icon/help.png"> Help
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;img alt="" src="/img/icon/help.png"> Help
+</code></pre>
+<h3 id="omit-alt-attribute-if-possible"><a aria-hidden="true" class="anchor-heading" href="#omit-alt-attribute-if-possible"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Omit <code>alt</code> attribute if possible</h3>
+<p>Sometimes you don’t know what text is suitable for <code>alt</code> attribute.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;img alt="CAPTCHA" src="captcha.cgi?id=82174">
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;img src="captcha.cgi?id=82174" title="CAPTCHA">
+(If you cannot see the image, you can use an &#x3C;a href="?audio">audio&#x3C;/a> test instead.)
+</code></pre>
+<h3 id="empty-iframe-element"><a aria-hidden="true" class="anchor-heading" href="#empty-iframe-element"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Empty <code>iframe</code> element</h3>
+<p>There is some restriction in its content. Being empty is always safe.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;iframe src="/ads/default.html">
+  &#x3C;p>If your browser support inline frame, ads are displayed here.&#x3C;/p>
+&#x3C;/iframe>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;iframe src="/ads/default.html">&#x3C;/iframe>
+</code></pre>
+<h3 id="markup-map-element-content"><a aria-hidden="true" class="anchor-heading" href="#markup-map-element-content"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Markup <code>map</code> element content</h3>
+<p>This content presents to a screen reader.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;map name="toc">
+  &#x3C;a href="#general">General&#x3C;/a>
+  &#x3C;area alt="General" coords="0, 0, 40, 40" href="#General"> |
+  &#x3C;a href="#the_root_element">The root element&#x3C;/a>
+  &#x3C;area alt="The root element" coords="50, 0, 90, 40" href="#the_root_element"> |
+  &#x3C;a href="#sections">Sections&#x3C;/a>
+  &#x3C;area alt="Sections" coords="100, 0, 140, 40" href="#sections">
+&#x3C;/map>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;map name="toc">
+  &#x3C;p>
+    &#x3C;a href="#general">General&#x3C;/a>
+    &#x3C;area alt="General" coords="0, 0, 40, 40" href="#General"> |
+    &#x3C;a href="#the_root_element">The root element&#x3C;/a>
+    &#x3C;area alt="The root element" coords="50, 0, 90, 40" href="#the_root_element"> |
+    &#x3C;a href="#sections">Sections&#x3C;/a>
+    &#x3C;area alt="Sections" coords="100, 0, 140, 40" href="#sections">
+  &#x3C;/p>
+&#x3C;/map>
+</code></pre>
+<h3 id="provide-fallback-content-for-audio-or-video-element"><a aria-hidden="true" class="anchor-heading" href="#provide-fallback-content-for-audio-or-video-element"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Provide fallback content for <code>audio</code> or <code>video</code> element</h3>
+<p>Fallback content is needed for newly introduced elements in HTML.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;video>
+  &#x3C;source src="/mov/theme.mp4" type="video/mp4">
+  &#x3C;source src="/mov/theme.ogv" type="video/ogg">
+  ...
+&#x3C;/video>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;video>
+  &#x3C;source src="/mov/theme.mp4" type="video/mp4">
+  &#x3C;source src="/mov/theme.ogv" type="video/ogg">
+  ...
+  &#x3C;iframe src="//www.youtube.com/embed/..." allowfullscreen>&#x3C;/iframe>
+&#x3C;/video>
+</code></pre>
+<h2 id="tabular-data"><a aria-hidden="true" class="anchor-heading" href="#tabular-data"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Tabular data</h2>
+<h3 id="write-one-cell-per-line"><a aria-hidden="true" class="anchor-heading" href="#write-one-cell-per-line"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Write one cell per line</h3>
+<p>Long lines are hard to scan.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;tr>
+  &#x3C;td>General&#x3C;/td>&#x3C;td>The root Element&#x3C;/td>&#x3C;td>Sections&#x3C;/td>
+&#x3C;/tr>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;tr>
+  &#x3C;td>General&#x3C;/td>
+  &#x3C;td>The root Element&#x3C;/td>
+  &#x3C;td>Sections&#x3C;/td>
+&#x3C;/tr>
+</code></pre>
+<h3 id="use-th-element-for-header-cell"><a aria-hidden="true" class="anchor-heading" href="#use-th-element-for-header-cell"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Use <code>th</code> element for header cell</h3>
+<p>There is no reason to avoid this.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;table>
+  &#x3C;thead>
+    &#x3C;tr>
+      &#x3C;td>&#x3C;strong>Element&#x3C;/strong>&#x3C;/td>
+      &#x3C;td>&#x3C;strong>Empty&#x3C;/strong>&#x3C;/td>
+      &#x3C;td>&#x3C;strong>Tag omission&#x3C;/strong>&#x3C;/td>
+    &#x3C;/tr>
+  &#x3C;/thead>
+  &#x3C;tbody>
+    &#x3C;tr>
+      &#x3C;td>&#x3C;strong>&#x3C;code>pre&#x3C;/code>&#x3C;/strong>&#x3C;/td>
+      &#x3C;td>No&#x3C;/td>
+      &#x3C;td>Neither tag is omissible&#x3C;/td>
+    &#x3C;/tr>
+    &#x3C;tr>
+      &#x3C;td>&#x3C;strong>&#x3C;code>img&#x3C;/code>&#x3C;/strong>&#x3C;/td>
+      &#x3C;td>Yes&#x3C;/td>
+      &#x3C;td>No end tag&#x3C;/td>
+    &#x3C;/tr>
+  &#x3C;/tbody>
+&#x3C;/table>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;table>
+  &#x3C;thead>
+    &#x3C;tr>
+      &#x3C;th>Element&#x3C;/th>
+      &#x3C;th>Empty&#x3C;/th>
+      &#x3C;th>Tag omission&#x3C;/th>
+    &#x3C;/tr>
+  &#x3C;/thead>
+  &#x3C;tbody>
+    &#x3C;tr>
+      &#x3C;th>&#x3C;code>pre&#x3C;/code>&#x3C;/th>
+      &#x3C;td>No&#x3C;/td>
+      &#x3C;td>Neither tag is omissible&#x3C;/td>
+    &#x3C;/tr>
+    &#x3C;tr>
+      &#x3C;th>&#x3C;code>img&#x3C;/code>&#x3C;/th>
+      &#x3C;td>Yes&#x3C;/td>
+      &#x3C;td>No end tag&#x3C;/td>
+    &#x3C;/tr>
+  &#x3C;/tbody>
+&#x3C;/table>
+</code></pre>
+<h2 id="forms"><a aria-hidden="true" class="anchor-heading" href="#forms"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Forms</h2>
+<h3 id="wrap-form-control-with-label-element"><a aria-hidden="true" class="anchor-heading" href="#wrap-form-control-with-label-element"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Wrap form control with <code>label</code> element</h3>
+<p><code>label</code> element helps focusing form element.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;p>Query: &#x3C;input name="q" type="text">&#x3C;/p>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;p>&#x3C;label>Query: &#x3C;input name="q" type="text">&#x3C;/label>&#x3C;/p>
+</code></pre>
+<h3 id="omit-for-attribute-if-possible"><a aria-hidden="true" class="anchor-heading" href="#omit-for-attribute-if-possible"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Omit <code>for</code> attribute if possible</h3>
+<p><code>label</code> element can contain some form elements.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;label for="q">Query: &#x3C;/label>&#x3C;input id="q" name="q" type="text">
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;label>Query: &#x3C;input name="q" type="text">&#x3C;/label>
+</code></pre>
+<h3 id="use-appropriate-type-attribute-for-input-element"><a aria-hidden="true" class="anchor-heading" href="#use-appropriate-type-attribute-for-input-element"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Use appropriate <code>type</code> attribute for <code>input</code> element</h3>
+<p>With appropriate <code>type</code>, a browser gives tiny features to the <code>input</code> element.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;label>Search keyword: &#x3C;input name="q" type="text">&#x3C;/label>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;label>Search keyword: &#x3C;input name="q" type="search">&#x3C;/label>
+</code></pre>
+<h3 id="add-value-attribute-to-input-typesubmit"><a aria-hidden="true" class="anchor-heading" href="#add-value-attribute-to-input-typesubmit"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Add <code>value</code> attribute to <code>input type="submit"</code></h3>
+<p>The default label for submit button is not standarized across the browser and
+languages.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;input type="submit">
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;input type="submit" value="Search">
+</code></pre>
+<h3 id="add-title-attribute-to-input-element-when-there-is-pattern-attribute"><a aria-hidden="true" class="anchor-heading" href="#add-title-attribute-to-input-element-when-there-is-pattern-attribute"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Add <code>title</code> attribute to <code>input</code> element when there is <code>pattern</code> attribute</h3>
+<p>If input text does not match to <code>pattern</code> attribute, the value of <code>title</code>
+attribute will be display as a hint.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;input name="security-code" pattern="[0-9]{3}" type="text">
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;input name="security-code" pattern="[0-9]{3}" title="A security code is a number in three figures." type="text">
+</code></pre>
+<h3 id="dont-use-placeholder-attribute-for-labeling"><a aria-hidden="true" class="anchor-heading" href="#dont-use-placeholder-attribute-for-labeling"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Don’t use <code>placeholder</code> attribute for labeling</h3>
+<p><code>label</code> element is for a label, <code>placeholder</code> attribute is for a short hint.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;input name="email" placeholder="Email" type="text">
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;label>Email: &#x3C;input name="email" placeholder="john.doe@example.com" type="text">&#x3C;/label>
+</code></pre>
+<h3 id="write-one-option-element-per-line"><a aria-hidden="true" class="anchor-heading" href="#write-one-option-element-per-line"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Write one <code>option</code> element per line</h3>
+<p>Long lines are hard to scan.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;datalist id="toc">
+  &#x3C;option label="General">&#x3C;option label="The root element">&#x3C;option label="Sections">
+&#x3C;/datalist>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;datalist id="toc">
+  &#x3C;option label="General">
+  &#x3C;option label="The root element">
+  &#x3C;option label="Sections">
+&#x3C;/datalist>
+</code></pre>
+<h3 id="add-max-attribute-to-progress-element"><a aria-hidden="true" class="anchor-heading" href="#add-max-attribute-to-progress-element"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Add <code>max</code> attribute to <code>progress</code> element</h3>
+<p>With <code>max</code> attribute, the <code>value</code> attribute can be write in an easy format.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;progress value="0.5"> 50%&#x3C;/progress>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;progress max="100" value="50"> 50%&#x3C;/progress>
+</code></pre>
+<h3 id="add-min-and-max-attribute-to-meter-element"><a aria-hidden="true" class="anchor-heading" href="#add-min-and-max-attribute-to-meter-element"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Add <code>min</code> and <code>max</code> attribute to <code>meter</code> element</h3>
+<p>With <code>min</code> and <code>max</code> attribute, the <code>value</code> attribute can be write in an easy
+format.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;meter value="0.5"> 512GB used (1024GB total)&#x3C;/meter>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;meter min="0" max="1024" value="512"> 512GB used (1024GB total)&#x3C;/meter>
+</code></pre>
+<h3 id="place-legend-element-as-the-first-child-of-fieldset-element"><a aria-hidden="true" class="anchor-heading" href="#place-legend-element-as-the-first-child-of-fieldset-element"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Place <code>legend</code> element as the first child of <code>fieldset</code> element</h3>
+<p>Spec requires this.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;fieldset>
+  &#x3C;p>&#x3C;label>Is this section is useful?: &#x3C;input name="usefulness-general" type="checkbox">&#x3C;/label>&#x3C;/p>
+  ...
+  &#x3C;legend>About "General"&#x3C;/legend>
+&#x3C;/fieldset>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;fieldset>
+  &#x3C;legend>About "General"&#x3C;/legend>
+  &#x3C;p>&#x3C;label>Is this section is useful?: &#x3C;input name="usefulness-general" type="checkbox">&#x3C;/label>&#x3C;/p>
+  ...
+&#x3C;/fieldset>
+</code></pre>
+<h2 id="scripting"><a aria-hidden="true" class="anchor-heading" href="#scripting"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Scripting</h2>
+<h3 id="omit-type-attribute-for-javascript"><a aria-hidden="true" class="anchor-heading" href="#omit-type-attribute-for-javascript"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Omit <code>type</code> attribute for JavaScript</h3>
+<p>In HTML, the default <code>type</code> attribute’s value of <code>script</code> element is
+<code>text/javascript</code>.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;script type="text/javascript">
+  ...
+&#x3C;/script>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;script>
+  ...
+&#x3C;/script>
+</code></pre>
+<h3 id="dont-comment-out-contents-of-script-element"><a aria-hidden="true" class="anchor-heading" href="#dont-comment-out-contents-of-script-element"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Don’t comment out contents of <code>script</code> element</h3>
+<p>This ritual is for the old browser.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;script>
+/*&#x3C;![CDATA[*/
+  ...
+/*]]>*/
+&#x3C;/script>
+</code></pre>
+<p>Also bad:</p>
+<pre><code>&#x3C;script>
+&#x3C;!--
+  ...
+// -->
+&#x3C;/script>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;script>
+  ...
+&#x3C;/script>
+</code></pre>
+<h3 id="dont-use-script-injected-script-element"><a aria-hidden="true" class="anchor-heading" href="#dont-use-script-injected-script-element"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Don’t use script-injected <code>script</code> element</h3>
+<p><code>async</code> attribute is the best for both simplicity and performance.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;script>
+  var script = document.createElement("script");
+  script.async = true;
+  script.src = "//example.com/widget.js";
+  document.getElementsByTagName("head")[0].appendChild(script);
+&#x3C;/script>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;script async defer src="https://example.com/widget.js">&#x3C;/script>
+</code></pre>
+<h2 id="other"><a aria-hidden="true" class="anchor-heading" href="#other"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Other</h2>
+<h3 id="indent-consistently"><a aria-hidden="true" class="anchor-heading" href="#indent-consistently"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Indent consistently</h3>
+<p>Indentation is important for readability.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;html>
+ &#x3C;head>
+   ...
+ &#x3C;/head>
+  &#x3C;body>
+    ...
+  &#x3C;/body>
+&#x3C;/html>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;html>
+  &#x3C;head>
+    ...
+  &#x3C;/head>
+  &#x3C;body>
+    ...
+  &#x3C;/body>
+&#x3C;/html>
+</code></pre>
+<h3 id="use-absolute-path-for-internal-links"><a aria-hidden="true" class="anchor-heading" href="#use-absolute-path-for-internal-links"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Use absolute path for internal links</h3>
+<p>An absolute path works better on your localhost without internet connection.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;link rel="apple-touch-icon" href="http://you.example.com/apple-touch-icon-precomposed.png">
+...
+&#x3C;p>You can find more at &#x3C;a href="//you.example.com/contact.html">contact page&#x3C;/a>.&#x3C;/p>
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;link rel="apple-touch-icon" href="/apple-touch-icon-precomposed.png">
+...
+&#x3C;p>You can find more at &#x3C;a href="/contact.html">contact page&#x3C;/a>.&#x3C;/p>
+</code></pre>
+<h3 id="dont-use-protocol-relative-url-for-external-resources"><a aria-hidden="true" class="anchor-heading" href="#dont-use-protocol-relative-url-for-external-resources"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Don’t use protocol-relative URL for external resources</h3>
+<p>With protocol, you can load external resources reliably and safely.</p>
+<p>Bad:</p>
+<pre><code>&#x3C;script src="//example.com/js/library.js">
+</code></pre>
+<p>Good:</p>
+<pre><code>&#x3C;script src="https://example.com/js/library.js">
+</code></pre>
+<hr>
+<strong>Children</strong>
+<ol>
+<li><a href="/DevNotes/notes/smi7awfud2kinnlso6h5od4">Forms</a></li>
+<li><a href="/DevNotes/notes/ez65ti16kh01spcbqobew11">HTML Landmarks</a></li>
+<li><a href="/DevNotes/notes/8cffv6nowx4916vljpcx5qd">Table</a></li>
+<li><a href="/DevNotes/notes/ll5n9d60i06dx7z44dmf71n">Viewport Meta Tag</a></li>
+</ol>

@@ -1,0 +1,17 @@
+<h1 id="type-conversion"><a aria-hidden="true" class="anchor-heading" href="#type-conversion"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Type Conversion</h1>
+<h2 id="general-info"><a aria-hidden="true" class="anchor-heading" href="#general-info"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>General Info</h2>
+<p><a href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/types/casting-and-type-conversions">Microsoft Docs Reference</a></p>
+<h3 id="implicit-conversions"><a aria-hidden="true" class="anchor-heading" href="#implicit-conversions"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Implicit Conversions</h3>
+<p>When no special syntax is required because the conversion always succeeds. For example conversions from a small integral type (ex <code>int</code>) to a larger one (ex <code>long</code>)</p>
+<h3 id="casting-explicit-conversions"><a aria-hidden="true" class="anchor-heading" href="#casting-explicit-conversions"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Casting (Explicit Conversions)</h3>
+<p>Casting is required when information might be lost in the conversion, or when the conversion might not succeed for other reasons. Typical examples include numeric conversion to a type that has less precision or a smaller range, and conversion of a base-class instance to a derived class.</p>
+<pre class="language-csharp"><code class="language-csharp"><span class="token class-name"><span class="token keyword">double</span></span> myDouble <span class="token operator">=</span> <span class="token number">13.37</span><span class="token punctuation">;</span>
+<span class="token class-name"><span class="token keyword">int</span></span> myInt<span class="token punctuation">;</span>
+
+<span class="token comment">//cast double to int</span>
+myInt <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span>myDouble<span class="token punctuation">;</span>
+</code></pre>
+<h3 id="user-defined-conversions"><a aria-hidden="true" class="anchor-heading" href="#user-defined-conversions"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>User-Defined Conversions</h3>
+<p>User-defined conversions are performed by special methods that you can define to enable explicit and implicit conversions between custom types that do not have a base class–derived class relationship.</p>
+<h3 id="conversions-with-helper-classes"><a aria-hidden="true" class="anchor-heading" href="#conversions-with-helper-classes"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Conversions with Helper Classes</h3>
+<p>Such as using <code>.ToBoolean()</code> or <code>.ToString()</code> or <code>.ToChar()</code></p>

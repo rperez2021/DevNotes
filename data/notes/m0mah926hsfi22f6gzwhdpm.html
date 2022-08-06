@@ -1,0 +1,90 @@
+<h1 id="css-animations"><a aria-hidden="true" class="anchor-heading" href="#css-animations"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>CSS Animations</h1>
+<h2 id="general-info"><a aria-hidden="true" class="anchor-heading" href="#general-info"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>General Info</h2>
+<p>Animations let you animate elements from one style configuration to another.</p>
+<p>Animations consist of two components, a style describing the CSS animation and a set of keyframes that indicate the start and end states of the animation's style, as well as possible intermediate waypoints.</p>
+<p>They are similar to transitions but differ in the following ways:</p>
+<ul>
+<li>
+<p>Transitions were designed to animate an element from one state to another. They can loop, but they weren’t designed for that. Animations, on the other hand, were designed with the purpose of explicitly enabling loops.</p>
+</li>
+<li>
+<p>Transitions need a trigger, such as the use of pseudo-classes like :hover or :focus, or by adding/removing a class via JavaScript. Animations, on the other hand, do not need such a trigger. Once you have your elements in place and CSS defined, an animation will start running immediately if that’s what you told it to do.</p>
+</li>
+<li>
+<p>Transitions are not as flexible as using animations. When you define a transition, imagine you are sending that element on a journey in a straight line from point A to point B. Yes, the transition-timing-function can add some variation to the timing of this change, but it doesn’t compare to the amount of flexibility added by using animations.</p>
+</li>
+</ul>
+<h2 id="animation-properties"><a aria-hidden="true" class="anchor-heading" href="#animation-properties"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Animation Properties</h2>
+<p>The main animation property is <code>animation</code> and it can be used as a shorthand for:</p>
+<p><code>animation-name, animation-duration, animation-timing-function, animation-delay, animation-iteration-count, animation-direction, animation-fill-mode, and animation-play-state</code></p>
+<h3 id="animation-name"><a aria-hidden="true" class="anchor-heading" href="#animation-name"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Animation Name</h3>
+<p>Specifies the name of the <code>@keyframes</code> rule but this can be chosen by the user it is not a keyword</p>
+<p><code>animation-name: change-color;</code></p>
+<h3 id="animation-duration"><a aria-hidden="true" class="anchor-heading" href="#animation-duration"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Animation Duration</h3>
+<p>Configures the length of time that an animation should take to complete one cycle.</p>
+<p><code>animation-duration: 2s;</code></p>
+<h3 id="animation-timing-function"><a aria-hidden="true" class="anchor-heading" href="#animation-timing-function"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Animation Timing Function</h3>
+<p>Configures the timing of the animation; that is, how the animation transitions through keyframes, by establishing acceleration curves.</p>
+<p><code>animation-timing-function: ease-in;</code></p>
+<p>or</p>
+<p><code>animation-timing-function: steps(6, start);</code></p>
+<p>or</p>
+<p><code>animation-timing-function: cubic-bezier(0.1, 0.7, 1.0, 0.1);</code></p>
+<h3 id="animation-delay"><a aria-hidden="true" class="anchor-heading" href="#animation-delay"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Animation Delay</h3>
+<p>Configures the delay between the time the element is loaded and the beginning of the animation sequence.</p>
+<p><code>animation-delay: 2s;</code></p>
+<h3 id="animation-iteration-count"><a aria-hidden="true" class="anchor-heading" href="#animation-iteration-count"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Animation Iteration Count</h3>
+<p>Configures the number of times the animation should repeat; you can specify infinite to repeat the animation indefinitely.</p>
+<p><code>animation-iteration-count: infinite;</code></p>
+<p>or</p>
+<p><code>animation-iteration-count: 3;</code></p>
+<h3 id="animation-direction"><a aria-hidden="true" class="anchor-heading" href="#animation-direction"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Animation Direction</h3>
+<p>Sets whether an animation should play forward, backward, or alternate back and forth between playing the sequence forward and backward.</p>
+<p><code>animation-direction: normal;</code></p>
+<p><code>animation-direction: reverse;</code></p>
+<h3 id="animation-fill-mode"><a aria-hidden="true" class="anchor-heading" href="#animation-fill-mode"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Animation Fill Mode</h3>
+<p>Configures what values are applied by the animation before and after it is executing.</p>
+<p><code>animation-fill-mode: forwards;</code></p>
+<h3 id="animation-play-state"><a aria-hidden="true" class="anchor-heading" href="#animation-play-state"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Animation Play State</h3>
+<p>Lets you pause and resume the animation sequence.</p>
+<p><code>animation-play-state: running;</code></p>
+<p>or</p>
+<p><code>animation-play-state: paused;</code></p>
+<h2 id="keyframes"><a aria-hidden="true" class="anchor-heading" href="#keyframes"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Keyframes</h2>
+<p>This is done by establishing two or more keyframes using the <code>@keyframes</code> at-rule. Each keyframe describes how the animated element should render at a given time during the animation sequence.</p>
+<p>Since the timing of the animation is defined in the CSS style that configures the animation, keyframes use a <code>&#x3C;percentage></code>to indicate the time during the animation sequence at which they take place. 0% indicates the first moment of the animation sequence, while 100% indicates the final state of the animation. Because these two times are so important, they have special aliases: from and to. Both are optional. If from/0% or to/100% is not specified, the browser starts or finishes the animation using the computed values of all attributes.</p>
+<h2 id="color-changing-circle-example"><a aria-hidden="true" class="anchor-heading" href="#color-changing-circle-example"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Color Changing Circle Example</h2>
+<pre class="language-css"><code class="language-css"><span class="token selector"><span class="token class">.container</span></span> <span class="token punctuation">{</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> <span class="token number">100</span><span class="token unit">vh</span><span class="token punctuation">;</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">100</span><span class="token unit">vw</span><span class="token punctuation">;</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+  <span class="token property">justify-content</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+  <span class="token property">align-items</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector"><span class="token id">#ball</span></span> <span class="token punctuation">{</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">100</span><span class="token unit">px</span><span class="token punctuation">;</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> <span class="token number">100</span><span class="token unit">px</span><span class="token punctuation">;</span>
+  <span class="token property">background-color</span><span class="token punctuation">:</span> <span class="token color">red</span><span class="token punctuation">;</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token unit">px</span> solid <span class="token color">black</span><span class="token punctuation">;</span>
+  <span class="token property">border-radius</span><span class="token punctuation">:</span> <span class="token number">50</span><span class="token unit">%</span><span class="token punctuation">;</span>
+  <span class="token property">animation-duration</span><span class="token punctuation">:</span> <span class="token number">2</span><span class="token unit">s</span><span class="token punctuation">;</span>
+  <span class="token property">animation-name</span><span class="token punctuation">:</span> change-color<span class="token punctuation">;</span>
+  <span class="token property">animation-iteration-count</span><span class="token punctuation">:</span> infinite<span class="token punctuation">;</span>
+  <span class="token property">animation-direction</span><span class="token punctuation">:</span> alternate<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token atrule"><span class="token rule">@keyframes</span> change-color</span> <span class="token punctuation">{</span>
+  <span class="token selector">from</span> <span class="token punctuation">{</span>
+    <span class="token property">background-color</span><span class="token punctuation">:</span> <span class="token color">red</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token selector">to</span> <span class="token punctuation">{</span>
+    <span class="token property">background-color</span><span class="token punctuation">:</span> <span class="token color">green</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>container<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>ball<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>div</span><span class="token punctuation">></span></span>
+</code></pre>

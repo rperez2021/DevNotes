@@ -1,0 +1,37 @@
+<h1 id="es2018"><a aria-hidden="true" class="anchor-heading" href="#es2018"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>ES2018</h1>
+<h2 id="list-of-new-features"><a aria-hidden="true" class="anchor-heading" href="#list-of-new-features"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>List of New Features</h2>
+<ul>
+<li>Rest/Spread Properties</li>
+<li>Asynchronous iteration</li>
+<li><code>Promise.prototype.finally()</code></li>
+<li>Regular Expression improvements
+<ul>
+<li>RegExp lookbehind assertions: match a string depending on what precedes it</li>
+<li>Unicode property escapes <code>\p{…}</code> and <code>\P{…}</code></li>
+<li>Named capturing groups</li>
+<li>The <code>s</code> flag for regular expressions</li>
+</ul>
+</li>
+</ul>
+<h3 id="restspread-properties"><a aria-hidden="true" class="anchor-heading" href="#restspread-properties"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Rest/Spread Properties</h3>
+<p>ES6 introduced the concept of a rest element when working with array destructuring:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> numbers <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span>
+<span class="token punctuation">[</span>first<span class="token punctuation">,</span> second<span class="token punctuation">,</span> <span class="token spread operator">...</span>others<span class="token punctuation">]</span> <span class="token operator">=</span> numbers
+and spread elements<span class="token operator">:</span>
+
+<span class="token keyword">const</span> numbers <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span>
+<span class="token keyword">const</span> <span class="token function-variable function">sum</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c<span class="token punctuation">,</span> d<span class="token punctuation">,</span> e</span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> a <span class="token operator">+</span> b <span class="token operator">+</span> c <span class="token operator">+</span> d <span class="token operator">+</span> e
+<span class="token keyword">const</span> sumOfNumbers <span class="token operator">=</span> <span class="token function">sum</span><span class="token punctuation">(</span><span class="token spread operator">...</span>numbers<span class="token punctuation">)</span>
+</code></pre>
+<p>ES2018 introduces the same but for objects.</p>
+<p>Rest properties:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> <span class="token punctuation">{</span> first<span class="token punctuation">,</span> second<span class="token punctuation">,</span> <span class="token spread operator">...</span>others <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token literal-property property">first</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token literal-property property">second</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token literal-property property">third</span><span class="token operator">:</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token literal-property property">fourth</span><span class="token operator">:</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token literal-property property">fifth</span><span class="token operator">:</span> <span class="token number">5</span> <span class="token punctuation">}</span>
+
+first <span class="token comment">// 1</span>
+second <span class="token comment">// 2</span>
+others <span class="token comment">// { third: 3, fourth: 4, fifth: 5 }</span>
+</code></pre>
+<p>Spread properties allow to create a new object by combining the properties of the object passed after the spread operator:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> items <span class="token operator">=</span> <span class="token punctuation">{</span> first<span class="token punctuation">,</span> second<span class="token punctuation">,</span> <span class="token spread operator">...</span>others <span class="token punctuation">}</span>
+items <span class="token comment">//{ first: 1, second: 2, third: 3, fourth: 4, fifth: 5 }</span>
+</code></pre>

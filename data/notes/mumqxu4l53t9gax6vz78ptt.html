@@ -1,0 +1,222 @@
+<h1 id="cors"><a aria-hidden="true" class="anchor-heading" href="#cors"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>CORS</h1>
+<h2 id="general-info"><a aria-hidden="true" class="anchor-heading" href="#general-info"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>General Info</h2>
+<p>Cross Origin Resource Sharing is a mechanism that allows restricted resources on a web page to be requested from another domain outside the domain from which the first resource was served.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token function">fetch</span><span class="token punctuation">(</span><span class="token string">'url.url.com/api'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  <span class="token literal-property property">mode</span><span class="token operator">:</span> <span class="token string">'cors'</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Simply adding the <code>{mode: 'cors'}</code> after the URL, as shown above, will solve our problems for now. In the future, however, you may want to look further into the implications of this restriction.</p>
+<h2 id="from-javascriptinfo"><a aria-hidden="true" class="anchor-heading" href="#from-javascriptinfo"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>From Javascript.info</h2>
+<p>Cross-origin requests – those sent to another domain (even a subdomain) or protocol or port – require special headers from the remote side.</p>
+<h3 id="safe-requests"><a aria-hidden="true" class="anchor-heading" href="#safe-requests"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Safe requests</h3>
+<p>There are two types of cross-origin requests:</p>
+<ol>
+<li>Safe requests.</li>
+<li>All the others.</li>
+</ol>
+<p>Safe Requests are simpler to make, so let’s start with them.</p>
+<p>A request is safe if it satisfies two conditions:</p>
+<ol>
+<li>Safe method: GET, POST or HEAD</li>
+<li>Safe headers – the only allowed custom headers are:
+<ul>
+<li><code>Accept</code>,</li>
+<li><code>Accept-Language</code>,</li>
+<li><code>Content-Language</code>,</li>
+<li><code>Content-Type</code> with the value:
+<ul>
+<li><code>application/x-www-form-urlencoded</code> OR</li>
+<li><code>multipart/form-data</code> OR</li>
+<li><code>text/plain</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p>Any other request is considered “unsafe”. For instance, a request with <code>PUT</code> method or with an API-Key HTTP-header does not fit the limitations.</p>
+<p><strong>The essential difference is that a safe request can be made with a <code>&#x3C;form></code> or a <code>&#x3C;script></code>, without any special methods.</strong></p>
+<p>So, even a very old server should be ready to accept a safe request.</p>
+<p>Contrary to that, requests with non-standard headers or e.g. method DELETE can’t be created this way. For a long time JavaScript was unable to do such requests. So an old server may assume that such requests come from a privileged source, “because a webpage is unable to send them”.</p>
+<p>When we try to make a unsafe request, the browser sends a special “preflight” request that asks the server – does it agree to accept such cross-origin requests, or not?</p>
+<p>And, unless the server explicitly confirms that with headers, an unsafe request is not sent.</p>
+<h4 id="cors-for-safe-requests"><a aria-hidden="true" class="anchor-heading" href="#cors-for-safe-requests"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>CORS for safe requests</h4>
+<p>If a request is cross-origin, the browser always adds the Origin header to it.</p>
+<pre class="language-header"><code class="language-header">GET /request
+Host: anywhere.com
+Origin: https://javascript.info
+</code></pre>
+<p>As you can see, the <code>Origin</code> header contains exactly the origin (domain/protocol/port), without a path.</p>
+<p>The server can inspect the <code>Origin</code> and, if it agrees to accept such a request, add a special header <code>Access-Control-Allow-Origin</code> to the response. That header should contain the allowed origin (in our case <code>https://javascript.info</code>), or a star <code>*</code>. Then the response is successful, otherwise it’s an error.</p>
+<p>The browser plays the role of a trusted mediator here:</p>
+<ol>
+<li>It ensures that the correct <code>Origin</code> is sent with a cross-origin request.</li>
+<li>It checks for permitting <code>Access-Control-Allow-Origin</code> in the response, if it exists, then JavaScript is allowed to access the response, otherwise it fails with an error.</li>
+</ol>
+<p><img src="/DevNotes/assets/cors1.png" alt="CORS Image 1"></p>
+<p>Here’s an example of a permissive server response:</p>
+<pre class="language-header"><code class="language-header">200 OK
+Content-Type:text/html; charset=UTF-8
+Access-Control-Allow-Origin: https://javascript.info
+</code></pre>
+<h4 id="response-headers"><a aria-hidden="true" class="anchor-heading" href="#response-headers"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Response headers</h4>
+<p>For cross-origin request, by default JavaScript may only access so-called “safe” response headers:</p>
+<ul>
+<li><code>Cache-Control</code></li>
+<li><code>Content-Language</code></li>
+<li><code>Content-Type</code></li>
+<li><code>Expires</code></li>
+<li><code>Last-Modified</code></li>
+<li><code>Pragma</code></li>
+</ul>
+<p>Accessing any other response header causes an error.</p>
+<p><strong>There’s no Content-Length header in the list!</strong></p>
+<p>This header contains the full response length. So, if we’re downloading something and would like to track the percentage of progress, then an additional permission is required to access that header (see below).</p>
+<p>To grant JavaScript access to any other response header, the server must send the Access-Control-Expose-Headers header. It contains a comma-separated list of unsafe header names that should be made accessible.</p>
+<p>For example:</p>
+<pre class="language-header"><code class="language-header">200 OK
+Content-Type:text/html; charset=UTF-8
+Content-Length: 12345
+API-Key: 2c9de507f2c54aa1
+Access-Control-Allow-Origin: https://javascript.info
+Access-Control-Expose-Headers: Content-Length,API-Key
+</code></pre>
+<p>With such an Access-Control-Expose-Headers header, the script is allowed to read the Content-Length and API-Key headers of the response.</p>
+<h3 id="unsafe-requests"><a aria-hidden="true" class="anchor-heading" href="#unsafe-requests"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>"Unsafe" Requests</h3>
+<p>We can use any HTTP-method: not just <code>GET/POST</code>, but also <code>PATCH</code>, <code>DELETE</code> and others.</p>
+<p>Some time ago no one could even imagine that a webpage could make such requests. So there may still exist webservices that treat a non-standard method as a signal: “That’s not a browser”. They can take it into account when checking access rights.</p>
+<p>So, to avoid misunderstandings, any “unsafe” request – that couldn’t be done in the old times, the browser does not make such requests right away. First, it sends a preliminary, so-called “preflight” request, to ask for permission.</p>
+<p>A preflight request uses the method <code>OPTIONS</code>, no body and three headers:</p>
+<ul>
+<li><code>Access-Control-Request-Method</code> header has the method of the unsafe request.</li>
+<li><code>Access-Control-Request-Headers</code> header provides a comma-separated list of its unsafe HTTP-headers.</li>
+<li><code>Origin</code> header tells from where the request came. (such as <a href="https://javascript.info"></a>)</li>
+</ul>
+<p>If the server agrees to serve the requests, then it should respond with empty body, status 200 and headers:</p>
+<ul>
+<li><code>Access-Control-Allow-Origin</code> must be either <code>*</code> or the requesting origin, such as <a href="https://javascript.info"></a>, to allow it.</li>
+<li><code>Access-Control-Allow-Methods</code> must have the allowed method.</li>
+<li><code>Access-Control-Allow-Headers</code> must have a list of allowed headers.</li>
+<li>Additionally, the header Access-Control-Max-Age may specify a number of seconds to cache the permissions. So the browser won’t have to send a preflight for subsequent requests that satisfy given permissions.</li>
+</ul>
+<p><img src="/DevNotes/assets/cors2.png" alt="CORS Image 1"></p>
+<p>Let’s see how it works step-by-step on the example of a cross-origin PATCH request (this method is often used to update data):</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">let</span> response <span class="token operator">=</span> <span class="token keyword control-flow">await</span> <span class="token function">fetch</span><span class="token punctuation">(</span><span class="token string">'https://site.com/service.json'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  <span class="token literal-property property">method</span><span class="token operator">:</span> <span class="token string">'PATCH'</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">headers</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token string-property property">'Content-Type'</span><span class="token operator">:</span> <span class="token string">'application/json'</span><span class="token punctuation">,</span>
+    <span class="token string-property property">'API-Key'</span><span class="token operator">:</span> <span class="token string">'secret'</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>There are three reasons why the request is unsafe (one is enough):</p>
+<ul>
+<li>Method <code>PATCH</code></li>
+<li><code>Content-Type</code> is not one of: <code>application/x-www-form-urlencoded</code>, <code>multipart/form-data</code>, <code>text/plain</code>.</li>
+<li>“Unsafe” <code>API-Key</code> header.</li>
+</ul>
+<h4 id="step-1-preflight-request"><a aria-hidden="true" class="anchor-heading" href="#step-1-preflight-request"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Step 1 (preflight request)</h4>
+<p>Prior to sending such a request, the browser, on its own, sends a preflight request that looks like this:</p>
+<pre class="language-header"><code class="language-header">OPTIONS /service.json
+Host: site.com
+Origin: https://javascript.info
+Access-Control-Request-Method: PATCH
+Access-Control-Request-Headers: Content-Type,API-Key
+</code></pre>
+<ul>
+<li>Method: <code>OPTIONS</code>.</li>
+<li>The path – exactly the same as the main request: <code>/service.json</code>.</li>
+<li>Cross-origin special headers:
+<ul>
+<li><code>Origin</code> – the source origin.</li>
+<li><code>Access-Control-Request-Method</code> – requested method.</li>
+<li><code>A</code>ccess-Control-Request-Headers` – a comma-separated list of “unsafe” headers.</li>
+</ul>
+</li>
+</ul>
+<h4 id="step-2-preflight-response"><a aria-hidden="true" class="anchor-heading" href="#step-2-preflight-response"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Step 2 (preflight response)</h4>
+<p>The server should respond with status 200 and the headers:</p>
+<ul>
+<li><code>Access-Control-Allow-Origin: https://javascript.info</code></li>
+<li><code>Access-Control-Allow-Methods: PATCH</code></li>
+<li><code>Access-Control-Allow-Headers: Content-Type,API-Key</code>.</li>
+</ul>
+<p>That allows future communication, otherwise an error is triggered.</p>
+<p>If the server expects other methods and headers in the future, it makes sense to allow them in advance by adding them to the list.</p>
+<p>For example, this response also allows <code>PUT</code>, <code>DELETE</code> and additional headers:</p>
+<pre class="language-header"><code class="language-header">200 OK
+Access-Control-Allow-Origin: https://javascript.info
+Access-Control-Allow-Methods: PUT,PATCH,DELETE
+Access-Control-Allow-Headers: API-Key,Content-Type,If-Modified-Since,Cache-Control
+Access-Control-Max-Age: 86400
+</code></pre>
+<p>Now the browser can see that <code>PATCH</code> is in <code>Access-Control-Allow-Methods</code> and <code>Content-Type,API-Key</code> are in the list <code>Access-Control-Allow-Headers</code>, so it sends out the main request.</p>
+<p>If there’s the header <code>Access-Control-Max-Age</code> with a number of seconds, then the preflight permissions are cached for the given time. The response above will be cached for 86400 seconds (one day). Within this timeframe, subsequent requests will not cause a preflight. Assuming that they fit the cached allowances, they will be sent directly.</p>
+<h4 id="step-3-actual-request"><a aria-hidden="true" class="anchor-heading" href="#step-3-actual-request"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Step 3 (actual request)</h4>
+<p>When the preflight is successful, the browser now makes the main request. The process here is the same as for safe requests.</p>
+<p>The main request has the <code>Origin</code> header (because it’s cross-origin):</p>
+<pre class="language-header"><code class="language-header">PATCH /service.json
+Host: site.com
+Content-Type: application/json
+API-Key: secret
+Origin: https://javascript.info
+</code></pre>
+<h4 id="step-4-actual-response"><a aria-hidden="true" class="anchor-heading" href="#step-4-actual-response"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Step 4 (actual response)</h4>
+<p>The server should not forget to add Access-Control-Allow-Origin to the main response. A successful preflight does not relieve from that:</p>
+<pre class="language-header"><code class="language-header">Access-Control-Allow-Origin: https://javascript.info
+</code></pre>
+<p>Then JavaScript is able to read the main server response.</p>
+<p><strong>Please note:</strong></p>
+<p>Preflight request occurs “behind the scenes”, it’s invisible to JavaScript.</p>
+<p>JavaScript only gets the response to the main request or an error if there’s no server permission.</p>
+<h3 id="credentials"><a aria-hidden="true" class="anchor-heading" href="#credentials"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Credentials</h3>
+<p>A cross-origin request initiated by JavaScript code by default does not bring any credentials (cookies or HTTP authentication).</p>
+<p>That’s uncommon for HTTP-requests. Usually, a request to <a href="http://site.com">http://site.com</a> is accompanied by all cookies from that domain. Cross-origin requests made by JavaScript methods on the other hand are an exception.</p>
+<p>For example, <code>fetch('http://another.com')</code> does not send any cookies, even those (!) that belong to <code>another.com</code> domain.</p>
+<p>Why?</p>
+<p>That’s because a request with credentials is much more powerful than without them. If allowed, it grants JavaScript the full power to act on behalf of the user and access sensitive information using their credentials.</p>
+<p>Does the server really trust the script that much? Then it must explicitly allow requests with credentials with an additional header.</p>
+<p>To send credentials in fetch, we need to add the option credentials: "include", like this:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token function">fetch</span><span class="token punctuation">(</span><span class="token string">'http://another.com'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  <span class="token literal-property property">credentials</span><span class="token operator">:</span> <span class="token string">"include"</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Now fetch sends cookies originating from <code>another.com</code> with request to that site.</p>
+<p>If the server agrees to accept the request with credentials, it should add a header <code>Access-Control-Allow-Credentials: true</code> to the response, in addition to <code>Access-Control-Allow-Origin</code>.</p>
+<p>For example:</p>
+<pre class="language-header"><code class="language-header">200 OK
+Access-Control-Allow-Origin: https://javascript.info
+Access-Control-Allow-Credentials: true
+</code></pre>
+<p>Please note: <code>Access-Control-Allow-Origin</code> is prohibited from using a star <code>*</code> for requests with credentials. Like shown above, it must provide the exact origin there. That’s an additional safety measure, to ensure that the server really knows who it trusts to make such requests.</p>
+<h4 id="why-do-we-need-origin"><a aria-hidden="true" class="anchor-heading" href="#why-do-we-need-origin"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Why do we need Origin?</h4>
+<p>As you probably know, there’s HTTP-header Referer, that usually contains an url of the page which initiated a network request.</p>
+<p>For instance, when fetching <a href="http://google.com"></a> from <a href="http://javascript.info/some/url"></a>, the headers look like this:</p>
+<pre class="language-header"><code class="language-header">Accept: */*
+Accept-Charset: utf-8
+Accept-Encoding: gzip,deflate,sdch
+Connection: keep-alive
+Host: google.com
+Origin: http://javascript.info
+Referer: http://javascript.info/some/url
+</code></pre>
+<p>As you can see, both <code>Referer</code> and <code>Origin</code> are present.</p>
+<p>The questions:</p>
+<p>Why <code>Origin</code> is needed, if <code>Referer</code> has even more information?
+Is it possible that there’s no <code>Referer</code> or <code>Origin</code>, or is it incorrect?</p>
+<ol>
+<li>
+<p>We need <code>Origin</code>, because sometimes <code>Referer</code> is absent. For instance, when we fetch HTTP-page from <code>HTTPS</code> (access less secure from more secure), then there’s no <code>Referer</code>.</p>
+</li>
+<li>
+<p>The <a href="/DevNotes/notes/ipudv5n4dfw03m4lfl92zhi">Content Security Policy (CSP)</a> may forbid sending a Referer.</p>
+</li>
+<li>
+<p>As we’ll see, fetch has options that prevent sending the Referer and even allow to change it (within the same site).</p>
+</li>
+<li>
+<p>By specification, <code>Referer</code> is an optional HTTP-header.</p>
+</li>
+<li>
+<p>Exactly because <code>Referer</code> is unreliable, <code>Origin</code> was invented. The browser guarantees correct <code>Origin</code> for cross-origin requests.</p>
+</li>
+</ol>

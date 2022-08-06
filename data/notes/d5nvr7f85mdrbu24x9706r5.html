@@ -1,0 +1,41 @@
+<h1 id="scraping"><a aria-hidden="true" class="anchor-heading" href="#scraping"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Scraping</h1>
+<h2 id="general-info"><a aria-hidden="true" class="anchor-heading" href="#general-info"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>General Info</h2>
+<h2 id="command-line-automation"><a aria-hidden="true" class="anchor-heading" href="#command-line-automation"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Command Line Automation</h2>
+<pre class="language-python"><code class="language-python"><span class="token comment">#! python3</span>
+<span class="token comment"># mapIt.py - Launches a map in the browser using an address from the</span>
+<span class="token comment"># command line or clipboard.</span>
+
+<span class="token keyword">import</span> webbrowser<span class="token punctuation">,</span> sys<span class="token punctuation">,</span> pyperclip
+<span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>sys<span class="token punctuation">.</span>argv<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">1</span><span class="token punctuation">:</span>
+    <span class="token comment"># Get address from command line.</span>
+    address <span class="token operator">=</span> <span class="token string">' '</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>sys<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">else</span><span class="token punctuation">:</span>
+    <span class="token comment"># Get address from clipboard.</span>
+    address <span class="token operator">=</span> pyperclip<span class="token punctuation">.</span>paste<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+webbrowser<span class="token punctuation">.</span><span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">'https://www.google.com/maps/place/'</span> <span class="token operator">+</span> address<span class="token punctuation">)</span>
+</code></pre>
+<h2 id="beautiful-soup"><a aria-hidden="true" class="anchor-heading" href="#beautiful-soup"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Beautiful Soup</h2>
+<p>An html parsing module</p>
+<p>Example usage:</p>
+<pre class="language-python"><code class="language-python"><span class="token keyword">import</span> bs4<span class="token punctuation">,</span> requests
+
+<span class="token keyword">def</span> <span class="token function">getAmazonPrice</span><span class="token punctuation">(</span>productURL<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    res <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>productURL<span class="token punctuation">)</span>
+    res<span class="token punctuation">.</span>raise_for_status<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    soup <span class="token operator">=</span> bs4<span class="token punctuation">.</span>BeautifulSoup<span class="token punctuation">(</span>res<span class="token punctuation">.</span>text<span class="token punctuation">,</span> <span class="token string">'html.parser'</span><span class="token punctuation">)</span>
+    elems <span class="token operator">=</span> soup<span class="token punctuation">.</span>select<span class="token punctuation">(</span><span class="token string">'#css-selector > path > goes > here'</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> elems<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>text<span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<h2 id="selenium"><a aria-hidden="true" class="anchor-heading" href="#selenium"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Selenium</h2>
+<pre class="language-python"><code class="language-python"><span class="token keyword">from</span> selenium <span class="token keyword">import</span> webdriver
+browser <span class="token operator">=</span> webdriver<span class="token punctuation">.</span>Firefox<span class="token punctuation">(</span><span class="token punctuation">)</span>
+browser<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'https://automatetheboringstuff.com'</span><span class="token punctuation">)</span>
+elem <span class="token operator">=</span> browser<span class="token punctuation">.</span>find_element_by_css_selector<span class="token punctuation">(</span><span class="token string">'#css-selector > path > goes > here'</span><span class="token punctuation">)</span>
+elem<span class="token punctuation">.</span>click<span class="token punctuation">(</span><span class="token punctuation">)</span>
+elems <span class="token operator">=</span> browser<span class="token punctuation">.</span>find_elements_by_css_selector<span class="token punctuation">(</span><span class="token string">'p'</span><span class="token punctuation">)</span>
+</code></pre>
+<p><code>.send_keys('type whatever u want here')</code> method is for writing in fields</p>
+<p><code>.submit()</code> - automatically submits the active form field</p>
+<p><code>.back()</code> , <code>.forward()</code> , <code>.reload()</code> - basic browser functions</p>

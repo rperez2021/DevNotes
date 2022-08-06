@@ -1,0 +1,13 @@
+<h1 id="debugging"><a aria-hidden="true" class="anchor-heading" href="#debugging"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Debugging</h1>
+<h2 id="using-the-logging-module"><a aria-hidden="true" class="anchor-heading" href="#using-the-logging-module"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Using the Logging Module</h2>
+<pre class="language-python"><code class="language-python"><span class="token keyword">import</span> logging
+logging<span class="token punctuation">.</span>basicConfig<span class="token punctuation">(</span>level<span class="token operator">=</span>logging<span class="token punctuation">.</span>DEBUG<span class="token punctuation">,</span> <span class="token builtin">format</span><span class="token operator">=</span><span class="token string">' %(asctime)s - %(levelname)s- %(message)s'</span><span class="token punctuation">)</span>
+</code></pre>
+<h2 id="log-levels"><a aria-hidden="true" class="anchor-heading" href="#log-levels"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Log Levels</h2>
+<ul>
+<li>debug(lowest)</li>
+<li>info</li>
+<li>warning</li>
+<li>error</li>
+<li>critical(highest)</li>
+</ul>

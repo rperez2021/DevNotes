@@ -1,0 +1,37 @@
+<h1 id="closure"><a aria-hidden="true" class="anchor-heading" href="#closure"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Closure</h1>
+<h2 id="definition"><a aria-hidden="true" class="anchor-heading" href="#definition"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Definition</h2>
+<p>In JavaScript, a closure is any function that keeps reference to variables from its parent’s scope even after the parent has returned.</p>
+<p>The concept of closure is the idea that functions retain their scope even if they are passed around and called outside of that scope.</p>
+<p>Closures allow us to create private variables and functions. Private functions are functions that are used in the workings of our objects that are not intended to be used elsewhere in our program. In other words, even though our objects might only do one or two things, we are free to split our functions up as much as we want (allowing for cleaner, easier to read code) and only export the functions that the rest of the program is going to use.</p>
+<h2 id="example--explanation"><a aria-hidden="true" class="anchor-heading" href="#example--explanation"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Example / Explanation</h2>
+<p>Closures ties in very closely with Lexical Scope. A better example of how the closure side of things works, can be seen when returning a function reference - a more practical usage. Inside our scope, we can return things so that they’re available in the parent scope:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">var</span> <span class="token function-variable function">sayHello</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">name</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> text <span class="token operator">=</span> <span class="token string">'Hello, '</span> <span class="token operator">+</span> name<span class="token punctuation">;</span>
+  <span class="token keyword control-flow">return</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>The closure concept we’ve used here makes our scope inside sayHello inaccessible to the public scope. Calling the function alone will do nothing as it returns a function:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token function">sayHello</span><span class="token punctuation">(</span><span class="token string">'Todd'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// nothing happens, no errors, just silence...</span>
+</code></pre>
+<p>The function returns a function, which means it needs assignment, and then calling:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">var</span> helloTodd <span class="token operator">=</span> <span class="token function">sayHello</span><span class="token punctuation">(</span><span class="token string">'Todd'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">helloTodd</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// will call the closure and log 'Hello, Todd'</span>
+</code></pre>
+<p>Okay, I lied, you can call it, and you may have seen functions like this, but this will call your closure:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token function">sayHello</span><span class="token punctuation">(</span><span class="token string">'Bob'</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// calls the returned function without assignment</span>
+</code></pre>
+<p>AngularJS uses the above technique for its $compile method, where you pass the current scope reference into the closure:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token function">$compile</span><span class="token punctuation">(</span>template<span class="token punctuation">)</span><span class="token punctuation">(</span>scope<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Meaning we could guess that their code would (over-simplified) look like this:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">var</span> <span class="token function-variable function">$compile</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">template</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// some magic stuff here</span>
+  <span class="token comment">// scope is out of scope, though...</span>
+  <span class="token keyword control-flow">return</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">scope</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// access to `template` and `scope` to do magic with too</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>A function doesn’t have to return in order to be called a closure though. Simply accessing variables outside of the immediate lexical scope creates a closure.</p>

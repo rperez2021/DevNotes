@@ -1,0 +1,42 @@
+<h1 id="machine-learning"><a aria-hidden="true" class="anchor-heading" href="#machine-learning"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Machine Learning</h1>
+<h2 id="general-info"><a aria-hidden="true" class="anchor-heading" href="#general-info"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>General Info</h2>
+<p>Machine Learning is the foundation for most artificial intelligence solutions, and the creation of an intelligent solution often begins with the use of machine learning to train a predictive model using historic data that you have collected.</p>
+<h3 id="supervised-machine-learning"><a aria-hidden="true" class="anchor-heading" href="#supervised-machine-learning"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Supervised Machine Learning</h3>
+<ul>
+<li>Regression - Historic Data to predict a numeric value</li>
+<li>Classification - Model predicts a class to which an item belongs</li>
+</ul>
+<h3 id="unsupervised-machine-learning"><a aria-hidden="true" class="anchor-heading" href="#unsupervised-machine-learning"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Unsupervised Machine Learning</h3>
+<ul>
+<li>Clustering types of data bits</li>
+</ul>
+<h3 id="regression"><a aria-hidden="true" class="anchor-heading" href="#regression"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Regression</h3>
+<p><em>Regression</em> is a form of machine learning that is used to predict a numeric label based on an item's features. For example, an automobile sales company might use the characteristics of a car (such as engine size, number of seats, mileage, and so on) to predict its likely selling price. In this case, the characteristics of the car are the features, and the selling price is the label.</p>
+<h4 id="regression-performance-metrics"><a aria-hidden="true" class="anchor-heading" href="#regression-performance-metrics"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Regression Performance Metrics</h4>
+<p><strong>Mean Absolute Error (MAE)</strong>: The average difference between predicted values and true values. This value is based on the same units as the label, in this case dollars. The lower this value is, the better the model is predicting.</p>
+<p><strong>Root Mean Squared Error (RMSE)</strong>: The square root of the mean squared difference between predicted and true values. The result is a metric based on the same unit as the label (dollars). When compared to the MAE (above), a larger difference indicates greater variance in the individual errors (for example, with some errors being very small, while others are large).</p>
+<p><strong>Relative Squared Error (RSE)</strong>: A relative metric between 0 and 1 based on the square of the differences between predicted and true values. The closer to 0 this metric is, the better the model is performing. Because this metric is relative, it can be used to compare models where the labels are in different units.</p>
+<p><strong>Relative Absolute Error (RAE)</strong>: A relative metric between 0 and 1 based on the absolute differences between predicted and true values. The closer to 0 this metric is, the better the model is performing. Like RSE, this metric can be used to compare models where the labels are in different units.</p>
+<p><strong>Coefficient of Determination (R2)</strong>:This metric is more commonly referred to as R-Squared, and summarizes how much of the variance between predicted and true values is explained by the model. The closer to 1 this value is, the better the model is performing.</p>
+<h3 id="clustering"><a aria-hidden="true" class="anchor-heading" href="#clustering"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Clustering</h3>
+<p>Clustering is a form of machine learning that is used to group similar items into clusters based on their features. For example, a researcher might take measurements of penguins, and group them based on similarities in their proportions.</p>
+<p>Clustering is an example of unsupervised machine learning, in which you train a model to separate items into clusters based purely on their characteristics, or features. There is no previously known cluster value (or label) from which to train the model.</p>
+<h3 id="normalizing-values"><a aria-hidden="true" class="anchor-heading" href="#normalizing-values"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Normalizing Values</h3>
+<p>When training a machine learning model, it is sometimes possible for larger values to dominate the resulting predictive function, reducing the influence of features that on a smaller scale. Typically, data scientists mitigate this possible bias by normalizing the numeric columns so they're on the similar scales.</p>
+<h3 id="computer-vision"><a aria-hidden="true" class="anchor-heading" href="#computer-vision"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Computer Vision</h3>
+<p>Computer vision is one of the core areas of artificial intelligence (AI), and focuses on creating solutions that enable AI applications to "see" the world and make sense of it.</p>
+<p>Of course, computers don't have biological eyes that work the way ours do, but they are capable of processing images; either from a live camera feed or from digital photographs or videos. This ability to process images is the key to creating software that can emulate human visual perception.</p>
+<p>Some potential uses for computer vision include:</p>
+<ul>
+<li><strong>Content Organization</strong>: Identify people or objects in photos and organize them based on that identification. Photo recognition applications like this are commonly used in photo storage and social media applications.</li>
+<li><strong>Text Extraction</strong>: Analyze images and PDF documents that contain text and extract the text into a structured format.</li>
+<li><strong>Spatial Analysis</strong>: Identify people or objects, such as cars, in a space and map their movement within that space.</li>
+</ul>
+<p>To an AI application, an image is just an array of pixel values. These numeric values can be used as features to train machine learning models that make predictions about the image and its contents.</p>
+<p>To use the Computer Vision service, you need to create a resource for it in your Azure subscription. You can use either of the following resource types:</p>
+<ul>
+<li><strong>Computer Vision</strong>: A specific resource for the Computer Vision service. Use this resource type if you don't intend to use any other cognitive services, or if you want to track utilization and costs for your Computer Vision resource separately.</li>
+<li><strong>Cognitive Services</strong>: A general cognitive services resource that includes Computer Vision along with many other cognitive services; such as Text Analytics, Translator Text, and others. Use this resource type if you plan to use multiple cognitive services and want to simplify administration and development.</li>
+</ul>
+<h2 id="cheat-sheet"><a aria-hidden="true" class="anchor-heading" href="#cheat-sheet"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Cheat Sheet</h2>
+<p><a href="https://docs.microsoft.com/en-us/azure/machine-learning/algorithm-cheat-sheet">Azure ML Cheat Sheet for Model Selection</a></p>

@@ -1,0 +1,57 @@
+<h1 id="table"><a aria-hidden="true" class="anchor-heading" href="#table"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Table</h1>
+<h2 id="uiux-best-practices-from-pencil--paper-io"><a aria-hidden="true" class="anchor-heading" href="#uiux-best-practices-from-pencil--paper-io"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>UI/UX Best Practices from Pencil &#x26; Paper IO</h2>
+<p>Part of this info comes from this guide: <a href="https://pencilandpaper.io/articles/ux-pattern-analysis-enterprise-data-tables/">pencilandpaper.io</a></p>
+<ul>
+<li>Left Align Text Columns</li>
+<li>Match Heading Alignment to Columns</li>
+<li>Don't ever use center alignment</li>
+<li>Avoid duplication of words between Headers and Content</li>
+<li>Right align quantitative numberical values (money, quantities, measures, percentages)</li>
+<li>Qualitative numbers can be left aligned (dates, postal codes, phone numbers)</li>
+<li>Lots more check out that article</li>
+</ul>
+<h2 id="styling-tips-and-helper-elements--attributes"><a aria-hidden="true" class="anchor-heading" href="#styling-tips-and-helper-elements--attributes"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Styling Tips and Helper Elements &#x26; Attributes</h2>
+<h3 id="the-col--colgroup-elements"><a aria-hidden="true" class="anchor-heading" href="#the-col--colgroup-elements"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>The <code>&#x3C;col></code> &#x26; <code>&#x3C;colgroup></code> Elements</h3>
+<p>These can be used to style entire columns without having to style individual <code>&#x3C;td></code> or <code>&#x3C;th></code> elements.</p>
+<p>Styling columns like this is limited to a few properties: border, background, width, and visibility. To set other properties you'll have to either style every <code>&#x3C;td></code> or <code>&#x3C;th></code> in the column, or use a complex selector such as <code>:nth-child</code>.</p>
+<p>The attribute <code>span</code> can also be used inside a <code>&#x3C;col></code> element to expand the styling size.</p>
+<h3 id="the-colspan-and-rowspan-attributed"><a aria-hidden="true" class="anchor-heading" href="#the-colspan-and-rowspan-attributed"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>The <code>colspan</code> and <code>rowspan</code> attributed</h3>
+<p>Allow us to expand a <code>&#x3C;th></code> or <code>&#x3C;td></code> element across several rows or columns.</p>
+<table>
+  <tbody><tr>
+    <th colspan="2">Animals</th>
+  </tr>
+  <tr>
+    <th colspan="2">Hippopotamus</th>
+  </tr>
+  <tr>
+    <th rowspan="2">Horse</th>
+    <td>Mare</td>
+  </tr>
+  <tr>
+    <td>Stallion</td>
+  </tr>
+  <tr>
+    <th colspan="2">Crocodile</th>
+  </tr>
+  <tr>
+    <th rowspan="2">Chicken</th>
+    <td>Hen</td>
+  </tr>
+  <tr>
+    <td>Rooster</td>
+  </tr>
+</tbody></table>
+<h2 id="a11y-concerns-and-helpers"><a aria-hidden="true" class="anchor-heading" href="#a11y-concerns-and-helpers"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>A11y Concerns and Helpers</h2>
+<h3 id="the-caption-element"><a aria-hidden="true" class="anchor-heading" href="#the-caption-element"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>The <code>&#x3C;caption></code> Element</h3>
+<p>You can give your table a caption by putting it inside a <code>&#x3C;caption></code> element and nesting that inside the <code>&#x3C;table></code> element. You should put it just below the opening <code>&#x3C;table></code> tag.</p>
+<h3 id="the-thead-tfoor-and-tbody-elements"><a aria-hidden="true" class="anchor-heading" href="#the-thead-tfoor-and-tbody-elements"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>The <code>&#x3C;thead></code>, <code>&#x3C;tfoor></code> and <code>&#x3C;tbody></code> Elements</h3>
+<p>These elements don't make the table any more accessible to screenreader users, and don't result in any visual enhancement on their own. They are however very useful for styling and layout — acting as useful hooks for adding CSS to your table.</p>
+<h3 id="the-scope-attribute"><a aria-hidden="true" class="anchor-heading" href="#the-scope-attribute"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>The <code>scope</code> Attribute</h3>
+<p>The Scope attribute, which can be added to the <code>&#x3C;th></code> element to tell screenreaders exactly what cells the header is a header for can use the scope attribute with values like <code>colgroup</code>, <code>rowgroup</code>, <code>col</code> or <code>row</code> to help screenreders determine what these subheadings are for.</p>
+<h3 id="using-id-and-header-attributes"><a aria-hidden="true" class="anchor-heading" href="#using-id-and-header-attributes"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Using <code>id</code> and <code>header</code> Attributes</h3>
+<p>An alternative to using the scope attribute is to use id and headers attributes to create associations between headers and cells. The way they are used is as follows:</p>
+<ul>
+<li>You add a unique id to each  element.</li>
+<li>You add a headers attribute to each  element. Each headers attribute has to contain a list of the ids of all the  elements that act as a header for that cell, separated by spaces.</li>
+</ul>
