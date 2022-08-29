@@ -1,8 +1,8 @@
 ---
-id: cOSLT6ncEiScjLx1bEQKH
+id: lj1mnnikgjqbfcjs5x9xhvz
 title: JavaScript
 desc: ''
-updated: 1644000864535
-created: 1644000860449
+updated: 1661616381368
+created: 1659844400987
 ---
-JS has a pretty widely adopted form validation API [Constraint Validation API](https://caniuse.com/constraint-validation)
+It goes beep boop beep boop and then the webpage goes zoom zoom zoom!
